@@ -1,5 +1,12 @@
-import express from "express";
+import { Database } from "./database";
+import { Server } from "./server";
 
-const app = express();
-app.get("/", (req, res) => res.send("Hello World"));
-app.listen(3000);
+(async function start() {
+  const server = new Server();
+  server.start();
+
+  const database = new Database();
+  await database.connect();
+  // await database.foo();
+  await database.disconnect();
+})();
