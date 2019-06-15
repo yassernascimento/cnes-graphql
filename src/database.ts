@@ -1,5 +1,5 @@
 import { MongoClient } from "mongodb";
-import { DATABASE_NAME, DATABASE_URL } from "./constants";
+import { DATABASE_URL } from "./constants";
 
 export class Database {
   private client = new MongoClient(DATABASE_URL, { useNewUrlParser: true });
