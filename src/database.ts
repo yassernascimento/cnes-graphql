@@ -6,6 +6,8 @@ export class Database {
 
   public async connect() {
     await this.client.connect();
+    const connection = this.client.isConnected() ? "Connected" : "Disconnected";
+    console.log(`Database is ${connection}`);
   }
 
   public async disconnect() {

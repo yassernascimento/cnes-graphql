@@ -6,6 +6,8 @@ export class Server {
 
   public start() {
     this.app.get("/", (req, res) => res.send("Hello World"));
-    this.app.listen(SERVER_PORT);
+    this.app.listen(SERVER_PORT, () =>
+      console.log(`Server is listening on port ${SERVER_PORT}`)
+    );
   }
 }
