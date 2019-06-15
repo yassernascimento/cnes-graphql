@@ -9,19 +9,22 @@
     "watch-ts": "./node_modules/typescript/bin/tsc -w",
     "watch-node": "./node_modules/nodemon/bin/nodemon.js dist/index.js",
     "start": "./node_modules/npm-run-all/bin/run-p/index.js watch-ts watch-node",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare-data": "./node_modules/run-for-every-file/run-for-every-file.js --src './data/csv/' --file '*.csv' --run './node_modules/csvtojson/bin/csvtojson ./data/csv/{{file-name-ext}} > ./data/json/{{file-name}}.json --delimiter=;'"
   },
   "author": "yasser nascimento <yassern@protonmail.com>",
   "license": "ISC",
   "devDependencies": {
     "@types/express": "^4.16.1",
-    "@types/node": "^12.0.2",
     "@types/mongodb": "^3.1.28",
+    "@types/node": "^12.0.2",
+    "csvtojson": "^2.0.8",
     "husky": "^2.3.0",
     "nodemon": "^1.19.1",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.17.1",
     "pretty-quick": "^1.11.0",
+    "run-for-every-file": "^1.1.0",
     "tslint": "^5.16.0",
     "typescript": "^3.4.5"
   },
