@@ -10,7 +10,7 @@
     "watch-node": "./node_modules/nodemon/bin/nodemon.js dist/index.js",
     "start": "./node_modules/npm-run-all/bin/run-p/index.js watch-ts watch-node",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare-data": "./node_modules/run-for-every-file/run-for-every-file.js --src './data/csv/' --file '*.csv' --run './node_modules/csvtojson/bin/csvtojson ./data/csv/{{file-name-ext}} > ./data/json/{{file-name}}.json --delimiter=;'"
+    "prepare-data": "run-for-every-file --src './data/csv/' --file '*.csv' --run 'npx csvtojson ./data/csv/{{file-name-ext}} > ./data/json/{{file-name}}.json --ignoreEmpty=true --checkType=true --delimiter=;'"
   },
   "author": "yasser nascimento <yassern@protonmail.com>",
   "license": "ISC",
