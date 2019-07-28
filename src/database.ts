@@ -11,16 +11,9 @@ export class Database {
   }
 
   public async getEstabelecimento(coUnidade: number) {
-    this.connectedGuard();
     return await this.client
       .db("paciente")
       .collection("estabelecimentos")
       .findOne({ CO_UNIDADE: Number(coUnidade) });
-  }
-
-  private connectedGuard() {
-    if (!this.client.isConnected()) {
-      throw new Error("Database not connected");
-    }
   }
 }
