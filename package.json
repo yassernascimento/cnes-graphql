@@ -8,7 +8,7 @@
     "serve": "node dist/index.js",
     "watch-ts": "./node_modules/typescript/bin/tsc -w",
     "watch-node": "./node_modules/nodemon/bin/nodemon.js dist/index.js",
-    "start": "./node_modules/npm-run-all/bin/run-p/index.js watch-ts watch-node",
+    "start": "ts-node src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare-data": "run-for-every-file --src './data/csv/' --file '*.csv' --run 'npx csvtojson ./data/csv/{{file-name-ext}} > ./data/json/{{file-name}}.json --ignoreEmpty=true --checkType=true --delimiter=;'"
   },
@@ -26,6 +26,7 @@
     "prettier": "^1.17.1",
     "pretty-quick": "^1.11.0",
     "run-for-every-file": "^1.1.0",
+    "ts-node": "^8.3.0",
     "tslint": "^5.16.0",
     "typescript": "^3.4.5"
   },
@@ -37,6 +38,7 @@
   "dependencies": {
     "apollo-server": "^2.6.3",
     "graphql": "^14.3.1",
-    "mongodb": "^3.2.7"
+    "mongodb": "^3.2.7",
+    "prisma-client-lib": "^1.34.3"
   }
 }
