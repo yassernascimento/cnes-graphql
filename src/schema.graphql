@@ -1,6 +1,9 @@
+type Query {
+  estabelecimento(CO_UNIDADE: ID!): Estabelecimento!
+}
+
 type Estabelecimento {
-  _id: ID! @id
-  CO_UNIDADE: Float! @unique
+  CO_UNIDADE: ID!
   CO_CNES: String
   NU_CNPJ_MANTENEDORA: String
   TP_PFPJ: String

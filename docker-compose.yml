@@ -19,6 +19,5 @@ services:
         databases:
           default:
             connector: mongo
-            database: paciente
             uri: >-
               mongodb+srv://yasser:emfYFwZptnSnYfQu@cluster1-7x4na.mongodb.net/test?retryWrites=true&w=majority

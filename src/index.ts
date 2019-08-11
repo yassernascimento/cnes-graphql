@@ -1,10 +1,18 @@
-import { Database } from "./database";
-import { Server } from "./server";
+import { GraphQLServer } from "graphql-yoga";
+import { prisma } from "./generated/prisma-client";
+import { Context } from "./utils";
 
-(async function start() {
-  const database = new Database();
-  await database.connect();
+const resolvers = {
+  Query: {
+    estabelecimento(parent: any, { CO_UNIDADE }: any, context: Context) {
+      return context.prisma.estabelecimento({ CO_UNIDADE });
+    }
+  }
+};
 
-  const server = new Server(database);
-  await server.start();
-})();
+const server = new GraphQLServer({
+  typeDefs: "./src/schema.graphql",
+  resolvers,
+  context: { prisma }
+});
+server.start(() => console.log("Server is running on http://localhost:4000"));
