@@ -75,7 +75,7 @@ export const typeDefs = /* GraphQL */ `
   }
 
   input EstabelecimentoCreateInput {
-    CO_UNIDADE: ID!
+    CO_UNIDADE: ID
     CO_CNES: String
     NU_CNPJ_MANTENEDORA: String
     TP_PFPJ: String

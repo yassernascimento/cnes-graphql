@@ -1,5 +1,5 @@
 type Estabelecimento {
-  CO_UNIDADE: ID! @id(strategy: NONE)
+  CO_UNIDADE: ID! @id
   CO_CNES: String
   NU_CNPJ_MANTENEDORA: String
   TP_PFPJ: String

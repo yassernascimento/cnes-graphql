@@ -1,7 +1,7 @@
 type Query {
   estabelecimento(CO_UNIDADE: ID!): Estabelecimento!
+  estabelecimentos: [Estabelecimento]!
 }
-
 type Estabelecimento {
   CO_UNIDADE: ID!
   CO_CNES: String

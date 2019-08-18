@@ -222,7 +222,7 @@ export type EstabelecimentoOrderByInput =
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
 export interface EstabelecimentoCreateInput {
-  CO_UNIDADE: ID_Input;
+  CO_UNIDADE?: Maybe<ID_Input>;
   CO_CNES?: Maybe<String>;
   NU_CNPJ_MANTENEDORA?: Maybe<String>;
   TP_PFPJ?: Maybe<String>;

@@ -6,6 +6,9 @@ const resolvers = {
   Query: {
     estabelecimento(parent: any, { CO_UNIDADE }: any, context: Context) {
       return context.prisma.estabelecimento({ CO_UNIDADE });
+    },
+    estabelecimentos(parent: any, args: any, context: Context) {
+      return context.prisma.estabelecimentoes();
     }
   }
 };
