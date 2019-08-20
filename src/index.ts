@@ -8,7 +8,7 @@ const resolvers = {
       return context.prisma.estabelecimento({ CO_UNIDADE });
     },
     estabelecimentos(parent: any, args: any, context: Context) {
-      return context.prisma.estabelecimentoes();
+      return context.prisma.estabelecimentoes(args);
     }
   }
 };

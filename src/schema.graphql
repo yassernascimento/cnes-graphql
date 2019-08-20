@@ -1,7 +1,16 @@
 type Query {
   estabelecimento(CO_UNIDADE: ID!): Estabelecimento!
-  estabelecimentos: [Estabelecimento]!
+  estabelecimentos(
+    where: EstabelecimentoWhereInput
+    orderBy: EstabelecimentoOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Estabelecimento]!
 }
+
 type Estabelecimento {
   CO_UNIDADE: ID!
   CO_CNES: String
@@ -57,4 +66,875 @@ type Estabelecimento {
   CO_TIPO_ESTABELECIMENTO: String
   CO_ATIVIDADE_PRINCIPAL: String
   ST_CONTRATO_FORMALIZADO: String
+}
+
+input EstabelecimentoWhereInput {
+  CO_UNIDADE: ID
+  CO_UNIDADE_not: ID
+  CO_UNIDADE_in: [ID!]
+  CO_UNIDADE_not_in: [ID!]
+  CO_UNIDADE_lt: ID
+  CO_UNIDADE_lte: ID
+  CO_UNIDADE_gt: ID
+  CO_UNIDADE_gte: ID
+  CO_UNIDADE_contains: ID
+  CO_UNIDADE_not_contains: ID
+  CO_UNIDADE_starts_with: ID
+  CO_UNIDADE_not_starts_with: ID
+  CO_UNIDADE_ends_with: ID
+  CO_UNIDADE_not_ends_with: ID
+  CO_CNES: String
+  CO_CNES_not: String
+  CO_CNES_in: [String!]
+  CO_CNES_not_in: [String!]
+  CO_CNES_lt: String
+  CO_CNES_lte: String
+  CO_CNES_gt: String
+  CO_CNES_gte: String
+  CO_CNES_contains: String
+  CO_CNES_not_contains: String
+  CO_CNES_starts_with: String
+  CO_CNES_not_starts_with: String
+  CO_CNES_ends_with: String
+  CO_CNES_not_ends_with: String
+  NU_CNPJ_MANTENEDORA: String
+  NU_CNPJ_MANTENEDORA_not: String
+  NU_CNPJ_MANTENEDORA_in: [String!]
+  NU_CNPJ_MANTENEDORA_not_in: [String!]
+  NU_CNPJ_MANTENEDORA_lt: String
+  NU_CNPJ_MANTENEDORA_lte: String
+  NU_CNPJ_MANTENEDORA_gt: String
+  NU_CNPJ_MANTENEDORA_gte: String
+  NU_CNPJ_MANTENEDORA_contains: String
+  NU_CNPJ_MANTENEDORA_not_contains: String
+  NU_CNPJ_MANTENEDORA_starts_with: String
+  NU_CNPJ_MANTENEDORA_not_starts_with: String
+  NU_CNPJ_MANTENEDORA_ends_with: String
+  NU_CNPJ_MANTENEDORA_not_ends_with: String
+  TP_PFPJ: String
+  TP_PFPJ_not: String
+  TP_PFPJ_in: [String!]
+  TP_PFPJ_not_in: [String!]
+  TP_PFPJ_lt: String
+  TP_PFPJ_lte: String
+  TP_PFPJ_gt: String
+  TP_PFPJ_gte: String
+  TP_PFPJ_contains: String
+  TP_PFPJ_not_contains: String
+  TP_PFPJ_starts_with: String
+  TP_PFPJ_not_starts_with: String
+  TP_PFPJ_ends_with: String
+  TP_PFPJ_not_ends_with: String
+  NIVEL_DEP: String
+  NIVEL_DEP_not: String
+  NIVEL_DEP_in: [String!]
+  NIVEL_DEP_not_in: [String!]
+  NIVEL_DEP_lt: String
+  NIVEL_DEP_lte: String
+  NIVEL_DEP_gt: String
+  NIVEL_DEP_gte: String
+  NIVEL_DEP_contains: String
+  NIVEL_DEP_not_contains: String
+  NIVEL_DEP_starts_with: String
+  NIVEL_DEP_not_starts_with: String
+  NIVEL_DEP_ends_with: String
+  NIVEL_DEP_not_ends_with: String
+  NO_RAZAO_SOCIAL: String
+  NO_RAZAO_SOCIAL_not: String
+  NO_RAZAO_SOCIAL_in: [String!]
+  NO_RAZAO_SOCIAL_not_in: [String!]
+  NO_RAZAO_SOCIAL_lt: String
+  NO_RAZAO_SOCIAL_lte: String
+  NO_RAZAO_SOCIAL_gt: String
+  NO_RAZAO_SOCIAL_gte: String
+  NO_RAZAO_SOCIAL_contains: String
+  NO_RAZAO_SOCIAL_not_contains: String
+  NO_RAZAO_SOCIAL_starts_with: String
+  NO_RAZAO_SOCIAL_not_starts_with: String
+  NO_RAZAO_SOCIAL_ends_with: String
+  NO_RAZAO_SOCIAL_not_ends_with: String
+  NO_FANTASIA: String
+  NO_FANTASIA_not: String
+  NO_FANTASIA_in: [String!]
+  NO_FANTASIA_not_in: [String!]
+  NO_FANTASIA_lt: String
+  NO_FANTASIA_lte: String
+  NO_FANTASIA_gt: String
+  NO_FANTASIA_gte: String
+  NO_FANTASIA_contains: String
+  NO_FANTASIA_not_contains: String
+  NO_FANTASIA_starts_with: String
+  NO_FANTASIA_not_starts_with: String
+  NO_FANTASIA_ends_with: String
+  NO_FANTASIA_not_ends_with: String
+  NO_LOGRADOURO: String
+  NO_LOGRADOURO_not: String
+  NO_LOGRADOURO_in: [String!]
+  NO_LOGRADOURO_not_in: [String!]
+  NO_LOGRADOURO_lt: String
+  NO_LOGRADOURO_lte: String
+  NO_LOGRADOURO_gt: String
+  NO_LOGRADOURO_gte: String
+  NO_LOGRADOURO_contains: String
+  NO_LOGRADOURO_not_contains: String
+  NO_LOGRADOURO_starts_with: String
+  NO_LOGRADOURO_not_starts_with: String
+  NO_LOGRADOURO_ends_with: String
+  NO_LOGRADOURO_not_ends_with: String
+  NU_ENDERECO: String
+  NU_ENDERECO_not: String
+  NU_ENDERECO_in: [String!]
+  NU_ENDERECO_not_in: [String!]
+  NU_ENDERECO_lt: String
+  NU_ENDERECO_lte: String
+  NU_ENDERECO_gt: String
+  NU_ENDERECO_gte: String
+  NU_ENDERECO_contains: String
+  NU_ENDERECO_not_contains: String
+  NU_ENDERECO_starts_with: String
+  NU_ENDERECO_not_starts_with: String
+  NU_ENDERECO_ends_with: String
+  NU_ENDERECO_not_ends_with: String
+  NO_COMPLEMENTO: String
+  NO_COMPLEMENTO_not: String
+  NO_COMPLEMENTO_in: [String!]
+  NO_COMPLEMENTO_not_in: [String!]
+  NO_COMPLEMENTO_lt: String
+  NO_COMPLEMENTO_lte: String
+  NO_COMPLEMENTO_gt: String
+  NO_COMPLEMENTO_gte: String
+  NO_COMPLEMENTO_contains: String
+  NO_COMPLEMENTO_not_contains: String
+  NO_COMPLEMENTO_starts_with: String
+  NO_COMPLEMENTO_not_starts_with: String
+  NO_COMPLEMENTO_ends_with: String
+  NO_COMPLEMENTO_not_ends_with: String
+  NO_BAIRRO: String
+  NO_BAIRRO_not: String
+  NO_BAIRRO_in: [String!]
+  NO_BAIRRO_not_in: [String!]
+  NO_BAIRRO_lt: String
+  NO_BAIRRO_lte: String
+  NO_BAIRRO_gt: String
+  NO_BAIRRO_gte: String
+  NO_BAIRRO_contains: String
+  NO_BAIRRO_not_contains: String
+  NO_BAIRRO_starts_with: String
+  NO_BAIRRO_not_starts_with: String
+  NO_BAIRRO_ends_with: String
+  NO_BAIRRO_not_ends_with: String
+  CO_CEP: String
+  CO_CEP_not: String
+  CO_CEP_in: [String!]
+  CO_CEP_not_in: [String!]
+  CO_CEP_lt: String
+  CO_CEP_lte: String
+  CO_CEP_gt: String
+  CO_CEP_gte: String
+  CO_CEP_contains: String
+  CO_CEP_not_contains: String
+  CO_CEP_starts_with: String
+  CO_CEP_not_starts_with: String
+  CO_CEP_ends_with: String
+  CO_CEP_not_ends_with: String
+  CO_REGIAO_SAUDE: String
+  CO_REGIAO_SAUDE_not: String
+  CO_REGIAO_SAUDE_in: [String!]
+  CO_REGIAO_SAUDE_not_in: [String!]
+  CO_REGIAO_SAUDE_lt: String
+  CO_REGIAO_SAUDE_lte: String
+  CO_REGIAO_SAUDE_gt: String
+  CO_REGIAO_SAUDE_gte: String
+  CO_REGIAO_SAUDE_contains: String
+  CO_REGIAO_SAUDE_not_contains: String
+  CO_REGIAO_SAUDE_starts_with: String
+  CO_REGIAO_SAUDE_not_starts_with: String
+  CO_REGIAO_SAUDE_ends_with: String
+  CO_REGIAO_SAUDE_not_ends_with: String
+  CO_MICRO_REGIAO: String
+  CO_MICRO_REGIAO_not: String
+  CO_MICRO_REGIAO_in: [String!]
+  CO_MICRO_REGIAO_not_in: [String!]
+  CO_MICRO_REGIAO_lt: String
+  CO_MICRO_REGIAO_lte: String
+  CO_MICRO_REGIAO_gt: String
+  CO_MICRO_REGIAO_gte: String
+  CO_MICRO_REGIAO_contains: String
+  CO_MICRO_REGIAO_not_contains: String
+  CO_MICRO_REGIAO_starts_with: String
+  CO_MICRO_REGIAO_not_starts_with: String
+  CO_MICRO_REGIAO_ends_with: String
+  CO_MICRO_REGIAO_not_ends_with: String
+  CO_DISTRITO_SANITARIO: String
+  CO_DISTRITO_SANITARIO_not: String
+  CO_DISTRITO_SANITARIO_in: [String!]
+  CO_DISTRITO_SANITARIO_not_in: [String!]
+  CO_DISTRITO_SANITARIO_lt: String
+  CO_DISTRITO_SANITARIO_lte: String
+  CO_DISTRITO_SANITARIO_gt: String
+  CO_DISTRITO_SANITARIO_gte: String
+  CO_DISTRITO_SANITARIO_contains: String
+  CO_DISTRITO_SANITARIO_not_contains: String
+  CO_DISTRITO_SANITARIO_starts_with: String
+  CO_DISTRITO_SANITARIO_not_starts_with: String
+  CO_DISTRITO_SANITARIO_ends_with: String
+  CO_DISTRITO_SANITARIO_not_ends_with: String
+  CO_DISTRITO_ADMINISTRATIVO: String
+  CO_DISTRITO_ADMINISTRATIVO_not: String
+  CO_DISTRITO_ADMINISTRATIVO_in: [String!]
+  CO_DISTRITO_ADMINISTRATIVO_not_in: [String!]
+  CO_DISTRITO_ADMINISTRATIVO_lt: String
+  CO_DISTRITO_ADMINISTRATIVO_lte: String
+  CO_DISTRITO_ADMINISTRATIVO_gt: String
+  CO_DISTRITO_ADMINISTRATIVO_gte: String
+  CO_DISTRITO_ADMINISTRATIVO_contains: String
+  CO_DISTRITO_ADMINISTRATIVO_not_contains: String
+  CO_DISTRITO_ADMINISTRATIVO_starts_with: String
+  CO_DISTRITO_ADMINISTRATIVO_not_starts_with: String
+  CO_DISTRITO_ADMINISTRATIVO_ends_with: String
+  CO_DISTRITO_ADMINISTRATIVO_not_ends_with: String
+  NU_TELEFONE: String
+  NU_TELEFONE_not: String
+  NU_TELEFONE_in: [String!]
+  NU_TELEFONE_not_in: [String!]
+  NU_TELEFONE_lt: String
+  NU_TELEFONE_lte: String
+  NU_TELEFONE_gt: String
+  NU_TELEFONE_gte: String
+  NU_TELEFONE_contains: String
+  NU_TELEFONE_not_contains: String
+  NU_TELEFONE_starts_with: String
+  NU_TELEFONE_not_starts_with: String
+  NU_TELEFONE_ends_with: String
+  NU_TELEFONE_not_ends_with: String
+  NU_FAX: String
+  NU_FAX_not: String
+  NU_FAX_in: [String!]
+  NU_FAX_not_in: [String!]
+  NU_FAX_lt: String
+  NU_FAX_lte: String
+  NU_FAX_gt: String
+  NU_FAX_gte: String
+  NU_FAX_contains: String
+  NU_FAX_not_contains: String
+  NU_FAX_starts_with: String
+  NU_FAX_not_starts_with: String
+  NU_FAX_ends_with: String
+  NU_FAX_not_ends_with: String
+  NO_EMAIL: String
+  NO_EMAIL_not: String
+  NO_EMAIL_in: [String!]
+  NO_EMAIL_not_in: [String!]
+  NO_EMAIL_lt: String
+  NO_EMAIL_lte: String
+  NO_EMAIL_gt: String
+  NO_EMAIL_gte: String
+  NO_EMAIL_contains: String
+  NO_EMAIL_not_contains: String
+  NO_EMAIL_starts_with: String
+  NO_EMAIL_not_starts_with: String
+  NO_EMAIL_ends_with: String
+  NO_EMAIL_not_ends_with: String
+  NU_CPF: String
+  NU_CPF_not: String
+  NU_CPF_in: [String!]
+  NU_CPF_not_in: [String!]
+  NU_CPF_lt: String
+  NU_CPF_lte: String
+  NU_CPF_gt: String
+  NU_CPF_gte: String
+  NU_CPF_contains: String
+  NU_CPF_not_contains: String
+  NU_CPF_starts_with: String
+  NU_CPF_not_starts_with: String
+  NU_CPF_ends_with: String
+  NU_CPF_not_ends_with: String
+  NU_CNPJ: String
+  NU_CNPJ_not: String
+  NU_CNPJ_in: [String!]
+  NU_CNPJ_not_in: [String!]
+  NU_CNPJ_lt: String
+  NU_CNPJ_lte: String
+  NU_CNPJ_gt: String
+  NU_CNPJ_gte: String
+  NU_CNPJ_contains: String
+  NU_CNPJ_not_contains: String
+  NU_CNPJ_starts_with: String
+  NU_CNPJ_not_starts_with: String
+  NU_CNPJ_ends_with: String
+  NU_CNPJ_not_ends_with: String
+  CO_ATIVIDADE: String
+  CO_ATIVIDADE_not: String
+  CO_ATIVIDADE_in: [String!]
+  CO_ATIVIDADE_not_in: [String!]
+  CO_ATIVIDADE_lt: String
+  CO_ATIVIDADE_lte: String
+  CO_ATIVIDADE_gt: String
+  CO_ATIVIDADE_gte: String
+  CO_ATIVIDADE_contains: String
+  CO_ATIVIDADE_not_contains: String
+  CO_ATIVIDADE_starts_with: String
+  CO_ATIVIDADE_not_starts_with: String
+  CO_ATIVIDADE_ends_with: String
+  CO_ATIVIDADE_not_ends_with: String
+  CO_CLIENTELA: String
+  CO_CLIENTELA_not: String
+  CO_CLIENTELA_in: [String!]
+  CO_CLIENTELA_not_in: [String!]
+  CO_CLIENTELA_lt: String
+  CO_CLIENTELA_lte: String
+  CO_CLIENTELA_gt: String
+  CO_CLIENTELA_gte: String
+  CO_CLIENTELA_contains: String
+  CO_CLIENTELA_not_contains: String
+  CO_CLIENTELA_starts_with: String
+  CO_CLIENTELA_not_starts_with: String
+  CO_CLIENTELA_ends_with: String
+  CO_CLIENTELA_not_ends_with: String
+  NU_ALVARA: String
+  NU_ALVARA_not: String
+  NU_ALVARA_in: [String!]
+  NU_ALVARA_not_in: [String!]
+  NU_ALVARA_lt: String
+  NU_ALVARA_lte: String
+  NU_ALVARA_gt: String
+  NU_ALVARA_gte: String
+  NU_ALVARA_contains: String
+  NU_ALVARA_not_contains: String
+  NU_ALVARA_starts_with: String
+  NU_ALVARA_not_starts_with: String
+  NU_ALVARA_ends_with: String
+  NU_ALVARA_not_ends_with: String
+  DT_EXPEDICAO: String
+  DT_EXPEDICAO_not: String
+  DT_EXPEDICAO_in: [String!]
+  DT_EXPEDICAO_not_in: [String!]
+  DT_EXPEDICAO_lt: String
+  DT_EXPEDICAO_lte: String
+  DT_EXPEDICAO_gt: String
+  DT_EXPEDICAO_gte: String
+  DT_EXPEDICAO_contains: String
+  DT_EXPEDICAO_not_contains: String
+  DT_EXPEDICAO_starts_with: String
+  DT_EXPEDICAO_not_starts_with: String
+  DT_EXPEDICAO_ends_with: String
+  DT_EXPEDICAO_not_ends_with: String
+  TP_ORGAO_EXPEDIDOR: String
+  TP_ORGAO_EXPEDIDOR_not: String
+  TP_ORGAO_EXPEDIDOR_in: [String!]
+  TP_ORGAO_EXPEDIDOR_not_in: [String!]
+  TP_ORGAO_EXPEDIDOR_lt: String
+  TP_ORGAO_EXPEDIDOR_lte: String
+  TP_ORGAO_EXPEDIDOR_gt: String
+  TP_ORGAO_EXPEDIDOR_gte: String
+  TP_ORGAO_EXPEDIDOR_contains: String
+  TP_ORGAO_EXPEDIDOR_not_contains: String
+  TP_ORGAO_EXPEDIDOR_starts_with: String
+  TP_ORGAO_EXPEDIDOR_not_starts_with: String
+  TP_ORGAO_EXPEDIDOR_ends_with: String
+  TP_ORGAO_EXPEDIDOR_not_ends_with: String
+  DT_VAL_LIC_SANI: String
+  DT_VAL_LIC_SANI_not: String
+  DT_VAL_LIC_SANI_in: [String!]
+  DT_VAL_LIC_SANI_not_in: [String!]
+  DT_VAL_LIC_SANI_lt: String
+  DT_VAL_LIC_SANI_lte: String
+  DT_VAL_LIC_SANI_gt: String
+  DT_VAL_LIC_SANI_gte: String
+  DT_VAL_LIC_SANI_contains: String
+  DT_VAL_LIC_SANI_not_contains: String
+  DT_VAL_LIC_SANI_starts_with: String
+  DT_VAL_LIC_SANI_not_starts_with: String
+  DT_VAL_LIC_SANI_ends_with: String
+  DT_VAL_LIC_SANI_not_ends_with: String
+  TP_LIC_SANI: String
+  TP_LIC_SANI_not: String
+  TP_LIC_SANI_in: [String!]
+  TP_LIC_SANI_not_in: [String!]
+  TP_LIC_SANI_lt: String
+  TP_LIC_SANI_lte: String
+  TP_LIC_SANI_gt: String
+  TP_LIC_SANI_gte: String
+  TP_LIC_SANI_contains: String
+  TP_LIC_SANI_not_contains: String
+  TP_LIC_SANI_starts_with: String
+  TP_LIC_SANI_not_starts_with: String
+  TP_LIC_SANI_ends_with: String
+  TP_LIC_SANI_not_ends_with: String
+  TP_UNIDADE: String
+  TP_UNIDADE_not: String
+  TP_UNIDADE_in: [String!]
+  TP_UNIDADE_not_in: [String!]
+  TP_UNIDADE_lt: String
+  TP_UNIDADE_lte: String
+  TP_UNIDADE_gt: String
+  TP_UNIDADE_gte: String
+  TP_UNIDADE_contains: String
+  TP_UNIDADE_not_contains: String
+  TP_UNIDADE_starts_with: String
+  TP_UNIDADE_not_starts_with: String
+  TP_UNIDADE_ends_with: String
+  TP_UNIDADE_not_ends_with: String
+  CO_TURNO_ATENDIMENTO: String
+  CO_TURNO_ATENDIMENTO_not: String
+  CO_TURNO_ATENDIMENTO_in: [String!]
+  CO_TURNO_ATENDIMENTO_not_in: [String!]
+  CO_TURNO_ATENDIMENTO_lt: String
+  CO_TURNO_ATENDIMENTO_lte: String
+  CO_TURNO_ATENDIMENTO_gt: String
+  CO_TURNO_ATENDIMENTO_gte: String
+  CO_TURNO_ATENDIMENTO_contains: String
+  CO_TURNO_ATENDIMENTO_not_contains: String
+  CO_TURNO_ATENDIMENTO_starts_with: String
+  CO_TURNO_ATENDIMENTO_not_starts_with: String
+  CO_TURNO_ATENDIMENTO_ends_with: String
+  CO_TURNO_ATENDIMENTO_not_ends_with: String
+  CO_ESTADO_GESTOR: String
+  CO_ESTADO_GESTOR_not: String
+  CO_ESTADO_GESTOR_in: [String!]
+  CO_ESTADO_GESTOR_not_in: [String!]
+  CO_ESTADO_GESTOR_lt: String
+  CO_ESTADO_GESTOR_lte: String
+  CO_ESTADO_GESTOR_gt: String
+  CO_ESTADO_GESTOR_gte: String
+  CO_ESTADO_GESTOR_contains: String
+  CO_ESTADO_GESTOR_not_contains: String
+  CO_ESTADO_GESTOR_starts_with: String
+  CO_ESTADO_GESTOR_not_starts_with: String
+  CO_ESTADO_GESTOR_ends_with: String
+  CO_ESTADO_GESTOR_not_ends_with: String
+  CO_MUNICIPIO_GESTOR: String
+  CO_MUNICIPIO_GESTOR_not: String
+  CO_MUNICIPIO_GESTOR_in: [String!]
+  CO_MUNICIPIO_GESTOR_not_in: [String!]
+  CO_MUNICIPIO_GESTOR_lt: String
+  CO_MUNICIPIO_GESTOR_lte: String
+  CO_MUNICIPIO_GESTOR_gt: String
+  CO_MUNICIPIO_GESTOR_gte: String
+  CO_MUNICIPIO_GESTOR_contains: String
+  CO_MUNICIPIO_GESTOR_not_contains: String
+  CO_MUNICIPIO_GESTOR_starts_with: String
+  CO_MUNICIPIO_GESTOR_not_starts_with: String
+  CO_MUNICIPIO_GESTOR_ends_with: String
+  CO_MUNICIPIO_GESTOR_not_ends_with: String
+  DT_ATUALIZACAO: String
+  DT_ATUALIZACAO_not: String
+  DT_ATUALIZACAO_in: [String!]
+  DT_ATUALIZACAO_not_in: [String!]
+  DT_ATUALIZACAO_lt: String
+  DT_ATUALIZACAO_lte: String
+  DT_ATUALIZACAO_gt: String
+  DT_ATUALIZACAO_gte: String
+  DT_ATUALIZACAO_contains: String
+  DT_ATUALIZACAO_not_contains: String
+  DT_ATUALIZACAO_starts_with: String
+  DT_ATUALIZACAO_not_starts_with: String
+  DT_ATUALIZACAO_ends_with: String
+  DT_ATUALIZACAO_not_ends_with: String
+  CO_USUARIO: String
+  CO_USUARIO_not: String
+  CO_USUARIO_in: [String!]
+  CO_USUARIO_not_in: [String!]
+  CO_USUARIO_lt: String
+  CO_USUARIO_lte: String
+  CO_USUARIO_gt: String
+  CO_USUARIO_gte: String
+  CO_USUARIO_contains: String
+  CO_USUARIO_not_contains: String
+  CO_USUARIO_starts_with: String
+  CO_USUARIO_not_starts_with: String
+  CO_USUARIO_ends_with: String
+  CO_USUARIO_not_ends_with: String
+  CO_CPFDIRETORCLN: String
+  CO_CPFDIRETORCLN_not: String
+  CO_CPFDIRETORCLN_in: [String!]
+  CO_CPFDIRETORCLN_not_in: [String!]
+  CO_CPFDIRETORCLN_lt: String
+  CO_CPFDIRETORCLN_lte: String
+  CO_CPFDIRETORCLN_gt: String
+  CO_CPFDIRETORCLN_gte: String
+  CO_CPFDIRETORCLN_contains: String
+  CO_CPFDIRETORCLN_not_contains: String
+  CO_CPFDIRETORCLN_starts_with: String
+  CO_CPFDIRETORCLN_not_starts_with: String
+  CO_CPFDIRETORCLN_ends_with: String
+  CO_CPFDIRETORCLN_not_ends_with: String
+  REG_DIRETORCLN: String
+  REG_DIRETORCLN_not: String
+  REG_DIRETORCLN_in: [String!]
+  REG_DIRETORCLN_not_in: [String!]
+  REG_DIRETORCLN_lt: String
+  REG_DIRETORCLN_lte: String
+  REG_DIRETORCLN_gt: String
+  REG_DIRETORCLN_gte: String
+  REG_DIRETORCLN_contains: String
+  REG_DIRETORCLN_not_contains: String
+  REG_DIRETORCLN_starts_with: String
+  REG_DIRETORCLN_not_starts_with: String
+  REG_DIRETORCLN_ends_with: String
+  REG_DIRETORCLN_not_ends_with: String
+  ST_ADESAO_FILANTROP: String
+  ST_ADESAO_FILANTROP_not: String
+  ST_ADESAO_FILANTROP_in: [String!]
+  ST_ADESAO_FILANTROP_not_in: [String!]
+  ST_ADESAO_FILANTROP_lt: String
+  ST_ADESAO_FILANTROP_lte: String
+  ST_ADESAO_FILANTROP_gt: String
+  ST_ADESAO_FILANTROP_gte: String
+  ST_ADESAO_FILANTROP_contains: String
+  ST_ADESAO_FILANTROP_not_contains: String
+  ST_ADESAO_FILANTROP_starts_with: String
+  ST_ADESAO_FILANTROP_not_starts_with: String
+  ST_ADESAO_FILANTROP_ends_with: String
+  ST_ADESAO_FILANTROP_not_ends_with: String
+  CO_MOTIVO_DESAB: String
+  CO_MOTIVO_DESAB_not: String
+  CO_MOTIVO_DESAB_in: [String!]
+  CO_MOTIVO_DESAB_not_in: [String!]
+  CO_MOTIVO_DESAB_lt: String
+  CO_MOTIVO_DESAB_lte: String
+  CO_MOTIVO_DESAB_gt: String
+  CO_MOTIVO_DESAB_gte: String
+  CO_MOTIVO_DESAB_contains: String
+  CO_MOTIVO_DESAB_not_contains: String
+  CO_MOTIVO_DESAB_starts_with: String
+  CO_MOTIVO_DESAB_not_starts_with: String
+  CO_MOTIVO_DESAB_ends_with: String
+  CO_MOTIVO_DESAB_not_ends_with: String
+  NO_URL: String
+  NO_URL_not: String
+  NO_URL_in: [String!]
+  NO_URL_not_in: [String!]
+  NO_URL_lt: String
+  NO_URL_lte: String
+  NO_URL_gt: String
+  NO_URL_gte: String
+  NO_URL_contains: String
+  NO_URL_not_contains: String
+  NO_URL_starts_with: String
+  NO_URL_not_starts_with: String
+  NO_URL_ends_with: String
+  NO_URL_not_ends_with: String
+  NU_LATITUDE: String
+  NU_LATITUDE_not: String
+  NU_LATITUDE_in: [String!]
+  NU_LATITUDE_not_in: [String!]
+  NU_LATITUDE_lt: String
+  NU_LATITUDE_lte: String
+  NU_LATITUDE_gt: String
+  NU_LATITUDE_gte: String
+  NU_LATITUDE_contains: String
+  NU_LATITUDE_not_contains: String
+  NU_LATITUDE_starts_with: String
+  NU_LATITUDE_not_starts_with: String
+  NU_LATITUDE_ends_with: String
+  NU_LATITUDE_not_ends_with: String
+  NU_LONGITUDE: String
+  NU_LONGITUDE_not: String
+  NU_LONGITUDE_in: [String!]
+  NU_LONGITUDE_not_in: [String!]
+  NU_LONGITUDE_lt: String
+  NU_LONGITUDE_lte: String
+  NU_LONGITUDE_gt: String
+  NU_LONGITUDE_gte: String
+  NU_LONGITUDE_contains: String
+  NU_LONGITUDE_not_contains: String
+  NU_LONGITUDE_starts_with: String
+  NU_LONGITUDE_not_starts_with: String
+  NU_LONGITUDE_ends_with: String
+  NU_LONGITUDE_not_ends_with: String
+  DT_ATU_GEO: String
+  DT_ATU_GEO_not: String
+  DT_ATU_GEO_in: [String!]
+  DT_ATU_GEO_not_in: [String!]
+  DT_ATU_GEO_lt: String
+  DT_ATU_GEO_lte: String
+  DT_ATU_GEO_gt: String
+  DT_ATU_GEO_gte: String
+  DT_ATU_GEO_contains: String
+  DT_ATU_GEO_not_contains: String
+  DT_ATU_GEO_starts_with: String
+  DT_ATU_GEO_not_starts_with: String
+  DT_ATU_GEO_ends_with: String
+  DT_ATU_GEO_not_ends_with: String
+  NO_USUARIO_GEO: String
+  NO_USUARIO_GEO_not: String
+  NO_USUARIO_GEO_in: [String!]
+  NO_USUARIO_GEO_not_in: [String!]
+  NO_USUARIO_GEO_lt: String
+  NO_USUARIO_GEO_lte: String
+  NO_USUARIO_GEO_gt: String
+  NO_USUARIO_GEO_gte: String
+  NO_USUARIO_GEO_contains: String
+  NO_USUARIO_GEO_not_contains: String
+  NO_USUARIO_GEO_starts_with: String
+  NO_USUARIO_GEO_not_starts_with: String
+  NO_USUARIO_GEO_ends_with: String
+  NO_USUARIO_GEO_not_ends_with: String
+  CO_NATUREZA_JUR: String
+  CO_NATUREZA_JUR_not: String
+  CO_NATUREZA_JUR_in: [String!]
+  CO_NATUREZA_JUR_not_in: [String!]
+  CO_NATUREZA_JUR_lt: String
+  CO_NATUREZA_JUR_lte: String
+  CO_NATUREZA_JUR_gt: String
+  CO_NATUREZA_JUR_gte: String
+  CO_NATUREZA_JUR_contains: String
+  CO_NATUREZA_JUR_not_contains: String
+  CO_NATUREZA_JUR_starts_with: String
+  CO_NATUREZA_JUR_not_starts_with: String
+  CO_NATUREZA_JUR_ends_with: String
+  CO_NATUREZA_JUR_not_ends_with: String
+  TP_ESTAB_SEMPRE_ABERTO: String
+  TP_ESTAB_SEMPRE_ABERTO_not: String
+  TP_ESTAB_SEMPRE_ABERTO_in: [String!]
+  TP_ESTAB_SEMPRE_ABERTO_not_in: [String!]
+  TP_ESTAB_SEMPRE_ABERTO_lt: String
+  TP_ESTAB_SEMPRE_ABERTO_lte: String
+  TP_ESTAB_SEMPRE_ABERTO_gt: String
+  TP_ESTAB_SEMPRE_ABERTO_gte: String
+  TP_ESTAB_SEMPRE_ABERTO_contains: String
+  TP_ESTAB_SEMPRE_ABERTO_not_contains: String
+  TP_ESTAB_SEMPRE_ABERTO_starts_with: String
+  TP_ESTAB_SEMPRE_ABERTO_not_starts_with: String
+  TP_ESTAB_SEMPRE_ABERTO_ends_with: String
+  TP_ESTAB_SEMPRE_ABERTO_not_ends_with: String
+  ST_GERACREDITO_GERENTE_SGIF: String
+  ST_GERACREDITO_GERENTE_SGIF_not: String
+  ST_GERACREDITO_GERENTE_SGIF_in: [String!]
+  ST_GERACREDITO_GERENTE_SGIF_not_in: [String!]
+  ST_GERACREDITO_GERENTE_SGIF_lt: String
+  ST_GERACREDITO_GERENTE_SGIF_lte: String
+  ST_GERACREDITO_GERENTE_SGIF_gt: String
+  ST_GERACREDITO_GERENTE_SGIF_gte: String
+  ST_GERACREDITO_GERENTE_SGIF_contains: String
+  ST_GERACREDITO_GERENTE_SGIF_not_contains: String
+  ST_GERACREDITO_GERENTE_SGIF_starts_with: String
+  ST_GERACREDITO_GERENTE_SGIF_not_starts_with: String
+  ST_GERACREDITO_GERENTE_SGIF_ends_with: String
+  ST_GERACREDITO_GERENTE_SGIF_not_ends_with: String
+  ST_CONEXAO_INTERNET: String
+  ST_CONEXAO_INTERNET_not: String
+  ST_CONEXAO_INTERNET_in: [String!]
+  ST_CONEXAO_INTERNET_not_in: [String!]
+  ST_CONEXAO_INTERNET_lt: String
+  ST_CONEXAO_INTERNET_lte: String
+  ST_CONEXAO_INTERNET_gt: String
+  ST_CONEXAO_INTERNET_gte: String
+  ST_CONEXAO_INTERNET_contains: String
+  ST_CONEXAO_INTERNET_not_contains: String
+  ST_CONEXAO_INTERNET_starts_with: String
+  ST_CONEXAO_INTERNET_not_starts_with: String
+  ST_CONEXAO_INTERNET_ends_with: String
+  ST_CONEXAO_INTERNET_not_ends_with: String
+  CO_TIPO_UNIDADE: String
+  CO_TIPO_UNIDADE_not: String
+  CO_TIPO_UNIDADE_in: [String!]
+  CO_TIPO_UNIDADE_not_in: [String!]
+  CO_TIPO_UNIDADE_lt: String
+  CO_TIPO_UNIDADE_lte: String
+  CO_TIPO_UNIDADE_gt: String
+  CO_TIPO_UNIDADE_gte: String
+  CO_TIPO_UNIDADE_contains: String
+  CO_TIPO_UNIDADE_not_contains: String
+  CO_TIPO_UNIDADE_starts_with: String
+  CO_TIPO_UNIDADE_not_starts_with: String
+  CO_TIPO_UNIDADE_ends_with: String
+  CO_TIPO_UNIDADE_not_ends_with: String
+  NO_FANTASIA_ABREV: String
+  NO_FANTASIA_ABREV_not: String
+  NO_FANTASIA_ABREV_in: [String!]
+  NO_FANTASIA_ABREV_not_in: [String!]
+  NO_FANTASIA_ABREV_lt: String
+  NO_FANTASIA_ABREV_lte: String
+  NO_FANTASIA_ABREV_gt: String
+  NO_FANTASIA_ABREV_gte: String
+  NO_FANTASIA_ABREV_contains: String
+  NO_FANTASIA_ABREV_not_contains: String
+  NO_FANTASIA_ABREV_starts_with: String
+  NO_FANTASIA_ABREV_not_starts_with: String
+  NO_FANTASIA_ABREV_ends_with: String
+  NO_FANTASIA_ABREV_not_ends_with: String
+  TP_GESTAO: String
+  TP_GESTAO_not: String
+  TP_GESTAO_in: [String!]
+  TP_GESTAO_not_in: [String!]
+  TP_GESTAO_lt: String
+  TP_GESTAO_lte: String
+  TP_GESTAO_gt: String
+  TP_GESTAO_gte: String
+  TP_GESTAO_contains: String
+  TP_GESTAO_not_contains: String
+  TP_GESTAO_starts_with: String
+  TP_GESTAO_not_starts_with: String
+  TP_GESTAO_ends_with: String
+  TP_GESTAO_not_ends_with: String
+  DT_ATUALIZACAO_ORIGEM: String
+  DT_ATUALIZACAO_ORIGEM_not: String
+  DT_ATUALIZACAO_ORIGEM_in: [String!]
+  DT_ATUALIZACAO_ORIGEM_not_in: [String!]
+  DT_ATUALIZACAO_ORIGEM_lt: String
+  DT_ATUALIZACAO_ORIGEM_lte: String
+  DT_ATUALIZACAO_ORIGEM_gt: String
+  DT_ATUALIZACAO_ORIGEM_gte: String
+  DT_ATUALIZACAO_ORIGEM_contains: String
+  DT_ATUALIZACAO_ORIGEM_not_contains: String
+  DT_ATUALIZACAO_ORIGEM_starts_with: String
+  DT_ATUALIZACAO_ORIGEM_not_starts_with: String
+  DT_ATUALIZACAO_ORIGEM_ends_with: String
+  DT_ATUALIZACAO_ORIGEM_not_ends_with: String
+  CO_TIPO_ESTABELECIMENTO: String
+  CO_TIPO_ESTABELECIMENTO_not: String
+  CO_TIPO_ESTABELECIMENTO_in: [String!]
+  CO_TIPO_ESTABELECIMENTO_not_in: [String!]
+  CO_TIPO_ESTABELECIMENTO_lt: String
+  CO_TIPO_ESTABELECIMENTO_lte: String
+  CO_TIPO_ESTABELECIMENTO_gt: String
+  CO_TIPO_ESTABELECIMENTO_gte: String
+  CO_TIPO_ESTABELECIMENTO_contains: String
+  CO_TIPO_ESTABELECIMENTO_not_contains: String
+  CO_TIPO_ESTABELECIMENTO_starts_with: String
+  CO_TIPO_ESTABELECIMENTO_not_starts_with: String
+  CO_TIPO_ESTABELECIMENTO_ends_with: String
+  CO_TIPO_ESTABELECIMENTO_not_ends_with: String
+  CO_ATIVIDADE_PRINCIPAL: String
+  CO_ATIVIDADE_PRINCIPAL_not: String
+  CO_ATIVIDADE_PRINCIPAL_in: [String!]
+  CO_ATIVIDADE_PRINCIPAL_not_in: [String!]
+  CO_ATIVIDADE_PRINCIPAL_lt: String
+  CO_ATIVIDADE_PRINCIPAL_lte: String
+  CO_ATIVIDADE_PRINCIPAL_gt: String
+  CO_ATIVIDADE_PRINCIPAL_gte: String
+  CO_ATIVIDADE_PRINCIPAL_contains: String
+  CO_ATIVIDADE_PRINCIPAL_not_contains: String
+  CO_ATIVIDADE_PRINCIPAL_starts_with: String
+  CO_ATIVIDADE_PRINCIPAL_not_starts_with: String
+  CO_ATIVIDADE_PRINCIPAL_ends_with: String
+  CO_ATIVIDADE_PRINCIPAL_not_ends_with: String
+  ST_CONTRATO_FORMALIZADO: String
+  ST_CONTRATO_FORMALIZADO_not: String
+  ST_CONTRATO_FORMALIZADO_in: [String!]
+  ST_CONTRATO_FORMALIZADO_not_in: [String!]
+  ST_CONTRATO_FORMALIZADO_lt: String
+  ST_CONTRATO_FORMALIZADO_lte: String
+  ST_CONTRATO_FORMALIZADO_gt: String
+  ST_CONTRATO_FORMALIZADO_gte: String
+  ST_CONTRATO_FORMALIZADO_contains: String
+  ST_CONTRATO_FORMALIZADO_not_contains: String
+  ST_CONTRATO_FORMALIZADO_starts_with: String
+  ST_CONTRATO_FORMALIZADO_not_starts_with: String
+  ST_CONTRATO_FORMALIZADO_ends_with: String
+  ST_CONTRATO_FORMALIZADO_not_ends_with: String
+  AND: [EstabelecimentoWhereInput!]
+}
+
+enum EstabelecimentoOrderByInput {
+  CO_UNIDADE_ASC
+  CO_UNIDADE_DESC
+  CO_CNES_ASC
+  CO_CNES_DESC
+  NU_CNPJ_MANTENEDORA_ASC
+  NU_CNPJ_MANTENEDORA_DESC
+  TP_PFPJ_ASC
+  TP_PFPJ_DESC
+  NIVEL_DEP_ASC
+  NIVEL_DEP_DESC
+  NO_RAZAO_SOCIAL_ASC
+  NO_RAZAO_SOCIAL_DESC
+  NO_FANTASIA_ASC
+  NO_FANTASIA_DESC
+  NO_LOGRADOURO_ASC
+  NO_LOGRADOURO_DESC
+  NU_ENDERECO_ASC
+  NU_ENDERECO_DESC
+  NO_COMPLEMENTO_ASC
+  NO_COMPLEMENTO_DESC
+  NO_BAIRRO_ASC
+  NO_BAIRRO_DESC
+  CO_CEP_ASC
+  CO_CEP_DESC
+  CO_REGIAO_SAUDE_ASC
+  CO_REGIAO_SAUDE_DESC
+  CO_MICRO_REGIAO_ASC
+  CO_MICRO_REGIAO_DESC
+  CO_DISTRITO_SANITARIO_ASC
+  CO_DISTRITO_SANITARIO_DESC
+  CO_DISTRITO_ADMINISTRATIVO_ASC
+  CO_DISTRITO_ADMINISTRATIVO_DESC
+  NU_TELEFONE_ASC
+  NU_TELEFONE_DESC
+  NU_FAX_ASC
+  NU_FAX_DESC
+  NO_EMAIL_ASC
+  NO_EMAIL_DESC
+  NU_CPF_ASC
+  NU_CPF_DESC
+  NU_CNPJ_ASC
+  NU_CNPJ_DESC
+  CO_ATIVIDADE_ASC
+  CO_ATIVIDADE_DESC
+  CO_CLIENTELA_ASC
+  CO_CLIENTELA_DESC
+  NU_ALVARA_ASC
+  NU_ALVARA_DESC
+  DT_EXPEDICAO_ASC
+  DT_EXPEDICAO_DESC
+  TP_ORGAO_EXPEDIDOR_ASC
+  TP_ORGAO_EXPEDIDOR_DESC
+  DT_VAL_LIC_SANI_ASC
+  DT_VAL_LIC_SANI_DESC
+  TP_LIC_SANI_ASC
+  TP_LIC_SANI_DESC
+  TP_UNIDADE_ASC
+  TP_UNIDADE_DESC
+  CO_TURNO_ATENDIMENTO_ASC
+  CO_TURNO_ATENDIMENTO_DESC
+  CO_ESTADO_GESTOR_ASC
+  CO_ESTADO_GESTOR_DESC
+  CO_MUNICIPIO_GESTOR_ASC
+  CO_MUNICIPIO_GESTOR_DESC
+  DT_ATUALIZACAO_ASC
+  DT_ATUALIZACAO_DESC
+  CO_USUARIO_ASC
+  CO_USUARIO_DESC
+  CO_CPFDIRETORCLN_ASC
+  CO_CPFDIRETORCLN_DESC
+  REG_DIRETORCLN_ASC
+  REG_DIRETORCLN_DESC
+  ST_ADESAO_FILANTROP_ASC
+  ST_ADESAO_FILANTROP_DESC
+  CO_MOTIVO_DESAB_ASC
+  CO_MOTIVO_DESAB_DESC
+  NO_URL_ASC
+  NO_URL_DESC
+  NU_LATITUDE_ASC
+  NU_LATITUDE_DESC
+  NU_LONGITUDE_ASC
+  NU_LONGITUDE_DESC
+  DT_ATU_GEO_ASC
+  DT_ATU_GEO_DESC
+  NO_USUARIO_GEO_ASC
+  NO_USUARIO_GEO_DESC
+  CO_NATUREZA_JUR_ASC
+  CO_NATUREZA_JUR_DESC
+  TP_ESTAB_SEMPRE_ABERTO_ASC
+  TP_ESTAB_SEMPRE_ABERTO_DESC
+  ST_GERACREDITO_GERENTE_SGIF_ASC
+  ST_GERACREDITO_GERENTE_SGIF_DESC
+  ST_CONEXAO_INTERNET_ASC
+  ST_CONEXAO_INTERNET_DESC
+  CO_TIPO_UNIDADE_ASC
+  CO_TIPO_UNIDADE_DESC
+  NO_FANTASIA_ABREV_ASC
+  NO_FANTASIA_ABREV_DESC
+  TP_GESTAO_ASC
+  TP_GESTAO_DESC
+  DT_ATUALIZACAO_ORIGEM_ASC
+  DT_ATUALIZACAO_ORIGEM_DESC
+  CO_TIPO_ESTABELECIMENTO_ASC
+  CO_TIPO_ESTABELECIMENTO_DESC
+  CO_ATIVIDADE_PRINCIPAL_ASC
+  CO_ATIVIDADE_PRINCIPAL_DESC
+  ST_CONTRATO_FORMALIZADO_ASC
+  ST_CONTRATO_FORMALIZADO_DESC
 }
