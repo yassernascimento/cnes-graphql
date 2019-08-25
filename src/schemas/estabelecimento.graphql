@@ -1,4 +1,13 @@
 # import * from 'atividade.graphql'
+# import * from 'atividade-principal.graphql'
+# import * from 'clientela.graphql'
+# import * from 'estado.graphql'
+# import * from 'motivo-desativacao.graphql'
+# import * from 'municipio.graphql'
+# import * from 'natureza-juridica.graphql'
+# import * from 'tipo-estabelecimento.graphql'
+# import * from 'tipo-unidade.graphql'
+# import * from 'turno-atendimento.graphql'
 
 type Estabelecimento {
   CO_UNIDADE: ID!
@@ -12,7 +21,7 @@ type Estabelecimento {
   NU_ENDERECO: String
   NO_COMPLEMENTO: String
   NO_BAIRRO: String
-  CO_CEP: String
+  CO_CEP: String!
   CO_REGIAO_SAUDE: String
   CO_MICRO_REGIAO: String
   CO_DISTRITO_SANITARIO: String
@@ -23,28 +32,28 @@ type Estabelecimento {
   NU_CPF: String
   NU_CNPJ: String
   ATIVIDADE: Atividade
-  CO_CLIENTELA: String
+  CLIENTELA: Clientela
   NU_ALVARA: String
   DT_EXPEDICAO: String
   TP_ORGAO_EXPEDIDOR: String
   DT_VAL_LIC_SANI: String
   TP_LIC_SANI: String
-  TP_UNIDADE: String
-  CO_TURNO_ATENDIMENTO: String
-  CO_ESTADO_GESTOR: String
-  CO_MUNICIPIO_GESTOR: String
+  TP_UNIDADE: TipoUnidade
+  TURNO_ATENDIMENTO: TurnoAtendimento
+  ESTADO: Estado
+  MUNICIPIO: Municipio!
   DT_ATUALIZACAO: String
   CO_USUARIO: String
   CO_CPFDIRETORCLN: String
   REG_DIRETORCLN: String
   ST_ADESAO_FILANTROP: String
-  CO_MOTIVO_DESAB: String
+  MOTIVO_DESAB: MotivoDesativacao
   NO_URL: String
   NU_LATITUDE: String
   NU_LONGITUDE: String
   DT_ATU_GEO: String
   NO_USUARIO_GEO: String
-  CO_NATUREZA_JUR: String
+  NATUREZA_JUR: NaturezaJuridica
   TP_ESTAB_SEMPRE_ABERTO: String
   ST_GERACREDITO_GERENTE_SGIF: String
   ST_CONEXAO_INTERNET: String
@@ -52,8 +61,8 @@ type Estabelecimento {
   NO_FANTASIA_ABREV: String
   TP_GESTAO: String
   DT_ATUALIZACAO_ORIGEM: String
-  CO_TIPO_ESTABELECIMENTO: String
-  CO_ATIVIDADE_PRINCIPAL: String
+  TIPO_ESTABELECIMENTO: TipoEstabelecimento
+  ATIVIDADE_PRINCIPAL: AtividadePrincipal
   ST_CONTRATO_FORMALIZADO: String
 }
 
@@ -353,20 +362,7 @@ input EstabelecimentoWhereInput {
   NU_CNPJ_ends_with: String
   NU_CNPJ_not_ends_with: String
   ATIVIDADE: AtividadeWhereInput
-  CO_CLIENTELA: String
-  CO_CLIENTELA_not: String
-  CO_CLIENTELA_in: [String!]
-  CO_CLIENTELA_not_in: [String!]
-  CO_CLIENTELA_lt: String
-  CO_CLIENTELA_lte: String
-  CO_CLIENTELA_gt: String
-  CO_CLIENTELA_gte: String
-  CO_CLIENTELA_contains: String
-  CO_CLIENTELA_not_contains: String
-  CO_CLIENTELA_starts_with: String
-  CO_CLIENTELA_not_starts_with: String
-  CO_CLIENTELA_ends_with: String
-  CO_CLIENTELA_not_ends_with: String
+  CLIENTELA: ClientelaWhereInput
   NU_ALVARA: String
   NU_ALVARA_not: String
   NU_ALVARA_in: [String!]
@@ -437,62 +433,10 @@ input EstabelecimentoWhereInput {
   TP_LIC_SANI_not_starts_with: String
   TP_LIC_SANI_ends_with: String
   TP_LIC_SANI_not_ends_with: String
-  TP_UNIDADE: String
-  TP_UNIDADE_not: String
-  TP_UNIDADE_in: [String!]
-  TP_UNIDADE_not_in: [String!]
-  TP_UNIDADE_lt: String
-  TP_UNIDADE_lte: String
-  TP_UNIDADE_gt: String
-  TP_UNIDADE_gte: String
-  TP_UNIDADE_contains: String
-  TP_UNIDADE_not_contains: String
-  TP_UNIDADE_starts_with: String
-  TP_UNIDADE_not_starts_with: String
-  TP_UNIDADE_ends_with: String
-  TP_UNIDADE_not_ends_with: String
-  CO_TURNO_ATENDIMENTO: String
-  CO_TURNO_ATENDIMENTO_not: String
-  CO_TURNO_ATENDIMENTO_in: [String!]
-  CO_TURNO_ATENDIMENTO_not_in: [String!]
-  CO_TURNO_ATENDIMENTO_lt: String
-  CO_TURNO_ATENDIMENTO_lte: String
-  CO_TURNO_ATENDIMENTO_gt: String
-  CO_TURNO_ATENDIMENTO_gte: String
-  CO_TURNO_ATENDIMENTO_contains: String
-  CO_TURNO_ATENDIMENTO_not_contains: String
-  CO_TURNO_ATENDIMENTO_starts_with: String
-  CO_TURNO_ATENDIMENTO_not_starts_with: String
-  CO_TURNO_ATENDIMENTO_ends_with: String
-  CO_TURNO_ATENDIMENTO_not_ends_with: String
-  CO_ESTADO_GESTOR: String
-  CO_ESTADO_GESTOR_not: String
-  CO_ESTADO_GESTOR_in: [String!]
-  CO_ESTADO_GESTOR_not_in: [String!]
-  CO_ESTADO_GESTOR_lt: String
-  CO_ESTADO_GESTOR_lte: String
-  CO_ESTADO_GESTOR_gt: String
-  CO_ESTADO_GESTOR_gte: String
-  CO_ESTADO_GESTOR_contains: String
-  CO_ESTADO_GESTOR_not_contains: String
-  CO_ESTADO_GESTOR_starts_with: String
-  CO_ESTADO_GESTOR_not_starts_with: String
-  CO_ESTADO_GESTOR_ends_with: String
-  CO_ESTADO_GESTOR_not_ends_with: String
-  CO_MUNICIPIO_GESTOR: String
-  CO_MUNICIPIO_GESTOR_not: String
-  CO_MUNICIPIO_GESTOR_in: [String!]
-  CO_MUNICIPIO_GESTOR_not_in: [String!]
-  CO_MUNICIPIO_GESTOR_lt: String
-  CO_MUNICIPIO_GESTOR_lte: String
-  CO_MUNICIPIO_GESTOR_gt: String
-  CO_MUNICIPIO_GESTOR_gte: String
-  CO_MUNICIPIO_GESTOR_contains: String
-  CO_MUNICIPIO_GESTOR_not_contains: String
-  CO_MUNICIPIO_GESTOR_starts_with: String
-  CO_MUNICIPIO_GESTOR_not_starts_with: String
-  CO_MUNICIPIO_GESTOR_ends_with: String
-  CO_MUNICIPIO_GESTOR_not_ends_with: String
+  TP_UNIDADE: TipoUnidadeWhereInput
+  TURNO_ATENDIMENTO: TurnoAtendimentoWhereInput
+  ESTADO: EstadoWhereInput
+  MUNICIPIO: MunicipioWhereInput
   DT_ATUALIZACAO: String
   DT_ATUALIZACAO_not: String
   DT_ATUALIZACAO_in: [String!]
@@ -563,20 +507,7 @@ input EstabelecimentoWhereInput {
   ST_ADESAO_FILANTROP_not_starts_with: String
   ST_ADESAO_FILANTROP_ends_with: String
   ST_ADESAO_FILANTROP_not_ends_with: String
-  CO_MOTIVO_DESAB: String
-  CO_MOTIVO_DESAB_not: String
-  CO_MOTIVO_DESAB_in: [String!]
-  CO_MOTIVO_DESAB_not_in: [String!]
-  CO_MOTIVO_DESAB_lt: String
-  CO_MOTIVO_DESAB_lte: String
-  CO_MOTIVO_DESAB_gt: String
-  CO_MOTIVO_DESAB_gte: String
-  CO_MOTIVO_DESAB_contains: String
-  CO_MOTIVO_DESAB_not_contains: String
-  CO_MOTIVO_DESAB_starts_with: String
-  CO_MOTIVO_DESAB_not_starts_with: String
-  CO_MOTIVO_DESAB_ends_with: String
-  CO_MOTIVO_DESAB_not_ends_with: String
+  MOTIVO_DESAB: MotivoDesativacaoWhereInput
   NO_URL: String
   NO_URL_not: String
   NO_URL_in: [String!]
@@ -647,20 +578,7 @@ input EstabelecimentoWhereInput {
   NO_USUARIO_GEO_not_starts_with: String
   NO_USUARIO_GEO_ends_with: String
   NO_USUARIO_GEO_not_ends_with: String
-  CO_NATUREZA_JUR: String
-  CO_NATUREZA_JUR_not: String
-  CO_NATUREZA_JUR_in: [String!]
-  CO_NATUREZA_JUR_not_in: [String!]
-  CO_NATUREZA_JUR_lt: String
-  CO_NATUREZA_JUR_lte: String
-  CO_NATUREZA_JUR_gt: String
-  CO_NATUREZA_JUR_gte: String
-  CO_NATUREZA_JUR_contains: String
-  CO_NATUREZA_JUR_not_contains: String
-  CO_NATUREZA_JUR_starts_with: String
-  CO_NATUREZA_JUR_not_starts_with: String
-  CO_NATUREZA_JUR_ends_with: String
-  CO_NATUREZA_JUR_not_ends_with: String
+  NATUREZA_JUR: NaturezaJuridicaWhereInput
   TP_ESTAB_SEMPRE_ABERTO: String
   TP_ESTAB_SEMPRE_ABERTO_not: String
   TP_ESTAB_SEMPRE_ABERTO_in: [String!]
@@ -759,34 +677,8 @@ input EstabelecimentoWhereInput {
   DT_ATUALIZACAO_ORIGEM_not_starts_with: String
   DT_ATUALIZACAO_ORIGEM_ends_with: String
   DT_ATUALIZACAO_ORIGEM_not_ends_with: String
-  CO_TIPO_ESTABELECIMENTO: String
-  CO_TIPO_ESTABELECIMENTO_not: String
-  CO_TIPO_ESTABELECIMENTO_in: [String!]
-  CO_TIPO_ESTABELECIMENTO_not_in: [String!]
-  CO_TIPO_ESTABELECIMENTO_lt: String
-  CO_TIPO_ESTABELECIMENTO_lte: String
-  CO_TIPO_ESTABELECIMENTO_gt: String
-  CO_TIPO_ESTABELECIMENTO_gte: String
-  CO_TIPO_ESTABELECIMENTO_contains: String
-  CO_TIPO_ESTABELECIMENTO_not_contains: String
-  CO_TIPO_ESTABELECIMENTO_starts_with: String
-  CO_TIPO_ESTABELECIMENTO_not_starts_with: String
-  CO_TIPO_ESTABELECIMENTO_ends_with: String
-  CO_TIPO_ESTABELECIMENTO_not_ends_with: String
-  CO_ATIVIDADE_PRINCIPAL: String
-  CO_ATIVIDADE_PRINCIPAL_not: String
-  CO_ATIVIDADE_PRINCIPAL_in: [String!]
-  CO_ATIVIDADE_PRINCIPAL_not_in: [String!]
-  CO_ATIVIDADE_PRINCIPAL_lt: String
-  CO_ATIVIDADE_PRINCIPAL_lte: String
-  CO_ATIVIDADE_PRINCIPAL_gt: String
-  CO_ATIVIDADE_PRINCIPAL_gte: String
-  CO_ATIVIDADE_PRINCIPAL_contains: String
-  CO_ATIVIDADE_PRINCIPAL_not_contains: String
-  CO_ATIVIDADE_PRINCIPAL_starts_with: String
-  CO_ATIVIDADE_PRINCIPAL_not_starts_with: String
-  CO_ATIVIDADE_PRINCIPAL_ends_with: String
-  CO_ATIVIDADE_PRINCIPAL_not_ends_with: String
+  TIPO_ESTABELECIMENTO: TipoEstabelecimentoWhereInput
+  ATIVIDADE_PRINCIPAL: AtividadePrincipalWhereInput
   ST_CONTRATO_FORMALIZADO: String
   ST_CONTRATO_FORMALIZADO_not: String
   ST_CONTRATO_FORMALIZADO_in: [String!]
@@ -802,6 +694,8 @@ input EstabelecimentoWhereInput {
   ST_CONTRATO_FORMALIZADO_ends_with: String
   ST_CONTRATO_FORMALIZADO_not_ends_with: String
   AND: [EstabelecimentoWhereInput!]
+  OR: [EstabelecimentoWhereInput!]
+  NOT: [EstabelecimentoWhereInput!]
 }
 
 enum EstabelecimentoOrderByInput {
@@ -847,8 +741,6 @@ enum EstabelecimentoOrderByInput {
   NU_CPF_DESC
   NU_CNPJ_ASC
   NU_CNPJ_DESC
-  CO_CLIENTELA_ASC
-  CO_CLIENTELA_DESC
   NU_ALVARA_ASC
   NU_ALVARA_DESC
   DT_EXPEDICAO_ASC
@@ -859,14 +751,6 @@ enum EstabelecimentoOrderByInput {
   DT_VAL_LIC_SANI_DESC
   TP_LIC_SANI_ASC
   TP_LIC_SANI_DESC
-  TP_UNIDADE_ASC
-  TP_UNIDADE_DESC
-  CO_TURNO_ATENDIMENTO_ASC
-  CO_TURNO_ATENDIMENTO_DESC
-  CO_ESTADO_GESTOR_ASC
-  CO_ESTADO_GESTOR_DESC
-  CO_MUNICIPIO_GESTOR_ASC
-  CO_MUNICIPIO_GESTOR_DESC
   DT_ATUALIZACAO_ASC
   DT_ATUALIZACAO_DESC
   CO_USUARIO_ASC
@@ -877,8 +761,6 @@ enum EstabelecimentoOrderByInput {
   REG_DIRETORCLN_DESC
   ST_ADESAO_FILANTROP_ASC
   ST_ADESAO_FILANTROP_DESC
-  CO_MOTIVO_DESAB_ASC
-  CO_MOTIVO_DESAB_DESC
   NO_URL_ASC
   NO_URL_DESC
   NU_LATITUDE_ASC
@@ -889,8 +771,6 @@ enum EstabelecimentoOrderByInput {
   DT_ATU_GEO_DESC
   NO_USUARIO_GEO_ASC
   NO_USUARIO_GEO_DESC
-  CO_NATUREZA_JUR_ASC
-  CO_NATUREZA_JUR_DESC
   TP_ESTAB_SEMPRE_ABERTO_ASC
   TP_ESTAB_SEMPRE_ABERTO_DESC
   ST_GERACREDITO_GERENTE_SGIF_ASC
@@ -905,10 +785,6 @@ enum EstabelecimentoOrderByInput {
   TP_GESTAO_DESC
   DT_ATUALIZACAO_ORIGEM_ASC
   DT_ATUALIZACAO_ORIGEM_DESC
-  CO_TIPO_ESTABELECIMENTO_ASC
-  CO_TIPO_ESTABELECIMENTO_DESC
-  CO_ATIVIDADE_PRINCIPAL_ASC
-  CO_ATIVIDADE_PRINCIPAL_DESC
   ST_CONTRATO_FORMALIZADO_ASC
   ST_CONTRATO_FORMALIZADO_DESC
 }

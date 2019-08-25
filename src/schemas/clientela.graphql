@@ -1,0 +1,38 @@
+type Clientela {
+  CO_CLIENTELA: ID!
+  DS_CLIENTELA: String!
+}
+
+input ClientelaWhereInput {
+  CO_CLIENTELA: ID
+  CO_CLIENTELA_not: ID
+  CO_CLIENTELA_in: [ID!]
+  CO_CLIENTELA_not_in: [ID!]
+  CO_CLIENTELA_lt: ID
+  CO_CLIENTELA_lte: ID
+  CO_CLIENTELA_gt: ID
+  CO_CLIENTELA_gte: ID
+  CO_CLIENTELA_contains: ID
+  CO_CLIENTELA_not_contains: ID
+  CO_CLIENTELA_starts_with: ID
+  CO_CLIENTELA_not_starts_with: ID
+  CO_CLIENTELA_ends_with: ID
+  CO_CLIENTELA_not_ends_with: ID
+  DS_CLIENTELA: String
+  DS_CLIENTELA_not: String
+  DS_CLIENTELA_in: [String!]
+  DS_CLIENTELA_not_in: [String!]
+  DS_CLIENTELA_lt: String
+  DS_CLIENTELA_lte: String
+  DS_CLIENTELA_gt: String
+  DS_CLIENTELA_gte: String
+  DS_CLIENTELA_contains: String
+  DS_CLIENTELA_not_contains: String
+  DS_CLIENTELA_starts_with: String
+  DS_CLIENTELA_not_starts_with: String
+  DS_CLIENTELA_ends_with: String
+  DS_CLIENTELA_not_ends_with: String
+  AND: [ClientelaWhereInput!]
+  OR: [ClientelaWhereInput!]
+  NOT: [ClientelaWhereInput!]
+}

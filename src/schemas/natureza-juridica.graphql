@@ -1,0 +1,38 @@
+type NaturezaJuridica {
+  CO_NATUREZA_JUR: ID!
+  DS_NATUREZA_JUR: String!
+}
+
+input NaturezaJuridicaWhereInput {
+  CO_NATUREZA_JUR: ID
+  CO_NATUREZA_JUR_not: ID
+  CO_NATUREZA_JUR_in: [ID!]
+  CO_NATUREZA_JUR_not_in: [ID!]
+  CO_NATUREZA_JUR_lt: ID
+  CO_NATUREZA_JUR_lte: ID
+  CO_NATUREZA_JUR_gt: ID
+  CO_NATUREZA_JUR_gte: ID
+  CO_NATUREZA_JUR_contains: ID
+  CO_NATUREZA_JUR_not_contains: ID
+  CO_NATUREZA_JUR_starts_with: ID
+  CO_NATUREZA_JUR_not_starts_with: ID
+  CO_NATUREZA_JUR_ends_with: ID
+  CO_NATUREZA_JUR_not_ends_with: ID
+  DS_NATUREZA_JUR: String
+  DS_NATUREZA_JUR_not: String
+  DS_NATUREZA_JUR_in: [String!]
+  DS_NATUREZA_JUR_not_in: [String!]
+  DS_NATUREZA_JUR_lt: String
+  DS_NATUREZA_JUR_lte: String
+  DS_NATUREZA_JUR_gt: String
+  DS_NATUREZA_JUR_gte: String
+  DS_NATUREZA_JUR_contains: String
+  DS_NATUREZA_JUR_not_contains: String
+  DS_NATUREZA_JUR_starts_with: String
+  DS_NATUREZA_JUR_not_starts_with: String
+  DS_NATUREZA_JUR_ends_with: String
+  DS_NATUREZA_JUR_not_ends_with: String
+  AND: [NaturezaJuridicaWhereInput!]
+  OR: [NaturezaJuridicaWhereInput!]
+  NOT: [NaturezaJuridicaWhereInput!]
+}

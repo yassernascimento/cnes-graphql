@@ -2,7 +2,43 @@ type AggregateAtividade {
   count: Int!
 }
 
+type AggregateAtividadePrincipal {
+  count: Int!
+}
+
+type AggregateClientela {
+  count: Int!
+}
+
 type AggregateEstabelecimento {
+  count: Int!
+}
+
+type AggregateEstado {
+  count: Int!
+}
+
+type AggregateMotivoDesativacao {
+  count: Int!
+}
+
+type AggregateMunicipio {
+  count: Int!
+}
+
+type AggregateNaturezaJuridica {
+  count: Int!
+}
+
+type AggregateTipoEstabelecimento {
+  count: Int!
+}
+
+type AggregateTipoUnidade {
+  count: Int!
+}
+
+type AggregateTurnoAtendimento {
   count: Int!
 }
 
@@ -42,6 +78,170 @@ enum AtividadeOrderByInput {
 type AtividadePreviousValues {
   CO_ATIVIDADE: ID!
   DS_ATIVIDADE: String!
+}
+
+type AtividadePrincipal {
+  CO_GRUPO_ATIVIDADE: String!
+  CO_ATIVIDADE: ID!
+  DS_ATIVIDADE: String!
+  DS_CONCEITO_ATIVIDADE: String!
+}
+
+type AtividadePrincipalConnection {
+  pageInfo: PageInfo!
+  edges: [AtividadePrincipalEdge]!
+  aggregate: AggregateAtividadePrincipal!
+}
+
+input AtividadePrincipalCreateInput {
+  CO_GRUPO_ATIVIDADE: String!
+  CO_ATIVIDADE: ID
+  DS_ATIVIDADE: String!
+  DS_CONCEITO_ATIVIDADE: String!
+}
+
+input AtividadePrincipalCreateOneInput {
+  create: AtividadePrincipalCreateInput
+  connect: AtividadePrincipalWhereUniqueInput
+}
+
+type AtividadePrincipalEdge {
+  node: AtividadePrincipal!
+  cursor: String!
+}
+
+enum AtividadePrincipalOrderByInput {
+  CO_GRUPO_ATIVIDADE_ASC
+  CO_GRUPO_ATIVIDADE_DESC
+  CO_ATIVIDADE_ASC
+  CO_ATIVIDADE_DESC
+  DS_ATIVIDADE_ASC
+  DS_ATIVIDADE_DESC
+  DS_CONCEITO_ATIVIDADE_ASC
+  DS_CONCEITO_ATIVIDADE_DESC
+}
+
+type AtividadePrincipalPreviousValues {
+  CO_GRUPO_ATIVIDADE: String!
+  CO_ATIVIDADE: ID!
+  DS_ATIVIDADE: String!
+  DS_CONCEITO_ATIVIDADE: String!
+}
+
+type AtividadePrincipalSubscriptionPayload {
+  mutation: MutationType!
+  node: AtividadePrincipal
+  updatedFields: [String!]
+  previousValues: AtividadePrincipalPreviousValues
+}
+
+input AtividadePrincipalSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: AtividadePrincipalWhereInput
+  AND: [AtividadePrincipalSubscriptionWhereInput!]
+  OR: [AtividadePrincipalSubscriptionWhereInput!]
+  NOT: [AtividadePrincipalSubscriptionWhereInput!]
+}
+
+input AtividadePrincipalUpdateDataInput {
+  CO_GRUPO_ATIVIDADE: String
+  DS_ATIVIDADE: String
+  DS_CONCEITO_ATIVIDADE: String
+}
+
+input AtividadePrincipalUpdateInput {
+  CO_GRUPO_ATIVIDADE: String
+  DS_ATIVIDADE: String
+  DS_CONCEITO_ATIVIDADE: String
+}
+
+input AtividadePrincipalUpdateManyMutationInput {
+  CO_GRUPO_ATIVIDADE: String
+  DS_ATIVIDADE: String
+  DS_CONCEITO_ATIVIDADE: String
+}
+
+input AtividadePrincipalUpdateOneInput {
+  create: AtividadePrincipalCreateInput
+  update: AtividadePrincipalUpdateDataInput
+  upsert: AtividadePrincipalUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: AtividadePrincipalWhereUniqueInput
+}
+
+input AtividadePrincipalUpsertNestedInput {
+  update: AtividadePrincipalUpdateDataInput!
+  create: AtividadePrincipalCreateInput!
+}
+
+input AtividadePrincipalWhereInput {
+  CO_GRUPO_ATIVIDADE: String
+  CO_GRUPO_ATIVIDADE_not: String
+  CO_GRUPO_ATIVIDADE_in: [String!]
+  CO_GRUPO_ATIVIDADE_not_in: [String!]
+  CO_GRUPO_ATIVIDADE_lt: String
+  CO_GRUPO_ATIVIDADE_lte: String
+  CO_GRUPO_ATIVIDADE_gt: String
+  CO_GRUPO_ATIVIDADE_gte: String
+  CO_GRUPO_ATIVIDADE_contains: String
+  CO_GRUPO_ATIVIDADE_not_contains: String
+  CO_GRUPO_ATIVIDADE_starts_with: String
+  CO_GRUPO_ATIVIDADE_not_starts_with: String
+  CO_GRUPO_ATIVIDADE_ends_with: String
+  CO_GRUPO_ATIVIDADE_not_ends_with: String
+  CO_ATIVIDADE: ID
+  CO_ATIVIDADE_not: ID
+  CO_ATIVIDADE_in: [ID!]
+  CO_ATIVIDADE_not_in: [ID!]
+  CO_ATIVIDADE_lt: ID
+  CO_ATIVIDADE_lte: ID
+  CO_ATIVIDADE_gt: ID
+  CO_ATIVIDADE_gte: ID
+  CO_ATIVIDADE_contains: ID
+  CO_ATIVIDADE_not_contains: ID
+  CO_ATIVIDADE_starts_with: ID
+  CO_ATIVIDADE_not_starts_with: ID
+  CO_ATIVIDADE_ends_with: ID
+  CO_ATIVIDADE_not_ends_with: ID
+  DS_ATIVIDADE: String
+  DS_ATIVIDADE_not: String
+  DS_ATIVIDADE_in: [String!]
+  DS_ATIVIDADE_not_in: [String!]
+  DS_ATIVIDADE_lt: String
+  DS_ATIVIDADE_lte: String
+  DS_ATIVIDADE_gt: String
+  DS_ATIVIDADE_gte: String
+  DS_ATIVIDADE_contains: String
+  DS_ATIVIDADE_not_contains: String
+  DS_ATIVIDADE_starts_with: String
+  DS_ATIVIDADE_not_starts_with: String
+  DS_ATIVIDADE_ends_with: String
+  DS_ATIVIDADE_not_ends_with: String
+  DS_CONCEITO_ATIVIDADE: String
+  DS_CONCEITO_ATIVIDADE_not: String
+  DS_CONCEITO_ATIVIDADE_in: [String!]
+  DS_CONCEITO_ATIVIDADE_not_in: [String!]
+  DS_CONCEITO_ATIVIDADE_lt: String
+  DS_CONCEITO_ATIVIDADE_lte: String
+  DS_CONCEITO_ATIVIDADE_gt: String
+  DS_CONCEITO_ATIVIDADE_gte: String
+  DS_CONCEITO_ATIVIDADE_contains: String
+  DS_CONCEITO_ATIVIDADE_not_contains: String
+  DS_CONCEITO_ATIVIDADE_starts_with: String
+  DS_CONCEITO_ATIVIDADE_not_starts_with: String
+  DS_CONCEITO_ATIVIDADE_ends_with: String
+  DS_CONCEITO_ATIVIDADE_not_ends_with: String
+  AND: [AtividadePrincipalWhereInput!]
+  OR: [AtividadePrincipalWhereInput!]
+  NOT: [AtividadePrincipalWhereInput!]
+}
+
+input AtividadePrincipalWhereUniqueInput {
+  CO_ATIVIDADE: ID
 }
 
 type AtividadeSubscriptionPayload {
@@ -130,6 +330,126 @@ type BatchPayload {
   count: Long!
 }
 
+type Clientela {
+  CO_CLIENTELA: ID!
+  DS_CLIENTELA: String!
+}
+
+type ClientelaConnection {
+  pageInfo: PageInfo!
+  edges: [ClientelaEdge]!
+  aggregate: AggregateClientela!
+}
+
+input ClientelaCreateInput {
+  CO_CLIENTELA: ID
+  DS_CLIENTELA: String!
+}
+
+input ClientelaCreateOneInput {
+  create: ClientelaCreateInput
+  connect: ClientelaWhereUniqueInput
+}
+
+type ClientelaEdge {
+  node: Clientela!
+  cursor: String!
+}
+
+enum ClientelaOrderByInput {
+  CO_CLIENTELA_ASC
+  CO_CLIENTELA_DESC
+  DS_CLIENTELA_ASC
+  DS_CLIENTELA_DESC
+}
+
+type ClientelaPreviousValues {
+  CO_CLIENTELA: ID!
+  DS_CLIENTELA: String!
+}
+
+type ClientelaSubscriptionPayload {
+  mutation: MutationType!
+  node: Clientela
+  updatedFields: [String!]
+  previousValues: ClientelaPreviousValues
+}
+
+input ClientelaSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ClientelaWhereInput
+  AND: [ClientelaSubscriptionWhereInput!]
+  OR: [ClientelaSubscriptionWhereInput!]
+  NOT: [ClientelaSubscriptionWhereInput!]
+}
+
+input ClientelaUpdateDataInput {
+  DS_CLIENTELA: String
+}
+
+input ClientelaUpdateInput {
+  DS_CLIENTELA: String
+}
+
+input ClientelaUpdateManyMutationInput {
+  DS_CLIENTELA: String
+}
+
+input ClientelaUpdateOneInput {
+  create: ClientelaCreateInput
+  update: ClientelaUpdateDataInput
+  upsert: ClientelaUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: ClientelaWhereUniqueInput
+}
+
+input ClientelaUpsertNestedInput {
+  update: ClientelaUpdateDataInput!
+  create: ClientelaCreateInput!
+}
+
+input ClientelaWhereInput {
+  CO_CLIENTELA: ID
+  CO_CLIENTELA_not: ID
+  CO_CLIENTELA_in: [ID!]
+  CO_CLIENTELA_not_in: [ID!]
+  CO_CLIENTELA_lt: ID
+  CO_CLIENTELA_lte: ID
+  CO_CLIENTELA_gt: ID
+  CO_CLIENTELA_gte: ID
+  CO_CLIENTELA_contains: ID
+  CO_CLIENTELA_not_contains: ID
+  CO_CLIENTELA_starts_with: ID
+  CO_CLIENTELA_not_starts_with: ID
+  CO_CLIENTELA_ends_with: ID
+  CO_CLIENTELA_not_ends_with: ID
+  DS_CLIENTELA: String
+  DS_CLIENTELA_not: String
+  DS_CLIENTELA_in: [String!]
+  DS_CLIENTELA_not_in: [String!]
+  DS_CLIENTELA_lt: String
+  DS_CLIENTELA_lte: String
+  DS_CLIENTELA_gt: String
+  DS_CLIENTELA_gte: String
+  DS_CLIENTELA_contains: String
+  DS_CLIENTELA_not_contains: String
+  DS_CLIENTELA_starts_with: String
+  DS_CLIENTELA_not_starts_with: String
+  DS_CLIENTELA_ends_with: String
+  DS_CLIENTELA_not_ends_with: String
+  AND: [ClientelaWhereInput!]
+  OR: [ClientelaWhereInput!]
+  NOT: [ClientelaWhereInput!]
+}
+
+input ClientelaWhereUniqueInput {
+  CO_CLIENTELA: ID
+}
+
 type Estabelecimento {
   CO_UNIDADE: ID!
   CO_CNES: String
@@ -142,7 +462,7 @@ type Estabelecimento {
   NU_ENDERECO: String
   NO_COMPLEMENTO: String
   NO_BAIRRO: String
-  CO_CEP: String
+  CO_CEP: String!
   CO_REGIAO_SAUDE: String
   CO_MICRO_REGIAO: String
   CO_DISTRITO_SANITARIO: String
@@ -153,28 +473,28 @@ type Estabelecimento {
   NU_CPF: String
   NU_CNPJ: String
   ATIVIDADE: Atividade
-  CO_CLIENTELA: String
+  CLIENTELA: Clientela
   NU_ALVARA: String
   DT_EXPEDICAO: String
   TP_ORGAO_EXPEDIDOR: String
   DT_VAL_LIC_SANI: String
   TP_LIC_SANI: String
-  TP_UNIDADE: String
-  CO_TURNO_ATENDIMENTO: String
-  CO_ESTADO_GESTOR: String
-  CO_MUNICIPIO_GESTOR: String
+  TP_UNIDADE: TipoUnidade
+  TURNO_ATENDIMENTO: TurnoAtendimento
+  ESTADO: Estado
+  MUNICIPIO: Municipio!
   DT_ATUALIZACAO: String
   CO_USUARIO: String
   CO_CPFDIRETORCLN: String
   REG_DIRETORCLN: String
   ST_ADESAO_FILANTROP: String
-  CO_MOTIVO_DESAB: String
+  MOTIVO_DESAB: MotivoDesativacao
   NO_URL: String
   NU_LATITUDE: String
   NU_LONGITUDE: String
   DT_ATU_GEO: String
   NO_USUARIO_GEO: String
-  CO_NATUREZA_JUR: String
+  NATUREZA_JUR: NaturezaJuridica
   TP_ESTAB_SEMPRE_ABERTO: String
   ST_GERACREDITO_GERENTE_SGIF: String
   ST_CONEXAO_INTERNET: String
@@ -182,8 +502,8 @@ type Estabelecimento {
   NO_FANTASIA_ABREV: String
   TP_GESTAO: String
   DT_ATUALIZACAO_ORIGEM: String
-  CO_TIPO_ESTABELECIMENTO: String
-  CO_ATIVIDADE_PRINCIPAL: String
+  TIPO_ESTABELECIMENTO: TipoEstabelecimento
+  ATIVIDADE_PRINCIPAL: AtividadePrincipal
   ST_CONTRATO_FORMALIZADO: String
 }
 
@@ -205,7 +525,7 @@ input EstabelecimentoCreateInput {
   NU_ENDERECO: String
   NO_COMPLEMENTO: String
   NO_BAIRRO: String
-  CO_CEP: String
+  CO_CEP: String!
   CO_REGIAO_SAUDE: String
   CO_MICRO_REGIAO: String
   CO_DISTRITO_SANITARIO: String
@@ -216,28 +536,28 @@ input EstabelecimentoCreateInput {
   NU_CPF: String
   NU_CNPJ: String
   ATIVIDADE: AtividadeCreateOneInput
-  CO_CLIENTELA: String
+  CLIENTELA: ClientelaCreateOneInput
   NU_ALVARA: String
   DT_EXPEDICAO: String
   TP_ORGAO_EXPEDIDOR: String
   DT_VAL_LIC_SANI: String
   TP_LIC_SANI: String
-  TP_UNIDADE: String
-  CO_TURNO_ATENDIMENTO: String
-  CO_ESTADO_GESTOR: String
-  CO_MUNICIPIO_GESTOR: String
+  TP_UNIDADE: TipoUnidadeCreateOneInput
+  TURNO_ATENDIMENTO: TurnoAtendimentoCreateOneInput
+  ESTADO: EstadoCreateOneInput
+  MUNICIPIO: MunicipioCreateOneInput!
   DT_ATUALIZACAO: String
   CO_USUARIO: String
   CO_CPFDIRETORCLN: String
   REG_DIRETORCLN: String
   ST_ADESAO_FILANTROP: String
-  CO_MOTIVO_DESAB: String
+  MOTIVO_DESAB: MotivoDesativacaoCreateOneInput
   NO_URL: String
   NU_LATITUDE: String
   NU_LONGITUDE: String
   DT_ATU_GEO: String
   NO_USUARIO_GEO: String
-  CO_NATUREZA_JUR: String
+  NATUREZA_JUR: NaturezaJuridicaCreateOneInput
   TP_ESTAB_SEMPRE_ABERTO: String
   ST_GERACREDITO_GERENTE_SGIF: String
   ST_CONEXAO_INTERNET: String
@@ -245,8 +565,8 @@ input EstabelecimentoCreateInput {
   NO_FANTASIA_ABREV: String
   TP_GESTAO: String
   DT_ATUALIZACAO_ORIGEM: String
-  CO_TIPO_ESTABELECIMENTO: String
-  CO_ATIVIDADE_PRINCIPAL: String
+  TIPO_ESTABELECIMENTO: TipoEstabelecimentoCreateOneInput
+  ATIVIDADE_PRINCIPAL: AtividadePrincipalCreateOneInput
   ST_CONTRATO_FORMALIZADO: String
 }
 
@@ -298,8 +618,6 @@ enum EstabelecimentoOrderByInput {
   NU_CPF_DESC
   NU_CNPJ_ASC
   NU_CNPJ_DESC
-  CO_CLIENTELA_ASC
-  CO_CLIENTELA_DESC
   NU_ALVARA_ASC
   NU_ALVARA_DESC
   DT_EXPEDICAO_ASC
@@ -310,14 +628,6 @@ enum EstabelecimentoOrderByInput {
   DT_VAL_LIC_SANI_DESC
   TP_LIC_SANI_ASC
   TP_LIC_SANI_DESC
-  TP_UNIDADE_ASC
-  TP_UNIDADE_DESC
-  CO_TURNO_ATENDIMENTO_ASC
-  CO_TURNO_ATENDIMENTO_DESC
-  CO_ESTADO_GESTOR_ASC
-  CO_ESTADO_GESTOR_DESC
-  CO_MUNICIPIO_GESTOR_ASC
-  CO_MUNICIPIO_GESTOR_DESC
   DT_ATUALIZACAO_ASC
   DT_ATUALIZACAO_DESC
   CO_USUARIO_ASC
@@ -328,8 +638,6 @@ enum EstabelecimentoOrderByInput {
   REG_DIRETORCLN_DESC
   ST_ADESAO_FILANTROP_ASC
   ST_ADESAO_FILANTROP_DESC
-  CO_MOTIVO_DESAB_ASC
-  CO_MOTIVO_DESAB_DESC
   NO_URL_ASC
   NO_URL_DESC
   NU_LATITUDE_ASC
@@ -340,8 +648,6 @@ enum EstabelecimentoOrderByInput {
   DT_ATU_GEO_DESC
   NO_USUARIO_GEO_ASC
   NO_USUARIO_GEO_DESC
-  CO_NATUREZA_JUR_ASC
-  CO_NATUREZA_JUR_DESC
   TP_ESTAB_SEMPRE_ABERTO_ASC
   TP_ESTAB_SEMPRE_ABERTO_DESC
   ST_GERACREDITO_GERENTE_SGIF_ASC
@@ -356,10 +662,6 @@ enum EstabelecimentoOrderByInput {
   TP_GESTAO_DESC
   DT_ATUALIZACAO_ORIGEM_ASC
   DT_ATUALIZACAO_ORIGEM_DESC
-  CO_TIPO_ESTABELECIMENTO_ASC
-  CO_TIPO_ESTABELECIMENTO_DESC
-  CO_ATIVIDADE_PRINCIPAL_ASC
-  CO_ATIVIDADE_PRINCIPAL_DESC
   ST_CONTRATO_FORMALIZADO_ASC
   ST_CONTRATO_FORMALIZADO_DESC
 }
@@ -376,7 +678,7 @@ type EstabelecimentoPreviousValues {
   NU_ENDERECO: String
   NO_COMPLEMENTO: String
   NO_BAIRRO: String
-  CO_CEP: String
+  CO_CEP: String!
   CO_REGIAO_SAUDE: String
   CO_MICRO_REGIAO: String
   CO_DISTRITO_SANITARIO: String
@@ -386,28 +688,21 @@ type EstabelecimentoPreviousValues {
   NO_EMAIL: String
   NU_CPF: String
   NU_CNPJ: String
-  CO_CLIENTELA: String
   NU_ALVARA: String
   DT_EXPEDICAO: String
   TP_ORGAO_EXPEDIDOR: String
   DT_VAL_LIC_SANI: String
   TP_LIC_SANI: String
-  TP_UNIDADE: String
-  CO_TURNO_ATENDIMENTO: String
-  CO_ESTADO_GESTOR: String
-  CO_MUNICIPIO_GESTOR: String
   DT_ATUALIZACAO: String
   CO_USUARIO: String
   CO_CPFDIRETORCLN: String
   REG_DIRETORCLN: String
   ST_ADESAO_FILANTROP: String
-  CO_MOTIVO_DESAB: String
   NO_URL: String
   NU_LATITUDE: String
   NU_LONGITUDE: String
   DT_ATU_GEO: String
   NO_USUARIO_GEO: String
-  CO_NATUREZA_JUR: String
   TP_ESTAB_SEMPRE_ABERTO: String
   ST_GERACREDITO_GERENTE_SGIF: String
   ST_CONEXAO_INTERNET: String
@@ -415,8 +710,6 @@ type EstabelecimentoPreviousValues {
   NO_FANTASIA_ABREV: String
   TP_GESTAO: String
   DT_ATUALIZACAO_ORIGEM: String
-  CO_TIPO_ESTABELECIMENTO: String
-  CO_ATIVIDADE_PRINCIPAL: String
   ST_CONTRATO_FORMALIZADO: String
 }
 
@@ -460,28 +753,28 @@ input EstabelecimentoUpdateInput {
   NU_CPF: String
   NU_CNPJ: String
   ATIVIDADE: AtividadeUpdateOneInput
-  CO_CLIENTELA: String
+  CLIENTELA: ClientelaUpdateOneInput
   NU_ALVARA: String
   DT_EXPEDICAO: String
   TP_ORGAO_EXPEDIDOR: String
   DT_VAL_LIC_SANI: String
   TP_LIC_SANI: String
-  TP_UNIDADE: String
-  CO_TURNO_ATENDIMENTO: String
-  CO_ESTADO_GESTOR: String
-  CO_MUNICIPIO_GESTOR: String
+  TP_UNIDADE: TipoUnidadeUpdateOneInput
+  TURNO_ATENDIMENTO: TurnoAtendimentoUpdateOneInput
+  ESTADO: EstadoUpdateOneInput
+  MUNICIPIO: MunicipioUpdateOneRequiredInput
   DT_ATUALIZACAO: String
   CO_USUARIO: String
   CO_CPFDIRETORCLN: String
   REG_DIRETORCLN: String
   ST_ADESAO_FILANTROP: String
-  CO_MOTIVO_DESAB: String
+  MOTIVO_DESAB: MotivoDesativacaoUpdateOneInput
   NO_URL: String
   NU_LATITUDE: String
   NU_LONGITUDE: String
   DT_ATU_GEO: String
   NO_USUARIO_GEO: String
-  CO_NATUREZA_JUR: String
+  NATUREZA_JUR: NaturezaJuridicaUpdateOneInput
   TP_ESTAB_SEMPRE_ABERTO: String
   ST_GERACREDITO_GERENTE_SGIF: String
   ST_CONEXAO_INTERNET: String
@@ -489,8 +782,8 @@ input EstabelecimentoUpdateInput {
   NO_FANTASIA_ABREV: String
   TP_GESTAO: String
   DT_ATUALIZACAO_ORIGEM: String
-  CO_TIPO_ESTABELECIMENTO: String
-  CO_ATIVIDADE_PRINCIPAL: String
+  TIPO_ESTABELECIMENTO: TipoEstabelecimentoUpdateOneInput
+  ATIVIDADE_PRINCIPAL: AtividadePrincipalUpdateOneInput
   ST_CONTRATO_FORMALIZADO: String
 }
 
@@ -515,28 +808,21 @@ input EstabelecimentoUpdateManyMutationInput {
   NO_EMAIL: String
   NU_CPF: String
   NU_CNPJ: String
-  CO_CLIENTELA: String
   NU_ALVARA: String
   DT_EXPEDICAO: String
   TP_ORGAO_EXPEDIDOR: String
   DT_VAL_LIC_SANI: String
   TP_LIC_SANI: String
-  TP_UNIDADE: String
-  CO_TURNO_ATENDIMENTO: String
-  CO_ESTADO_GESTOR: String
-  CO_MUNICIPIO_GESTOR: String
   DT_ATUALIZACAO: String
   CO_USUARIO: String
   CO_CPFDIRETORCLN: String
   REG_DIRETORCLN: String
   ST_ADESAO_FILANTROP: String
-  CO_MOTIVO_DESAB: String
   NO_URL: String
   NU_LATITUDE: String
   NU_LONGITUDE: String
   DT_ATU_GEO: String
   NO_USUARIO_GEO: String
-  CO_NATUREZA_JUR: String
   TP_ESTAB_SEMPRE_ABERTO: String
   ST_GERACREDITO_GERENTE_SGIF: String
   ST_CONEXAO_INTERNET: String
@@ -544,8 +830,6 @@ input EstabelecimentoUpdateManyMutationInput {
   NO_FANTASIA_ABREV: String
   TP_GESTAO: String
   DT_ATUALIZACAO_ORIGEM: String
-  CO_TIPO_ESTABELECIMENTO: String
-  CO_ATIVIDADE_PRINCIPAL: String
   ST_CONTRATO_FORMALIZADO: String
 }
 
@@ -845,20 +1129,7 @@ input EstabelecimentoWhereInput {
   NU_CNPJ_ends_with: String
   NU_CNPJ_not_ends_with: String
   ATIVIDADE: AtividadeWhereInput
-  CO_CLIENTELA: String
-  CO_CLIENTELA_not: String
-  CO_CLIENTELA_in: [String!]
-  CO_CLIENTELA_not_in: [String!]
-  CO_CLIENTELA_lt: String
-  CO_CLIENTELA_lte: String
-  CO_CLIENTELA_gt: String
-  CO_CLIENTELA_gte: String
-  CO_CLIENTELA_contains: String
-  CO_CLIENTELA_not_contains: String
-  CO_CLIENTELA_starts_with: String
-  CO_CLIENTELA_not_starts_with: String
-  CO_CLIENTELA_ends_with: String
-  CO_CLIENTELA_not_ends_with: String
+  CLIENTELA: ClientelaWhereInput
   NU_ALVARA: String
   NU_ALVARA_not: String
   NU_ALVARA_in: [String!]
@@ -929,62 +1200,10 @@ input EstabelecimentoWhereInput {
   TP_LIC_SANI_not_starts_with: String
   TP_LIC_SANI_ends_with: String
   TP_LIC_SANI_not_ends_with: String
-  TP_UNIDADE: String
-  TP_UNIDADE_not: String
-  TP_UNIDADE_in: [String!]
-  TP_UNIDADE_not_in: [String!]
-  TP_UNIDADE_lt: String
-  TP_UNIDADE_lte: String
-  TP_UNIDADE_gt: String
-  TP_UNIDADE_gte: String
-  TP_UNIDADE_contains: String
-  TP_UNIDADE_not_contains: String
-  TP_UNIDADE_starts_with: String
-  TP_UNIDADE_not_starts_with: String
-  TP_UNIDADE_ends_with: String
-  TP_UNIDADE_not_ends_with: String
-  CO_TURNO_ATENDIMENTO: String
-  CO_TURNO_ATENDIMENTO_not: String
-  CO_TURNO_ATENDIMENTO_in: [String!]
-  CO_TURNO_ATENDIMENTO_not_in: [String!]
-  CO_TURNO_ATENDIMENTO_lt: String
-  CO_TURNO_ATENDIMENTO_lte: String
-  CO_TURNO_ATENDIMENTO_gt: String
-  CO_TURNO_ATENDIMENTO_gte: String
-  CO_TURNO_ATENDIMENTO_contains: String
-  CO_TURNO_ATENDIMENTO_not_contains: String
-  CO_TURNO_ATENDIMENTO_starts_with: String
-  CO_TURNO_ATENDIMENTO_not_starts_with: String
-  CO_TURNO_ATENDIMENTO_ends_with: String
-  CO_TURNO_ATENDIMENTO_not_ends_with: String
-  CO_ESTADO_GESTOR: String
-  CO_ESTADO_GESTOR_not: String
-  CO_ESTADO_GESTOR_in: [String!]
-  CO_ESTADO_GESTOR_not_in: [String!]
-  CO_ESTADO_GESTOR_lt: String
-  CO_ESTADO_GESTOR_lte: String
-  CO_ESTADO_GESTOR_gt: String
-  CO_ESTADO_GESTOR_gte: String
-  CO_ESTADO_GESTOR_contains: String
-  CO_ESTADO_GESTOR_not_contains: String
-  CO_ESTADO_GESTOR_starts_with: String
-  CO_ESTADO_GESTOR_not_starts_with: String
-  CO_ESTADO_GESTOR_ends_with: String
-  CO_ESTADO_GESTOR_not_ends_with: String
-  CO_MUNICIPIO_GESTOR: String
-  CO_MUNICIPIO_GESTOR_not: String
-  CO_MUNICIPIO_GESTOR_in: [String!]
-  CO_MUNICIPIO_GESTOR_not_in: [String!]
-  CO_MUNICIPIO_GESTOR_lt: String
-  CO_MUNICIPIO_GESTOR_lte: String
-  CO_MUNICIPIO_GESTOR_gt: String
-  CO_MUNICIPIO_GESTOR_gte: String
-  CO_MUNICIPIO_GESTOR_contains: String
-  CO_MUNICIPIO_GESTOR_not_contains: String
-  CO_MUNICIPIO_GESTOR_starts_with: String
-  CO_MUNICIPIO_GESTOR_not_starts_with: String
-  CO_MUNICIPIO_GESTOR_ends_with: String
-  CO_MUNICIPIO_GESTOR_not_ends_with: String
+  TP_UNIDADE: TipoUnidadeWhereInput
+  TURNO_ATENDIMENTO: TurnoAtendimentoWhereInput
+  ESTADO: EstadoWhereInput
+  MUNICIPIO: MunicipioWhereInput
   DT_ATUALIZACAO: String
   DT_ATUALIZACAO_not: String
   DT_ATUALIZACAO_in: [String!]
@@ -1055,20 +1274,7 @@ input EstabelecimentoWhereInput {
   ST_ADESAO_FILANTROP_not_starts_with: String
   ST_ADESAO_FILANTROP_ends_with: String
   ST_ADESAO_FILANTROP_not_ends_with: String
-  CO_MOTIVO_DESAB: String
-  CO_MOTIVO_DESAB_not: String
-  CO_MOTIVO_DESAB_in: [String!]
-  CO_MOTIVO_DESAB_not_in: [String!]
-  CO_MOTIVO_DESAB_lt: String
-  CO_MOTIVO_DESAB_lte: String
-  CO_MOTIVO_DESAB_gt: String
-  CO_MOTIVO_DESAB_gte: String
-  CO_MOTIVO_DESAB_contains: String
-  CO_MOTIVO_DESAB_not_contains: String
-  CO_MOTIVO_DESAB_starts_with: String
-  CO_MOTIVO_DESAB_not_starts_with: String
-  CO_MOTIVO_DESAB_ends_with: String
-  CO_MOTIVO_DESAB_not_ends_with: String
+  MOTIVO_DESAB: MotivoDesativacaoWhereInput
   NO_URL: String
   NO_URL_not: String
   NO_URL_in: [String!]
@@ -1139,20 +1345,7 @@ input EstabelecimentoWhereInput {
   NO_USUARIO_GEO_not_starts_with: String
   NO_USUARIO_GEO_ends_with: String
   NO_USUARIO_GEO_not_ends_with: String
-  CO_NATUREZA_JUR: String
-  CO_NATUREZA_JUR_not: String
-  CO_NATUREZA_JUR_in: [String!]
-  CO_NATUREZA_JUR_not_in: [String!]
-  CO_NATUREZA_JUR_lt: String
-  CO_NATUREZA_JUR_lte: String
-  CO_NATUREZA_JUR_gt: String
-  CO_NATUREZA_JUR_gte: String
-  CO_NATUREZA_JUR_contains: String
-  CO_NATUREZA_JUR_not_contains: String
-  CO_NATUREZA_JUR_starts_with: String
-  CO_NATUREZA_JUR_not_starts_with: String
-  CO_NATUREZA_JUR_ends_with: String
-  CO_NATUREZA_JUR_not_ends_with: String
+  NATUREZA_JUR: NaturezaJuridicaWhereInput
   TP_ESTAB_SEMPRE_ABERTO: String
   TP_ESTAB_SEMPRE_ABERTO_not: String
   TP_ESTAB_SEMPRE_ABERTO_in: [String!]
@@ -1251,34 +1444,8 @@ input EstabelecimentoWhereInput {
   DT_ATUALIZACAO_ORIGEM_not_starts_with: String
   DT_ATUALIZACAO_ORIGEM_ends_with: String
   DT_ATUALIZACAO_ORIGEM_not_ends_with: String
-  CO_TIPO_ESTABELECIMENTO: String
-  CO_TIPO_ESTABELECIMENTO_not: String
-  CO_TIPO_ESTABELECIMENTO_in: [String!]
-  CO_TIPO_ESTABELECIMENTO_not_in: [String!]
-  CO_TIPO_ESTABELECIMENTO_lt: String
-  CO_TIPO_ESTABELECIMENTO_lte: String
-  CO_TIPO_ESTABELECIMENTO_gt: String
-  CO_TIPO_ESTABELECIMENTO_gte: String
-  CO_TIPO_ESTABELECIMENTO_contains: String
-  CO_TIPO_ESTABELECIMENTO_not_contains: String
-  CO_TIPO_ESTABELECIMENTO_starts_with: String
-  CO_TIPO_ESTABELECIMENTO_not_starts_with: String
-  CO_TIPO_ESTABELECIMENTO_ends_with: String
-  CO_TIPO_ESTABELECIMENTO_not_ends_with: String
-  CO_ATIVIDADE_PRINCIPAL: String
-  CO_ATIVIDADE_PRINCIPAL_not: String
-  CO_ATIVIDADE_PRINCIPAL_in: [String!]
-  CO_ATIVIDADE_PRINCIPAL_not_in: [String!]
-  CO_ATIVIDADE_PRINCIPAL_lt: String
-  CO_ATIVIDADE_PRINCIPAL_lte: String
-  CO_ATIVIDADE_PRINCIPAL_gt: String
-  CO_ATIVIDADE_PRINCIPAL_gte: String
-  CO_ATIVIDADE_PRINCIPAL_contains: String
-  CO_ATIVIDADE_PRINCIPAL_not_contains: String
-  CO_ATIVIDADE_PRINCIPAL_starts_with: String
-  CO_ATIVIDADE_PRINCIPAL_not_starts_with: String
-  CO_ATIVIDADE_PRINCIPAL_ends_with: String
-  CO_ATIVIDADE_PRINCIPAL_not_ends_with: String
+  TIPO_ESTABELECIMENTO: TipoEstabelecimentoWhereInput
+  ATIVIDADE_PRINCIPAL: AtividadePrincipalWhereInput
   ST_CONTRATO_FORMALIZADO: String
   ST_CONTRATO_FORMALIZADO_not: String
   ST_CONTRATO_FORMALIZADO_in: [String!]
@@ -1302,7 +1469,629 @@ input EstabelecimentoWhereUniqueInput {
   CO_UNIDADE: ID
 }
 
+type Estado {
+  CO_UF: ID!
+  CO_SIGLA: String!
+  NO_DESCRICAO: String!
+}
+
+type EstadoConnection {
+  pageInfo: PageInfo!
+  edges: [EstadoEdge]!
+  aggregate: AggregateEstado!
+}
+
+input EstadoCreateInput {
+  CO_UF: ID
+  CO_SIGLA: String!
+  NO_DESCRICAO: String!
+}
+
+input EstadoCreateOneInput {
+  create: EstadoCreateInput
+  connect: EstadoWhereUniqueInput
+}
+
+type EstadoEdge {
+  node: Estado!
+  cursor: String!
+}
+
+enum EstadoOrderByInput {
+  CO_UF_ASC
+  CO_UF_DESC
+  CO_SIGLA_ASC
+  CO_SIGLA_DESC
+  NO_DESCRICAO_ASC
+  NO_DESCRICAO_DESC
+}
+
+type EstadoPreviousValues {
+  CO_UF: ID!
+  CO_SIGLA: String!
+  NO_DESCRICAO: String!
+}
+
+type EstadoSubscriptionPayload {
+  mutation: MutationType!
+  node: Estado
+  updatedFields: [String!]
+  previousValues: EstadoPreviousValues
+}
+
+input EstadoSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: EstadoWhereInput
+  AND: [EstadoSubscriptionWhereInput!]
+  OR: [EstadoSubscriptionWhereInput!]
+  NOT: [EstadoSubscriptionWhereInput!]
+}
+
+input EstadoUpdateDataInput {
+  CO_SIGLA: String
+  NO_DESCRICAO: String
+}
+
+input EstadoUpdateInput {
+  CO_SIGLA: String
+  NO_DESCRICAO: String
+}
+
+input EstadoUpdateManyMutationInput {
+  CO_SIGLA: String
+  NO_DESCRICAO: String
+}
+
+input EstadoUpdateOneInput {
+  create: EstadoCreateInput
+  update: EstadoUpdateDataInput
+  upsert: EstadoUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: EstadoWhereUniqueInput
+}
+
+input EstadoUpsertNestedInput {
+  update: EstadoUpdateDataInput!
+  create: EstadoCreateInput!
+}
+
+input EstadoWhereInput {
+  CO_UF: ID
+  CO_UF_not: ID
+  CO_UF_in: [ID!]
+  CO_UF_not_in: [ID!]
+  CO_UF_lt: ID
+  CO_UF_lte: ID
+  CO_UF_gt: ID
+  CO_UF_gte: ID
+  CO_UF_contains: ID
+  CO_UF_not_contains: ID
+  CO_UF_starts_with: ID
+  CO_UF_not_starts_with: ID
+  CO_UF_ends_with: ID
+  CO_UF_not_ends_with: ID
+  CO_SIGLA: String
+  CO_SIGLA_not: String
+  CO_SIGLA_in: [String!]
+  CO_SIGLA_not_in: [String!]
+  CO_SIGLA_lt: String
+  CO_SIGLA_lte: String
+  CO_SIGLA_gt: String
+  CO_SIGLA_gte: String
+  CO_SIGLA_contains: String
+  CO_SIGLA_not_contains: String
+  CO_SIGLA_starts_with: String
+  CO_SIGLA_not_starts_with: String
+  CO_SIGLA_ends_with: String
+  CO_SIGLA_not_ends_with: String
+  NO_DESCRICAO: String
+  NO_DESCRICAO_not: String
+  NO_DESCRICAO_in: [String!]
+  NO_DESCRICAO_not_in: [String!]
+  NO_DESCRICAO_lt: String
+  NO_DESCRICAO_lte: String
+  NO_DESCRICAO_gt: String
+  NO_DESCRICAO_gte: String
+  NO_DESCRICAO_contains: String
+  NO_DESCRICAO_not_contains: String
+  NO_DESCRICAO_starts_with: String
+  NO_DESCRICAO_not_starts_with: String
+  NO_DESCRICAO_ends_with: String
+  NO_DESCRICAO_not_ends_with: String
+  AND: [EstadoWhereInput!]
+  OR: [EstadoWhereInput!]
+  NOT: [EstadoWhereInput!]
+}
+
+input EstadoWhereUniqueInput {
+  CO_UF: ID
+}
+
 scalar Long
+
+type MotivoDesativacao {
+  CD_MOTIVO_DESAB: ID!
+  DS_MOTIVO_DESAB: String!
+}
+
+type MotivoDesativacaoConnection {
+  pageInfo: PageInfo!
+  edges: [MotivoDesativacaoEdge]!
+  aggregate: AggregateMotivoDesativacao!
+}
+
+input MotivoDesativacaoCreateInput {
+  CD_MOTIVO_DESAB: ID
+  DS_MOTIVO_DESAB: String!
+}
+
+input MotivoDesativacaoCreateOneInput {
+  create: MotivoDesativacaoCreateInput
+  connect: MotivoDesativacaoWhereUniqueInput
+}
+
+type MotivoDesativacaoEdge {
+  node: MotivoDesativacao!
+  cursor: String!
+}
+
+enum MotivoDesativacaoOrderByInput {
+  CD_MOTIVO_DESAB_ASC
+  CD_MOTIVO_DESAB_DESC
+  DS_MOTIVO_DESAB_ASC
+  DS_MOTIVO_DESAB_DESC
+}
+
+type MotivoDesativacaoPreviousValues {
+  CD_MOTIVO_DESAB: ID!
+  DS_MOTIVO_DESAB: String!
+}
+
+type MotivoDesativacaoSubscriptionPayload {
+  mutation: MutationType!
+  node: MotivoDesativacao
+  updatedFields: [String!]
+  previousValues: MotivoDesativacaoPreviousValues
+}
+
+input MotivoDesativacaoSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: MotivoDesativacaoWhereInput
+  AND: [MotivoDesativacaoSubscriptionWhereInput!]
+  OR: [MotivoDesativacaoSubscriptionWhereInput!]
+  NOT: [MotivoDesativacaoSubscriptionWhereInput!]
+}
+
+input MotivoDesativacaoUpdateDataInput {
+  DS_MOTIVO_DESAB: String
+}
+
+input MotivoDesativacaoUpdateInput {
+  DS_MOTIVO_DESAB: String
+}
+
+input MotivoDesativacaoUpdateManyMutationInput {
+  DS_MOTIVO_DESAB: String
+}
+
+input MotivoDesativacaoUpdateOneInput {
+  create: MotivoDesativacaoCreateInput
+  update: MotivoDesativacaoUpdateDataInput
+  upsert: MotivoDesativacaoUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: MotivoDesativacaoWhereUniqueInput
+}
+
+input MotivoDesativacaoUpsertNestedInput {
+  update: MotivoDesativacaoUpdateDataInput!
+  create: MotivoDesativacaoCreateInput!
+}
+
+input MotivoDesativacaoWhereInput {
+  CD_MOTIVO_DESAB: ID
+  CD_MOTIVO_DESAB_not: ID
+  CD_MOTIVO_DESAB_in: [ID!]
+  CD_MOTIVO_DESAB_not_in: [ID!]
+  CD_MOTIVO_DESAB_lt: ID
+  CD_MOTIVO_DESAB_lte: ID
+  CD_MOTIVO_DESAB_gt: ID
+  CD_MOTIVO_DESAB_gte: ID
+  CD_MOTIVO_DESAB_contains: ID
+  CD_MOTIVO_DESAB_not_contains: ID
+  CD_MOTIVO_DESAB_starts_with: ID
+  CD_MOTIVO_DESAB_not_starts_with: ID
+  CD_MOTIVO_DESAB_ends_with: ID
+  CD_MOTIVO_DESAB_not_ends_with: ID
+  DS_MOTIVO_DESAB: String
+  DS_MOTIVO_DESAB_not: String
+  DS_MOTIVO_DESAB_in: [String!]
+  DS_MOTIVO_DESAB_not_in: [String!]
+  DS_MOTIVO_DESAB_lt: String
+  DS_MOTIVO_DESAB_lte: String
+  DS_MOTIVO_DESAB_gt: String
+  DS_MOTIVO_DESAB_gte: String
+  DS_MOTIVO_DESAB_contains: String
+  DS_MOTIVO_DESAB_not_contains: String
+  DS_MOTIVO_DESAB_starts_with: String
+  DS_MOTIVO_DESAB_not_starts_with: String
+  DS_MOTIVO_DESAB_ends_with: String
+  DS_MOTIVO_DESAB_not_ends_with: String
+  AND: [MotivoDesativacaoWhereInput!]
+  OR: [MotivoDesativacaoWhereInput!]
+  NOT: [MotivoDesativacaoWhereInput!]
+}
+
+input MotivoDesativacaoWhereUniqueInput {
+  CD_MOTIVO_DESAB: ID
+}
+
+type Municipio {
+  CO_MUNICIPIO: ID!
+  NO_MUNICIPIO: String!
+  CO_SIGLA_ESTADO: String!
+  TP_CADASTRO: String
+  TP_PACTO: String
+  TP_ENVIA: String
+  TP_ENVIA_CNES: String
+  TP_CIB_SAS: String
+  TP_PLENO_ORIGEM: String
+  TP_MAC: String
+  NU_POPULACAO: String
+  NU_DENSIDADE: String
+  CMTP_INICIO_MAC: String
+}
+
+type MunicipioConnection {
+  pageInfo: PageInfo!
+  edges: [MunicipioEdge]!
+  aggregate: AggregateMunicipio!
+}
+
+input MunicipioCreateInput {
+  CO_MUNICIPIO: ID
+  NO_MUNICIPIO: String!
+  CO_SIGLA_ESTADO: String!
+  TP_CADASTRO: String
+  TP_PACTO: String
+  TP_ENVIA: String
+  TP_ENVIA_CNES: String
+  TP_CIB_SAS: String
+  TP_PLENO_ORIGEM: String
+  TP_MAC: String
+  NU_POPULACAO: String
+  NU_DENSIDADE: String
+  CMTP_INICIO_MAC: String
+}
+
+input MunicipioCreateOneInput {
+  create: MunicipioCreateInput
+  connect: MunicipioWhereUniqueInput
+}
+
+type MunicipioEdge {
+  node: Municipio!
+  cursor: String!
+}
+
+enum MunicipioOrderByInput {
+  CO_MUNICIPIO_ASC
+  CO_MUNICIPIO_DESC
+  NO_MUNICIPIO_ASC
+  NO_MUNICIPIO_DESC
+  CO_SIGLA_ESTADO_ASC
+  CO_SIGLA_ESTADO_DESC
+  TP_CADASTRO_ASC
+  TP_CADASTRO_DESC
+  TP_PACTO_ASC
+  TP_PACTO_DESC
+  TP_ENVIA_ASC
+  TP_ENVIA_DESC
+  TP_ENVIA_CNES_ASC
+  TP_ENVIA_CNES_DESC
+  TP_CIB_SAS_ASC
+  TP_CIB_SAS_DESC
+  TP_PLENO_ORIGEM_ASC
+  TP_PLENO_ORIGEM_DESC
+  TP_MAC_ASC
+  TP_MAC_DESC
+  NU_POPULACAO_ASC
+  NU_POPULACAO_DESC
+  NU_DENSIDADE_ASC
+  NU_DENSIDADE_DESC
+  CMTP_INICIO_MAC_ASC
+  CMTP_INICIO_MAC_DESC
+}
+
+type MunicipioPreviousValues {
+  CO_MUNICIPIO: ID!
+  NO_MUNICIPIO: String!
+  CO_SIGLA_ESTADO: String!
+  TP_CADASTRO: String
+  TP_PACTO: String
+  TP_ENVIA: String
+  TP_ENVIA_CNES: String
+  TP_CIB_SAS: String
+  TP_PLENO_ORIGEM: String
+  TP_MAC: String
+  NU_POPULACAO: String
+  NU_DENSIDADE: String
+  CMTP_INICIO_MAC: String
+}
+
+type MunicipioSubscriptionPayload {
+  mutation: MutationType!
+  node: Municipio
+  updatedFields: [String!]
+  previousValues: MunicipioPreviousValues
+}
+
+input MunicipioSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: MunicipioWhereInput
+  AND: [MunicipioSubscriptionWhereInput!]
+  OR: [MunicipioSubscriptionWhereInput!]
+  NOT: [MunicipioSubscriptionWhereInput!]
+}
+
+input MunicipioUpdateDataInput {
+  NO_MUNICIPIO: String
+  CO_SIGLA_ESTADO: String
+  TP_CADASTRO: String
+  TP_PACTO: String
+  TP_ENVIA: String
+  TP_ENVIA_CNES: String
+  TP_CIB_SAS: String
+  TP_PLENO_ORIGEM: String
+  TP_MAC: String
+  NU_POPULACAO: String
+  NU_DENSIDADE: String
+  CMTP_INICIO_MAC: String
+}
+
+input MunicipioUpdateInput {
+  NO_MUNICIPIO: String
+  CO_SIGLA_ESTADO: String
+  TP_CADASTRO: String
+  TP_PACTO: String
+  TP_ENVIA: String
+  TP_ENVIA_CNES: String
+  TP_CIB_SAS: String
+  TP_PLENO_ORIGEM: String
+  TP_MAC: String
+  NU_POPULACAO: String
+  NU_DENSIDADE: String
+  CMTP_INICIO_MAC: String
+}
+
+input MunicipioUpdateManyMutationInput {
+  NO_MUNICIPIO: String
+  CO_SIGLA_ESTADO: String
+  TP_CADASTRO: String
+  TP_PACTO: String
+  TP_ENVIA: String
+  TP_ENVIA_CNES: String
+  TP_CIB_SAS: String
+  TP_PLENO_ORIGEM: String
+  TP_MAC: String
+  NU_POPULACAO: String
+  NU_DENSIDADE: String
+  CMTP_INICIO_MAC: String
+}
+
+input MunicipioUpdateOneRequiredInput {
+  create: MunicipioCreateInput
+  update: MunicipioUpdateDataInput
+  upsert: MunicipioUpsertNestedInput
+  connect: MunicipioWhereUniqueInput
+}
+
+input MunicipioUpsertNestedInput {
+  update: MunicipioUpdateDataInput!
+  create: MunicipioCreateInput!
+}
+
+input MunicipioWhereInput {
+  CO_MUNICIPIO: ID
+  CO_MUNICIPIO_not: ID
+  CO_MUNICIPIO_in: [ID!]
+  CO_MUNICIPIO_not_in: [ID!]
+  CO_MUNICIPIO_lt: ID
+  CO_MUNICIPIO_lte: ID
+  CO_MUNICIPIO_gt: ID
+  CO_MUNICIPIO_gte: ID
+  CO_MUNICIPIO_contains: ID
+  CO_MUNICIPIO_not_contains: ID
+  CO_MUNICIPIO_starts_with: ID
+  CO_MUNICIPIO_not_starts_with: ID
+  CO_MUNICIPIO_ends_with: ID
+  CO_MUNICIPIO_not_ends_with: ID
+  NO_MUNICIPIO: String
+  NO_MUNICIPIO_not: String
+  NO_MUNICIPIO_in: [String!]
+  NO_MUNICIPIO_not_in: [String!]
+  NO_MUNICIPIO_lt: String
+  NO_MUNICIPIO_lte: String
+  NO_MUNICIPIO_gt: String
+  NO_MUNICIPIO_gte: String
+  NO_MUNICIPIO_contains: String
+  NO_MUNICIPIO_not_contains: String
+  NO_MUNICIPIO_starts_with: String
+  NO_MUNICIPIO_not_starts_with: String
+  NO_MUNICIPIO_ends_with: String
+  NO_MUNICIPIO_not_ends_with: String
+  CO_SIGLA_ESTADO: String
+  CO_SIGLA_ESTADO_not: String
+  CO_SIGLA_ESTADO_in: [String!]
+  CO_SIGLA_ESTADO_not_in: [String!]
+  CO_SIGLA_ESTADO_lt: String
+  CO_SIGLA_ESTADO_lte: String
+  CO_SIGLA_ESTADO_gt: String
+  CO_SIGLA_ESTADO_gte: String
+  CO_SIGLA_ESTADO_contains: String
+  CO_SIGLA_ESTADO_not_contains: String
+  CO_SIGLA_ESTADO_starts_with: String
+  CO_SIGLA_ESTADO_not_starts_with: String
+  CO_SIGLA_ESTADO_ends_with: String
+  CO_SIGLA_ESTADO_not_ends_with: String
+  TP_CADASTRO: String
+  TP_CADASTRO_not: String
+  TP_CADASTRO_in: [String!]
+  TP_CADASTRO_not_in: [String!]
+  TP_CADASTRO_lt: String
+  TP_CADASTRO_lte: String
+  TP_CADASTRO_gt: String
+  TP_CADASTRO_gte: String
+  TP_CADASTRO_contains: String
+  TP_CADASTRO_not_contains: String
+  TP_CADASTRO_starts_with: String
+  TP_CADASTRO_not_starts_with: String
+  TP_CADASTRO_ends_with: String
+  TP_CADASTRO_not_ends_with: String
+  TP_PACTO: String
+  TP_PACTO_not: String
+  TP_PACTO_in: [String!]
+  TP_PACTO_not_in: [String!]
+  TP_PACTO_lt: String
+  TP_PACTO_lte: String
+  TP_PACTO_gt: String
+  TP_PACTO_gte: String
+  TP_PACTO_contains: String
+  TP_PACTO_not_contains: String
+  TP_PACTO_starts_with: String
+  TP_PACTO_not_starts_with: String
+  TP_PACTO_ends_with: String
+  TP_PACTO_not_ends_with: String
+  TP_ENVIA: String
+  TP_ENVIA_not: String
+  TP_ENVIA_in: [String!]
+  TP_ENVIA_not_in: [String!]
+  TP_ENVIA_lt: String
+  TP_ENVIA_lte: String
+  TP_ENVIA_gt: String
+  TP_ENVIA_gte: String
+  TP_ENVIA_contains: String
+  TP_ENVIA_not_contains: String
+  TP_ENVIA_starts_with: String
+  TP_ENVIA_not_starts_with: String
+  TP_ENVIA_ends_with: String
+  TP_ENVIA_not_ends_with: String
+  TP_ENVIA_CNES: String
+  TP_ENVIA_CNES_not: String
+  TP_ENVIA_CNES_in: [String!]
+  TP_ENVIA_CNES_not_in: [String!]
+  TP_ENVIA_CNES_lt: String
+  TP_ENVIA_CNES_lte: String
+  TP_ENVIA_CNES_gt: String
+  TP_ENVIA_CNES_gte: String
+  TP_ENVIA_CNES_contains: String
+  TP_ENVIA_CNES_not_contains: String
+  TP_ENVIA_CNES_starts_with: String
+  TP_ENVIA_CNES_not_starts_with: String
+  TP_ENVIA_CNES_ends_with: String
+  TP_ENVIA_CNES_not_ends_with: String
+  TP_CIB_SAS: String
+  TP_CIB_SAS_not: String
+  TP_CIB_SAS_in: [String!]
+  TP_CIB_SAS_not_in: [String!]
+  TP_CIB_SAS_lt: String
+  TP_CIB_SAS_lte: String
+  TP_CIB_SAS_gt: String
+  TP_CIB_SAS_gte: String
+  TP_CIB_SAS_contains: String
+  TP_CIB_SAS_not_contains: String
+  TP_CIB_SAS_starts_with: String
+  TP_CIB_SAS_not_starts_with: String
+  TP_CIB_SAS_ends_with: String
+  TP_CIB_SAS_not_ends_with: String
+  TP_PLENO_ORIGEM: String
+  TP_PLENO_ORIGEM_not: String
+  TP_PLENO_ORIGEM_in: [String!]
+  TP_PLENO_ORIGEM_not_in: [String!]
+  TP_PLENO_ORIGEM_lt: String
+  TP_PLENO_ORIGEM_lte: String
+  TP_PLENO_ORIGEM_gt: String
+  TP_PLENO_ORIGEM_gte: String
+  TP_PLENO_ORIGEM_contains: String
+  TP_PLENO_ORIGEM_not_contains: String
+  TP_PLENO_ORIGEM_starts_with: String
+  TP_PLENO_ORIGEM_not_starts_with: String
+  TP_PLENO_ORIGEM_ends_with: String
+  TP_PLENO_ORIGEM_not_ends_with: String
+  TP_MAC: String
+  TP_MAC_not: String
+  TP_MAC_in: [String!]
+  TP_MAC_not_in: [String!]
+  TP_MAC_lt: String
+  TP_MAC_lte: String
+  TP_MAC_gt: String
+  TP_MAC_gte: String
+  TP_MAC_contains: String
+  TP_MAC_not_contains: String
+  TP_MAC_starts_with: String
+  TP_MAC_not_starts_with: String
+  TP_MAC_ends_with: String
+  TP_MAC_not_ends_with: String
+  NU_POPULACAO: String
+  NU_POPULACAO_not: String
+  NU_POPULACAO_in: [String!]
+  NU_POPULACAO_not_in: [String!]
+  NU_POPULACAO_lt: String
+  NU_POPULACAO_lte: String
+  NU_POPULACAO_gt: String
+  NU_POPULACAO_gte: String
+  NU_POPULACAO_contains: String
+  NU_POPULACAO_not_contains: String
+  NU_POPULACAO_starts_with: String
+  NU_POPULACAO_not_starts_with: String
+  NU_POPULACAO_ends_with: String
+  NU_POPULACAO_not_ends_with: String
+  NU_DENSIDADE: String
+  NU_DENSIDADE_not: String
+  NU_DENSIDADE_in: [String!]
+  NU_DENSIDADE_not_in: [String!]
+  NU_DENSIDADE_lt: String
+  NU_DENSIDADE_lte: String
+  NU_DENSIDADE_gt: String
+  NU_DENSIDADE_gte: String
+  NU_DENSIDADE_contains: String
+  NU_DENSIDADE_not_contains: String
+  NU_DENSIDADE_starts_with: String
+  NU_DENSIDADE_not_starts_with: String
+  NU_DENSIDADE_ends_with: String
+  NU_DENSIDADE_not_ends_with: String
+  CMTP_INICIO_MAC: String
+  CMTP_INICIO_MAC_not: String
+  CMTP_INICIO_MAC_in: [String!]
+  CMTP_INICIO_MAC_not_in: [String!]
+  CMTP_INICIO_MAC_lt: String
+  CMTP_INICIO_MAC_lte: String
+  CMTP_INICIO_MAC_gt: String
+  CMTP_INICIO_MAC_gte: String
+  CMTP_INICIO_MAC_contains: String
+  CMTP_INICIO_MAC_not_contains: String
+  CMTP_INICIO_MAC_starts_with: String
+  CMTP_INICIO_MAC_not_starts_with: String
+  CMTP_INICIO_MAC_ends_with: String
+  CMTP_INICIO_MAC_not_ends_with: String
+  AND: [MunicipioWhereInput!]
+  OR: [MunicipioWhereInput!]
+  NOT: [MunicipioWhereInput!]
+}
+
+input MunicipioWhereUniqueInput {
+  CO_MUNICIPIO: ID
+}
 
 type Mutation {
   createAtividade(data: AtividadeCreateInput!): Atividade!
@@ -1321,6 +2110,44 @@ type Mutation {
   ): Atividade!
   deleteAtividade(where: AtividadeWhereUniqueInput!): Atividade
   deleteManyAtividades(where: AtividadeWhereInput): BatchPayload!
+  createAtividadePrincipal(
+    data: AtividadePrincipalCreateInput!
+  ): AtividadePrincipal!
+  updateAtividadePrincipal(
+    data: AtividadePrincipalUpdateInput!
+    where: AtividadePrincipalWhereUniqueInput!
+  ): AtividadePrincipal
+  updateManyAtividadePrincipals(
+    data: AtividadePrincipalUpdateManyMutationInput!
+    where: AtividadePrincipalWhereInput
+  ): BatchPayload!
+  upsertAtividadePrincipal(
+    where: AtividadePrincipalWhereUniqueInput!
+    create: AtividadePrincipalCreateInput!
+    update: AtividadePrincipalUpdateInput!
+  ): AtividadePrincipal!
+  deleteAtividadePrincipal(
+    where: AtividadePrincipalWhereUniqueInput!
+  ): AtividadePrincipal
+  deleteManyAtividadePrincipals(
+    where: AtividadePrincipalWhereInput
+  ): BatchPayload!
+  createClientela(data: ClientelaCreateInput!): Clientela!
+  updateClientela(
+    data: ClientelaUpdateInput!
+    where: ClientelaWhereUniqueInput!
+  ): Clientela
+  updateManyClientelas(
+    data: ClientelaUpdateManyMutationInput!
+    where: ClientelaWhereInput
+  ): BatchPayload!
+  upsertClientela(
+    where: ClientelaWhereUniqueInput!
+    create: ClientelaCreateInput!
+    update: ClientelaUpdateInput!
+  ): Clientela!
+  deleteClientela(where: ClientelaWhereUniqueInput!): Clientela
+  deleteManyClientelas(where: ClientelaWhereInput): BatchPayload!
   createEstabelecimento(data: EstabelecimentoCreateInput!): Estabelecimento!
   updateEstabelecimento(
     data: EstabelecimentoUpdateInput!
@@ -1339,12 +2166,257 @@ type Mutation {
     where: EstabelecimentoWhereUniqueInput!
   ): Estabelecimento
   deleteManyEstabelecimentoes(where: EstabelecimentoWhereInput): BatchPayload!
+  createEstado(data: EstadoCreateInput!): Estado!
+  updateEstado(data: EstadoUpdateInput!, where: EstadoWhereUniqueInput!): Estado
+  updateManyEstadoes(
+    data: EstadoUpdateManyMutationInput!
+    where: EstadoWhereInput
+  ): BatchPayload!
+  upsertEstado(
+    where: EstadoWhereUniqueInput!
+    create: EstadoCreateInput!
+    update: EstadoUpdateInput!
+  ): Estado!
+  deleteEstado(where: EstadoWhereUniqueInput!): Estado
+  deleteManyEstadoes(where: EstadoWhereInput): BatchPayload!
+  createMotivoDesativacao(
+    data: MotivoDesativacaoCreateInput!
+  ): MotivoDesativacao!
+  updateMotivoDesativacao(
+    data: MotivoDesativacaoUpdateInput!
+    where: MotivoDesativacaoWhereUniqueInput!
+  ): MotivoDesativacao
+  updateManyMotivoDesativacaos(
+    data: MotivoDesativacaoUpdateManyMutationInput!
+    where: MotivoDesativacaoWhereInput
+  ): BatchPayload!
+  upsertMotivoDesativacao(
+    where: MotivoDesativacaoWhereUniqueInput!
+    create: MotivoDesativacaoCreateInput!
+    update: MotivoDesativacaoUpdateInput!
+  ): MotivoDesativacao!
+  deleteMotivoDesativacao(
+    where: MotivoDesativacaoWhereUniqueInput!
+  ): MotivoDesativacao
+  deleteManyMotivoDesativacaos(
+    where: MotivoDesativacaoWhereInput
+  ): BatchPayload!
+  createMunicipio(data: MunicipioCreateInput!): Municipio!
+  updateMunicipio(
+    data: MunicipioUpdateInput!
+    where: MunicipioWhereUniqueInput!
+  ): Municipio
+  updateManyMunicipios(
+    data: MunicipioUpdateManyMutationInput!
+    where: MunicipioWhereInput
+  ): BatchPayload!
+  upsertMunicipio(
+    where: MunicipioWhereUniqueInput!
+    create: MunicipioCreateInput!
+    update: MunicipioUpdateInput!
+  ): Municipio!
+  deleteMunicipio(where: MunicipioWhereUniqueInput!): Municipio
+  deleteManyMunicipios(where: MunicipioWhereInput): BatchPayload!
+  createNaturezaJuridica(data: NaturezaJuridicaCreateInput!): NaturezaJuridica!
+  updateNaturezaJuridica(
+    data: NaturezaJuridicaUpdateInput!
+    where: NaturezaJuridicaWhereUniqueInput!
+  ): NaturezaJuridica
+  updateManyNaturezaJuridicas(
+    data: NaturezaJuridicaUpdateManyMutationInput!
+    where: NaturezaJuridicaWhereInput
+  ): BatchPayload!
+  upsertNaturezaJuridica(
+    where: NaturezaJuridicaWhereUniqueInput!
+    create: NaturezaJuridicaCreateInput!
+    update: NaturezaJuridicaUpdateInput!
+  ): NaturezaJuridica!
+  deleteNaturezaJuridica(
+    where: NaturezaJuridicaWhereUniqueInput!
+  ): NaturezaJuridica
+  deleteManyNaturezaJuridicas(where: NaturezaJuridicaWhereInput): BatchPayload!
+  createTipoEstabelecimento(
+    data: TipoEstabelecimentoCreateInput!
+  ): TipoEstabelecimento!
+  updateTipoEstabelecimento(
+    data: TipoEstabelecimentoUpdateInput!
+    where: TipoEstabelecimentoWhereUniqueInput!
+  ): TipoEstabelecimento
+  updateManyTipoEstabelecimentoes(
+    data: TipoEstabelecimentoUpdateManyMutationInput!
+    where: TipoEstabelecimentoWhereInput
+  ): BatchPayload!
+  upsertTipoEstabelecimento(
+    where: TipoEstabelecimentoWhereUniqueInput!
+    create: TipoEstabelecimentoCreateInput!
+    update: TipoEstabelecimentoUpdateInput!
+  ): TipoEstabelecimento!
+  deleteTipoEstabelecimento(
+    where: TipoEstabelecimentoWhereUniqueInput!
+  ): TipoEstabelecimento
+  deleteManyTipoEstabelecimentoes(
+    where: TipoEstabelecimentoWhereInput
+  ): BatchPayload!
+  createTipoUnidade(data: TipoUnidadeCreateInput!): TipoUnidade!
+  updateTipoUnidade(
+    data: TipoUnidadeUpdateInput!
+    where: TipoUnidadeWhereUniqueInput!
+  ): TipoUnidade
+  updateManyTipoUnidades(
+    data: TipoUnidadeUpdateManyMutationInput!
+    where: TipoUnidadeWhereInput
+  ): BatchPayload!
+  upsertTipoUnidade(
+    where: TipoUnidadeWhereUniqueInput!
+    create: TipoUnidadeCreateInput!
+    update: TipoUnidadeUpdateInput!
+  ): TipoUnidade!
+  deleteTipoUnidade(where: TipoUnidadeWhereUniqueInput!): TipoUnidade
+  deleteManyTipoUnidades(where: TipoUnidadeWhereInput): BatchPayload!
+  createTurnoAtendimento(data: TurnoAtendimentoCreateInput!): TurnoAtendimento!
+  updateTurnoAtendimento(
+    data: TurnoAtendimentoUpdateInput!
+    where: TurnoAtendimentoWhereUniqueInput!
+  ): TurnoAtendimento
+  updateManyTurnoAtendimentoes(
+    data: TurnoAtendimentoUpdateManyMutationInput!
+    where: TurnoAtendimentoWhereInput
+  ): BatchPayload!
+  upsertTurnoAtendimento(
+    where: TurnoAtendimentoWhereUniqueInput!
+    create: TurnoAtendimentoCreateInput!
+    update: TurnoAtendimentoUpdateInput!
+  ): TurnoAtendimento!
+  deleteTurnoAtendimento(
+    where: TurnoAtendimentoWhereUniqueInput!
+  ): TurnoAtendimento
+  deleteManyTurnoAtendimentoes(where: TurnoAtendimentoWhereInput): BatchPayload!
 }
 
 enum MutationType {
   CREATED
   UPDATED
   DELETED
+}
+
+type NaturezaJuridica {
+  CO_NATUREZA_JUR: ID!
+  DS_NATUREZA_JUR: String!
+}
+
+type NaturezaJuridicaConnection {
+  pageInfo: PageInfo!
+  edges: [NaturezaJuridicaEdge]!
+  aggregate: AggregateNaturezaJuridica!
+}
+
+input NaturezaJuridicaCreateInput {
+  CO_NATUREZA_JUR: ID
+  DS_NATUREZA_JUR: String!
+}
+
+input NaturezaJuridicaCreateOneInput {
+  create: NaturezaJuridicaCreateInput
+  connect: NaturezaJuridicaWhereUniqueInput
+}
+
+type NaturezaJuridicaEdge {
+  node: NaturezaJuridica!
+  cursor: String!
+}
+
+enum NaturezaJuridicaOrderByInput {
+  CO_NATUREZA_JUR_ASC
+  CO_NATUREZA_JUR_DESC
+  DS_NATUREZA_JUR_ASC
+  DS_NATUREZA_JUR_DESC
+}
+
+type NaturezaJuridicaPreviousValues {
+  CO_NATUREZA_JUR: ID!
+  DS_NATUREZA_JUR: String!
+}
+
+type NaturezaJuridicaSubscriptionPayload {
+  mutation: MutationType!
+  node: NaturezaJuridica
+  updatedFields: [String!]
+  previousValues: NaturezaJuridicaPreviousValues
+}
+
+input NaturezaJuridicaSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: NaturezaJuridicaWhereInput
+  AND: [NaturezaJuridicaSubscriptionWhereInput!]
+  OR: [NaturezaJuridicaSubscriptionWhereInput!]
+  NOT: [NaturezaJuridicaSubscriptionWhereInput!]
+}
+
+input NaturezaJuridicaUpdateDataInput {
+  DS_NATUREZA_JUR: String
+}
+
+input NaturezaJuridicaUpdateInput {
+  DS_NATUREZA_JUR: String
+}
+
+input NaturezaJuridicaUpdateManyMutationInput {
+  DS_NATUREZA_JUR: String
+}
+
+input NaturezaJuridicaUpdateOneInput {
+  create: NaturezaJuridicaCreateInput
+  update: NaturezaJuridicaUpdateDataInput
+  upsert: NaturezaJuridicaUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: NaturezaJuridicaWhereUniqueInput
+}
+
+input NaturezaJuridicaUpsertNestedInput {
+  update: NaturezaJuridicaUpdateDataInput!
+  create: NaturezaJuridicaCreateInput!
+}
+
+input NaturezaJuridicaWhereInput {
+  CO_NATUREZA_JUR: ID
+  CO_NATUREZA_JUR_not: ID
+  CO_NATUREZA_JUR_in: [ID!]
+  CO_NATUREZA_JUR_not_in: [ID!]
+  CO_NATUREZA_JUR_lt: ID
+  CO_NATUREZA_JUR_lte: ID
+  CO_NATUREZA_JUR_gt: ID
+  CO_NATUREZA_JUR_gte: ID
+  CO_NATUREZA_JUR_contains: ID
+  CO_NATUREZA_JUR_not_contains: ID
+  CO_NATUREZA_JUR_starts_with: ID
+  CO_NATUREZA_JUR_not_starts_with: ID
+  CO_NATUREZA_JUR_ends_with: ID
+  CO_NATUREZA_JUR_not_ends_with: ID
+  DS_NATUREZA_JUR: String
+  DS_NATUREZA_JUR_not: String
+  DS_NATUREZA_JUR_in: [String!]
+  DS_NATUREZA_JUR_not_in: [String!]
+  DS_NATUREZA_JUR_lt: String
+  DS_NATUREZA_JUR_lte: String
+  DS_NATUREZA_JUR_gt: String
+  DS_NATUREZA_JUR_gte: String
+  DS_NATUREZA_JUR_contains: String
+  DS_NATUREZA_JUR_not_contains: String
+  DS_NATUREZA_JUR_starts_with: String
+  DS_NATUREZA_JUR_not_starts_with: String
+  DS_NATUREZA_JUR_ends_with: String
+  DS_NATUREZA_JUR_not_ends_with: String
+  AND: [NaturezaJuridicaWhereInput!]
+  OR: [NaturezaJuridicaWhereInput!]
+  NOT: [NaturezaJuridicaWhereInput!]
+}
+
+input NaturezaJuridicaWhereUniqueInput {
+  CO_NATUREZA_JUR: ID
 }
 
 interface Node {
@@ -1378,6 +2450,46 @@ type Query {
     first: Int
     last: Int
   ): AtividadeConnection!
+  atividadePrincipal(
+    where: AtividadePrincipalWhereUniqueInput!
+  ): AtividadePrincipal
+  atividadePrincipals(
+    where: AtividadePrincipalWhereInput
+    orderBy: AtividadePrincipalOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [AtividadePrincipal]!
+  atividadePrincipalsConnection(
+    where: AtividadePrincipalWhereInput
+    orderBy: AtividadePrincipalOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): AtividadePrincipalConnection!
+  clientela(where: ClientelaWhereUniqueInput!): Clientela
+  clientelas(
+    where: ClientelaWhereInput
+    orderBy: ClientelaOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Clientela]!
+  clientelasConnection(
+    where: ClientelaWhereInput
+    orderBy: ClientelaOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): ClientelaConnection!
   estabelecimento(where: EstabelecimentoWhereUniqueInput!): Estabelecimento
   estabelecimentoes(
     where: EstabelecimentoWhereInput
@@ -1397,6 +2509,143 @@ type Query {
     first: Int
     last: Int
   ): EstabelecimentoConnection!
+  estado(where: EstadoWhereUniqueInput!): Estado
+  estadoes(
+    where: EstadoWhereInput
+    orderBy: EstadoOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Estado]!
+  estadoesConnection(
+    where: EstadoWhereInput
+    orderBy: EstadoOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): EstadoConnection!
+  motivoDesativacao(
+    where: MotivoDesativacaoWhereUniqueInput!
+  ): MotivoDesativacao
+  motivoDesativacaos(
+    where: MotivoDesativacaoWhereInput
+    orderBy: MotivoDesativacaoOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [MotivoDesativacao]!
+  motivoDesativacaosConnection(
+    where: MotivoDesativacaoWhereInput
+    orderBy: MotivoDesativacaoOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): MotivoDesativacaoConnection!
+  municipio(where: MunicipioWhereUniqueInput!): Municipio
+  municipios(
+    where: MunicipioWhereInput
+    orderBy: MunicipioOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Municipio]!
+  municipiosConnection(
+    where: MunicipioWhereInput
+    orderBy: MunicipioOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): MunicipioConnection!
+  naturezaJuridica(where: NaturezaJuridicaWhereUniqueInput!): NaturezaJuridica
+  naturezaJuridicas(
+    where: NaturezaJuridicaWhereInput
+    orderBy: NaturezaJuridicaOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [NaturezaJuridica]!
+  naturezaJuridicasConnection(
+    where: NaturezaJuridicaWhereInput
+    orderBy: NaturezaJuridicaOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): NaturezaJuridicaConnection!
+  tipoEstabelecimento(
+    where: TipoEstabelecimentoWhereUniqueInput!
+  ): TipoEstabelecimento
+  tipoEstabelecimentoes(
+    where: TipoEstabelecimentoWhereInput
+    orderBy: TipoEstabelecimentoOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [TipoEstabelecimento]!
+  tipoEstabelecimentoesConnection(
+    where: TipoEstabelecimentoWhereInput
+    orderBy: TipoEstabelecimentoOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): TipoEstabelecimentoConnection!
+  tipoUnidade(where: TipoUnidadeWhereUniqueInput!): TipoUnidade
+  tipoUnidades(
+    where: TipoUnidadeWhereInput
+    orderBy: TipoUnidadeOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [TipoUnidade]!
+  tipoUnidadesConnection(
+    where: TipoUnidadeWhereInput
+    orderBy: TipoUnidadeOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): TipoUnidadeConnection!
+  turnoAtendimento(where: TurnoAtendimentoWhereUniqueInput!): TurnoAtendimento
+  turnoAtendimentoes(
+    where: TurnoAtendimentoWhereInput
+    orderBy: TurnoAtendimentoOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [TurnoAtendimento]!
+  turnoAtendimentoesConnection(
+    where: TurnoAtendimentoWhereInput
+    orderBy: TurnoAtendimentoOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): TurnoAtendimentoConnection!
   node(id: ID!): Node
 }
 
@@ -1404,7 +2653,414 @@ type Subscription {
   atividade(
     where: AtividadeSubscriptionWhereInput
   ): AtividadeSubscriptionPayload
+  atividadePrincipal(
+    where: AtividadePrincipalSubscriptionWhereInput
+  ): AtividadePrincipalSubscriptionPayload
+  clientela(
+    where: ClientelaSubscriptionWhereInput
+  ): ClientelaSubscriptionPayload
   estabelecimento(
     where: EstabelecimentoSubscriptionWhereInput
   ): EstabelecimentoSubscriptionPayload
+  estado(where: EstadoSubscriptionWhereInput): EstadoSubscriptionPayload
+  motivoDesativacao(
+    where: MotivoDesativacaoSubscriptionWhereInput
+  ): MotivoDesativacaoSubscriptionPayload
+  municipio(
+    where: MunicipioSubscriptionWhereInput
+  ): MunicipioSubscriptionPayload
+  naturezaJuridica(
+    where: NaturezaJuridicaSubscriptionWhereInput
+  ): NaturezaJuridicaSubscriptionPayload
+  tipoEstabelecimento(
+    where: TipoEstabelecimentoSubscriptionWhereInput
+  ): TipoEstabelecimentoSubscriptionPayload
+  tipoUnidade(
+    where: TipoUnidadeSubscriptionWhereInput
+  ): TipoUnidadeSubscriptionPayload
+  turnoAtendimento(
+    where: TurnoAtendimentoSubscriptionWhereInput
+  ): TurnoAtendimentoSubscriptionPayload
+}
+
+type TipoEstabelecimento {
+  CO_TIPO_ESTABELECIMENTO: ID!
+  DS_TIPO_ESTABELECIMENTO: String!
+  DS_CONCEITO_TIPO: String
+}
+
+type TipoEstabelecimentoConnection {
+  pageInfo: PageInfo!
+  edges: [TipoEstabelecimentoEdge]!
+  aggregate: AggregateTipoEstabelecimento!
+}
+
+input TipoEstabelecimentoCreateInput {
+  CO_TIPO_ESTABELECIMENTO: ID
+  DS_TIPO_ESTABELECIMENTO: String!
+  DS_CONCEITO_TIPO: String
+}
+
+input TipoEstabelecimentoCreateOneInput {
+  create: TipoEstabelecimentoCreateInput
+  connect: TipoEstabelecimentoWhereUniqueInput
+}
+
+type TipoEstabelecimentoEdge {
+  node: TipoEstabelecimento!
+  cursor: String!
+}
+
+enum TipoEstabelecimentoOrderByInput {
+  CO_TIPO_ESTABELECIMENTO_ASC
+  CO_TIPO_ESTABELECIMENTO_DESC
+  DS_TIPO_ESTABELECIMENTO_ASC
+  DS_TIPO_ESTABELECIMENTO_DESC
+  DS_CONCEITO_TIPO_ASC
+  DS_CONCEITO_TIPO_DESC
+}
+
+type TipoEstabelecimentoPreviousValues {
+  CO_TIPO_ESTABELECIMENTO: ID!
+  DS_TIPO_ESTABELECIMENTO: String!
+  DS_CONCEITO_TIPO: String
+}
+
+type TipoEstabelecimentoSubscriptionPayload {
+  mutation: MutationType!
+  node: TipoEstabelecimento
+  updatedFields: [String!]
+  previousValues: TipoEstabelecimentoPreviousValues
+}
+
+input TipoEstabelecimentoSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: TipoEstabelecimentoWhereInput
+  AND: [TipoEstabelecimentoSubscriptionWhereInput!]
+  OR: [TipoEstabelecimentoSubscriptionWhereInput!]
+  NOT: [TipoEstabelecimentoSubscriptionWhereInput!]
+}
+
+input TipoEstabelecimentoUpdateDataInput {
+  DS_TIPO_ESTABELECIMENTO: String
+  DS_CONCEITO_TIPO: String
+}
+
+input TipoEstabelecimentoUpdateInput {
+  DS_TIPO_ESTABELECIMENTO: String
+  DS_CONCEITO_TIPO: String
+}
+
+input TipoEstabelecimentoUpdateManyMutationInput {
+  DS_TIPO_ESTABELECIMENTO: String
+  DS_CONCEITO_TIPO: String
+}
+
+input TipoEstabelecimentoUpdateOneInput {
+  create: TipoEstabelecimentoCreateInput
+  update: TipoEstabelecimentoUpdateDataInput
+  upsert: TipoEstabelecimentoUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: TipoEstabelecimentoWhereUniqueInput
+}
+
+input TipoEstabelecimentoUpsertNestedInput {
+  update: TipoEstabelecimentoUpdateDataInput!
+  create: TipoEstabelecimentoCreateInput!
+}
+
+input TipoEstabelecimentoWhereInput {
+  CO_TIPO_ESTABELECIMENTO: ID
+  CO_TIPO_ESTABELECIMENTO_not: ID
+  CO_TIPO_ESTABELECIMENTO_in: [ID!]
+  CO_TIPO_ESTABELECIMENTO_not_in: [ID!]
+  CO_TIPO_ESTABELECIMENTO_lt: ID
+  CO_TIPO_ESTABELECIMENTO_lte: ID
+  CO_TIPO_ESTABELECIMENTO_gt: ID
+  CO_TIPO_ESTABELECIMENTO_gte: ID
+  CO_TIPO_ESTABELECIMENTO_contains: ID
+  CO_TIPO_ESTABELECIMENTO_not_contains: ID
+  CO_TIPO_ESTABELECIMENTO_starts_with: ID
+  CO_TIPO_ESTABELECIMENTO_not_starts_with: ID
+  CO_TIPO_ESTABELECIMENTO_ends_with: ID
+  CO_TIPO_ESTABELECIMENTO_not_ends_with: ID
+  DS_TIPO_ESTABELECIMENTO: String
+  DS_TIPO_ESTABELECIMENTO_not: String
+  DS_TIPO_ESTABELECIMENTO_in: [String!]
+  DS_TIPO_ESTABELECIMENTO_not_in: [String!]
+  DS_TIPO_ESTABELECIMENTO_lt: String
+  DS_TIPO_ESTABELECIMENTO_lte: String
+  DS_TIPO_ESTABELECIMENTO_gt: String
+  DS_TIPO_ESTABELECIMENTO_gte: String
+  DS_TIPO_ESTABELECIMENTO_contains: String
+  DS_TIPO_ESTABELECIMENTO_not_contains: String
+  DS_TIPO_ESTABELECIMENTO_starts_with: String
+  DS_TIPO_ESTABELECIMENTO_not_starts_with: String
+  DS_TIPO_ESTABELECIMENTO_ends_with: String
+  DS_TIPO_ESTABELECIMENTO_not_ends_with: String
+  DS_CONCEITO_TIPO: String
+  DS_CONCEITO_TIPO_not: String
+  DS_CONCEITO_TIPO_in: [String!]
+  DS_CONCEITO_TIPO_not_in: [String!]
+  DS_CONCEITO_TIPO_lt: String
+  DS_CONCEITO_TIPO_lte: String
+  DS_CONCEITO_TIPO_gt: String
+  DS_CONCEITO_TIPO_gte: String
+  DS_CONCEITO_TIPO_contains: String
+  DS_CONCEITO_TIPO_not_contains: String
+  DS_CONCEITO_TIPO_starts_with: String
+  DS_CONCEITO_TIPO_not_starts_with: String
+  DS_CONCEITO_TIPO_ends_with: String
+  DS_CONCEITO_TIPO_not_ends_with: String
+  AND: [TipoEstabelecimentoWhereInput!]
+  OR: [TipoEstabelecimentoWhereInput!]
+  NOT: [TipoEstabelecimentoWhereInput!]
+}
+
+input TipoEstabelecimentoWhereUniqueInput {
+  CO_TIPO_ESTABELECIMENTO: ID
+}
+
+type TipoUnidade {
+  CO_TIPO_UNIDADE: ID!
+  DS_TIPO_UNIDADE: String!
+}
+
+type TipoUnidadeConnection {
+  pageInfo: PageInfo!
+  edges: [TipoUnidadeEdge]!
+  aggregate: AggregateTipoUnidade!
+}
+
+input TipoUnidadeCreateInput {
+  CO_TIPO_UNIDADE: ID
+  DS_TIPO_UNIDADE: String!
+}
+
+input TipoUnidadeCreateOneInput {
+  create: TipoUnidadeCreateInput
+  connect: TipoUnidadeWhereUniqueInput
+}
+
+type TipoUnidadeEdge {
+  node: TipoUnidade!
+  cursor: String!
+}
+
+enum TipoUnidadeOrderByInput {
+  CO_TIPO_UNIDADE_ASC
+  CO_TIPO_UNIDADE_DESC
+  DS_TIPO_UNIDADE_ASC
+  DS_TIPO_UNIDADE_DESC
+}
+
+type TipoUnidadePreviousValues {
+  CO_TIPO_UNIDADE: ID!
+  DS_TIPO_UNIDADE: String!
+}
+
+type TipoUnidadeSubscriptionPayload {
+  mutation: MutationType!
+  node: TipoUnidade
+  updatedFields: [String!]
+  previousValues: TipoUnidadePreviousValues
+}
+
+input TipoUnidadeSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: TipoUnidadeWhereInput
+  AND: [TipoUnidadeSubscriptionWhereInput!]
+  OR: [TipoUnidadeSubscriptionWhereInput!]
+  NOT: [TipoUnidadeSubscriptionWhereInput!]
+}
+
+input TipoUnidadeUpdateDataInput {
+  DS_TIPO_UNIDADE: String
+}
+
+input TipoUnidadeUpdateInput {
+  DS_TIPO_UNIDADE: String
+}
+
+input TipoUnidadeUpdateManyMutationInput {
+  DS_TIPO_UNIDADE: String
+}
+
+input TipoUnidadeUpdateOneInput {
+  create: TipoUnidadeCreateInput
+  update: TipoUnidadeUpdateDataInput
+  upsert: TipoUnidadeUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: TipoUnidadeWhereUniqueInput
+}
+
+input TipoUnidadeUpsertNestedInput {
+  update: TipoUnidadeUpdateDataInput!
+  create: TipoUnidadeCreateInput!
+}
+
+input TipoUnidadeWhereInput {
+  CO_TIPO_UNIDADE: ID
+  CO_TIPO_UNIDADE_not: ID
+  CO_TIPO_UNIDADE_in: [ID!]
+  CO_TIPO_UNIDADE_not_in: [ID!]
+  CO_TIPO_UNIDADE_lt: ID
+  CO_TIPO_UNIDADE_lte: ID
+  CO_TIPO_UNIDADE_gt: ID
+  CO_TIPO_UNIDADE_gte: ID
+  CO_TIPO_UNIDADE_contains: ID
+  CO_TIPO_UNIDADE_not_contains: ID
+  CO_TIPO_UNIDADE_starts_with: ID
+  CO_TIPO_UNIDADE_not_starts_with: ID
+  CO_TIPO_UNIDADE_ends_with: ID
+  CO_TIPO_UNIDADE_not_ends_with: ID
+  DS_TIPO_UNIDADE: String
+  DS_TIPO_UNIDADE_not: String
+  DS_TIPO_UNIDADE_in: [String!]
+  DS_TIPO_UNIDADE_not_in: [String!]
+  DS_TIPO_UNIDADE_lt: String
+  DS_TIPO_UNIDADE_lte: String
+  DS_TIPO_UNIDADE_gt: String
+  DS_TIPO_UNIDADE_gte: String
+  DS_TIPO_UNIDADE_contains: String
+  DS_TIPO_UNIDADE_not_contains: String
+  DS_TIPO_UNIDADE_starts_with: String
+  DS_TIPO_UNIDADE_not_starts_with: String
+  DS_TIPO_UNIDADE_ends_with: String
+  DS_TIPO_UNIDADE_not_ends_with: String
+  AND: [TipoUnidadeWhereInput!]
+  OR: [TipoUnidadeWhereInput!]
+  NOT: [TipoUnidadeWhereInput!]
+}
+
+input TipoUnidadeWhereUniqueInput {
+  CO_TIPO_UNIDADE: ID
+}
+
+type TurnoAtendimento {
+  CO_TURNO_ATENDIMENTO: ID!
+  DS_TURNO_ATENDIMENTO: String!
+}
+
+type TurnoAtendimentoConnection {
+  pageInfo: PageInfo!
+  edges: [TurnoAtendimentoEdge]!
+  aggregate: AggregateTurnoAtendimento!
+}
+
+input TurnoAtendimentoCreateInput {
+  CO_TURNO_ATENDIMENTO: ID
+  DS_TURNO_ATENDIMENTO: String!
+}
+
+input TurnoAtendimentoCreateOneInput {
+  create: TurnoAtendimentoCreateInput
+  connect: TurnoAtendimentoWhereUniqueInput
+}
+
+type TurnoAtendimentoEdge {
+  node: TurnoAtendimento!
+  cursor: String!
+}
+
+enum TurnoAtendimentoOrderByInput {
+  CO_TURNO_ATENDIMENTO_ASC
+  CO_TURNO_ATENDIMENTO_DESC
+  DS_TURNO_ATENDIMENTO_ASC
+  DS_TURNO_ATENDIMENTO_DESC
+}
+
+type TurnoAtendimentoPreviousValues {
+  CO_TURNO_ATENDIMENTO: ID!
+  DS_TURNO_ATENDIMENTO: String!
+}
+
+type TurnoAtendimentoSubscriptionPayload {
+  mutation: MutationType!
+  node: TurnoAtendimento
+  updatedFields: [String!]
+  previousValues: TurnoAtendimentoPreviousValues
+}
+
+input TurnoAtendimentoSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: TurnoAtendimentoWhereInput
+  AND: [TurnoAtendimentoSubscriptionWhereInput!]
+  OR: [TurnoAtendimentoSubscriptionWhereInput!]
+  NOT: [TurnoAtendimentoSubscriptionWhereInput!]
+}
+
+input TurnoAtendimentoUpdateDataInput {
+  DS_TURNO_ATENDIMENTO: String
+}
+
+input TurnoAtendimentoUpdateInput {
+  DS_TURNO_ATENDIMENTO: String
+}
+
+input TurnoAtendimentoUpdateManyMutationInput {
+  DS_TURNO_ATENDIMENTO: String
+}
+
+input TurnoAtendimentoUpdateOneInput {
+  create: TurnoAtendimentoCreateInput
+  update: TurnoAtendimentoUpdateDataInput
+  upsert: TurnoAtendimentoUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: TurnoAtendimentoWhereUniqueInput
+}
+
+input TurnoAtendimentoUpsertNestedInput {
+  update: TurnoAtendimentoUpdateDataInput!
+  create: TurnoAtendimentoCreateInput!
+}
+
+input TurnoAtendimentoWhereInput {
+  CO_TURNO_ATENDIMENTO: ID
+  CO_TURNO_ATENDIMENTO_not: ID
+  CO_TURNO_ATENDIMENTO_in: [ID!]
+  CO_TURNO_ATENDIMENTO_not_in: [ID!]
+  CO_TURNO_ATENDIMENTO_lt: ID
+  CO_TURNO_ATENDIMENTO_lte: ID
+  CO_TURNO_ATENDIMENTO_gt: ID
+  CO_TURNO_ATENDIMENTO_gte: ID
+  CO_TURNO_ATENDIMENTO_contains: ID
+  CO_TURNO_ATENDIMENTO_not_contains: ID
+  CO_TURNO_ATENDIMENTO_starts_with: ID
+  CO_TURNO_ATENDIMENTO_not_starts_with: ID
+  CO_TURNO_ATENDIMENTO_ends_with: ID
+  CO_TURNO_ATENDIMENTO_not_ends_with: ID
+  DS_TURNO_ATENDIMENTO: String
+  DS_TURNO_ATENDIMENTO_not: String
+  DS_TURNO_ATENDIMENTO_in: [String!]
+  DS_TURNO_ATENDIMENTO_not_in: [String!]
+  DS_TURNO_ATENDIMENTO_lt: String
+  DS_TURNO_ATENDIMENTO_lte: String
+  DS_TURNO_ATENDIMENTO_gt: String
+  DS_TURNO_ATENDIMENTO_gte: String
+  DS_TURNO_ATENDIMENTO_contains: String
+  DS_TURNO_ATENDIMENTO_not_contains: String
+  DS_TURNO_ATENDIMENTO_starts_with: String
+  DS_TURNO_ATENDIMENTO_not_starts_with: String
+  DS_TURNO_ATENDIMENTO_ends_with: String
+  DS_TURNO_ATENDIMENTO_not_ends_with: String
+  AND: [TurnoAtendimentoWhereInput!]
+  OR: [TurnoAtendimentoWhereInput!]
+  NOT: [TurnoAtendimentoWhereInput!]
+}
+
+input TurnoAtendimentoWhereUniqueInput {
+  CO_TURNO_ATENDIMENTO: ID
 }

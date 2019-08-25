@@ -10,7 +10,7 @@ type Estabelecimento {
   NU_ENDERECO: String
   NO_COMPLEMENTO: String
   NO_BAIRRO: String
-  CO_CEP: String
+  CO_CEP: String!
   CO_REGIAO_SAUDE: String
   CO_MICRO_REGIAO: String
   CO_DISTRITO_SANITARIO: String
@@ -21,28 +21,28 @@ type Estabelecimento {
   NU_CPF: String
   NU_CNPJ: String
   ATIVIDADE: Atividade @relation(link: INLINE)
-  CO_CLIENTELA: String
+  CLIENTELA: Clientela @relation(link: INLINE)
   NU_ALVARA: String
   DT_EXPEDICAO: String
   TP_ORGAO_EXPEDIDOR: String
   DT_VAL_LIC_SANI: String
   TP_LIC_SANI: String
-  TP_UNIDADE: String
-  CO_TURNO_ATENDIMENTO: String
-  CO_ESTADO_GESTOR: String
-  CO_MUNICIPIO_GESTOR: String
+  TP_UNIDADE: TipoUnidade @relation(link: INLINE)
+  TURNO_ATENDIMENTO: TurnoAtendimento @relation(link: INLINE)
+  ESTADO: Estado @relation(link: INLINE)
+  MUNICIPIO: Municipio! @relation(link: INLINE)
   DT_ATUALIZACAO: String
   CO_USUARIO: String
   CO_CPFDIRETORCLN: String
   REG_DIRETORCLN: String
   ST_ADESAO_FILANTROP: String
-  CO_MOTIVO_DESAB: String
+  MOTIVO_DESAB: MotivoDesativacao @relation(link: INLINE)
   NO_URL: String
   NU_LATITUDE: String
   NU_LONGITUDE: String
   DT_ATU_GEO: String
   NO_USUARIO_GEO: String
-  CO_NATUREZA_JUR: String
+  NATUREZA_JUR: NaturezaJuridica @relation(link: INLINE)
   TP_ESTAB_SEMPRE_ABERTO: String
   ST_GERACREDITO_GERENTE_SGIF: String
   ST_CONEXAO_INTERNET: String
@@ -50,12 +50,72 @@ type Estabelecimento {
   NO_FANTASIA_ABREV: String
   TP_GESTAO: String
   DT_ATUALIZACAO_ORIGEM: String
-  CO_TIPO_ESTABELECIMENTO: String
-  CO_ATIVIDADE_PRINCIPAL: String
+  TIPO_ESTABELECIMENTO: TipoEstabelecimento @relation(link: INLINE)
+  ATIVIDADE_PRINCIPAL: AtividadePrincipal @relation(link: INLINE)
   ST_CONTRATO_FORMALIZADO: String
 }
 
 type Atividade {
   CO_ATIVIDADE: ID! @id
   DS_ATIVIDADE: String!
+}
+
+type Clientela {
+  CO_CLIENTELA: ID! @id
+  DS_CLIENTELA: String!
+}
+
+type TipoUnidade {
+  CO_TIPO_UNIDADE: ID! @id
+  DS_TIPO_UNIDADE: String!
+}
+
+type TurnoAtendimento {
+  CO_TURNO_ATENDIMENTO: ID! @id
+  DS_TURNO_ATENDIMENTO: String!
+}
+
+type Estado {
+  CO_UF: ID! @id
+  CO_SIGLA: String!
+  NO_DESCRICAO: String!
+}
+
+type Municipio {
+  CO_MUNICIPIO: ID! @id
+  NO_MUNICIPIO: String!
+  CO_SIGLA_ESTADO: String!
+  TP_CADASTRO: String
+  TP_PACTO: String
+  TP_ENVIA: String
+  TP_ENVIA_CNES: String
+  TP_CIB_SAS: String
+  TP_PLENO_ORIGEM: String
+  TP_MAC: String
+  NU_POPULACAO: String
+  NU_DENSIDADE: String
+  CMTP_INICIO_MAC: String
+}
+
+type MotivoDesativacao {
+  CD_MOTIVO_DESAB: ID! @id
+  DS_MOTIVO_DESAB: String!
+}
+
+type NaturezaJuridica {
+  CO_NATUREZA_JUR: ID! @id
+  DS_NATUREZA_JUR: String!
+}
+
+type TipoEstabelecimento {
+  CO_TIPO_ESTABELECIMENTO: ID! @id
+  DS_TIPO_ESTABELECIMENTO: String!
+  DS_CONCEITO_TIPO: String
+}
+
+type AtividadePrincipal {
+  CO_GRUPO_ATIVIDADE: String!
+  CO_ATIVIDADE: ID! @id
+  DS_ATIVIDADE: String!
+  DS_CONCEITO_ATIVIDADE: String!
 }

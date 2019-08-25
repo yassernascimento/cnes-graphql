@@ -1,0 +1,38 @@
+type TurnoAtendimento {
+  CO_TURNO_ATENDIMENTO: ID!
+  DS_TURNO_ATENDIMENTO: String!
+}
+
+input TurnoAtendimentoWhereInput {
+  CO_TURNO_ATENDIMENTO: ID
+  CO_TURNO_ATENDIMENTO_not: ID
+  CO_TURNO_ATENDIMENTO_in: [ID!]
+  CO_TURNO_ATENDIMENTO_not_in: [ID!]
+  CO_TURNO_ATENDIMENTO_lt: ID
+  CO_TURNO_ATENDIMENTO_lte: ID
+  CO_TURNO_ATENDIMENTO_gt: ID
+  CO_TURNO_ATENDIMENTO_gte: ID
+  CO_TURNO_ATENDIMENTO_contains: ID
+  CO_TURNO_ATENDIMENTO_not_contains: ID
+  CO_TURNO_ATENDIMENTO_starts_with: ID
+  CO_TURNO_ATENDIMENTO_not_starts_with: ID
+  CO_TURNO_ATENDIMENTO_ends_with: ID
+  CO_TURNO_ATENDIMENTO_not_ends_with: ID
+  DS_TURNO_ATENDIMENTO: String
+  DS_TURNO_ATENDIMENTO_not: String
+  DS_TURNO_ATENDIMENTO_in: [String!]
+  DS_TURNO_ATENDIMENTO_not_in: [String!]
+  DS_TURNO_ATENDIMENTO_lt: String
+  DS_TURNO_ATENDIMENTO_lte: String
+  DS_TURNO_ATENDIMENTO_gt: String
+  DS_TURNO_ATENDIMENTO_gte: String
+  DS_TURNO_ATENDIMENTO_contains: String
+  DS_TURNO_ATENDIMENTO_not_contains: String
+  DS_TURNO_ATENDIMENTO_starts_with: String
+  DS_TURNO_ATENDIMENTO_not_starts_with: String
+  DS_TURNO_ATENDIMENTO_ends_with: String
+  DS_TURNO_ATENDIMENTO_not_ends_with: String
+  AND: [TurnoAtendimentoWhereInput!]
+  OR: [TurnoAtendimentoWhereInput!]
+  NOT: [TurnoAtendimentoWhereInput!]
+}

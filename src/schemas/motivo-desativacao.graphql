@@ -1,0 +1,38 @@
+type MotivoDesativacao {
+  CD_MOTIVO_DESAB: ID!
+  DS_MOTIVO_DESAB: String!
+}
+
+input MotivoDesativacaoWhereInput {
+  CD_MOTIVO_DESAB: ID
+  CD_MOTIVO_DESAB_not: ID
+  CD_MOTIVO_DESAB_in: [ID!]
+  CD_MOTIVO_DESAB_not_in: [ID!]
+  CD_MOTIVO_DESAB_lt: ID
+  CD_MOTIVO_DESAB_lte: ID
+  CD_MOTIVO_DESAB_gt: ID
+  CD_MOTIVO_DESAB_gte: ID
+  CD_MOTIVO_DESAB_contains: ID
+  CD_MOTIVO_DESAB_not_contains: ID
+  CD_MOTIVO_DESAB_starts_with: ID
+  CD_MOTIVO_DESAB_not_starts_with: ID
+  CD_MOTIVO_DESAB_ends_with: ID
+  CD_MOTIVO_DESAB_not_ends_with: ID
+  DS_MOTIVO_DESAB: String
+  DS_MOTIVO_DESAB_not: String
+  DS_MOTIVO_DESAB_in: [String!]
+  DS_MOTIVO_DESAB_not_in: [String!]
+  DS_MOTIVO_DESAB_lt: String
+  DS_MOTIVO_DESAB_lte: String
+  DS_MOTIVO_DESAB_gt: String
+  DS_MOTIVO_DESAB_gte: String
+  DS_MOTIVO_DESAB_contains: String
+  DS_MOTIVO_DESAB_not_contains: String
+  DS_MOTIVO_DESAB_starts_with: String
+  DS_MOTIVO_DESAB_not_starts_with: String
+  DS_MOTIVO_DESAB_ends_with: String
+  DS_MOTIVO_DESAB_not_ends_with: String
+  AND: [MotivoDesativacaoWhereInput!]
+  OR: [MotivoDesativacaoWhereInput!]
+  NOT: [MotivoDesativacaoWhereInput!]
+}
