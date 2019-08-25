@@ -16,6 +16,7 @@ export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
 export type Maybe<T> = T | undefined | null;
 
 export interface Exists {
+  atividade: (where?: AtividadeWhereInput) => Promise<boolean>;
   estabelecimento: (where?: EstabelecimentoWhereInput) => Promise<boolean>;
 }
 
@@ -38,6 +39,25 @@ export interface Prisma {
    * Queries
    */
 
+  atividade: (where: AtividadeWhereUniqueInput) => AtividadeNullablePromise;
+  atividades: (args?: {
+    where?: AtividadeWhereInput;
+    orderBy?: AtividadeOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Atividade>;
+  atividadesConnection: (args?: {
+    where?: AtividadeWhereInput;
+    orderBy?: AtividadeOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => AtividadeConnectionPromise;
   estabelecimento: (
     where: EstabelecimentoWhereUniqueInput
   ) => EstabelecimentoNullablePromise;
@@ -65,6 +85,22 @@ export interface Prisma {
    * Mutations
    */
 
+  createAtividade: (data: AtividadeCreateInput) => AtividadePromise;
+  updateAtividade: (args: {
+    data: AtividadeUpdateInput;
+    where: AtividadeWhereUniqueInput;
+  }) => AtividadePromise;
+  updateManyAtividades: (args: {
+    data: AtividadeUpdateManyMutationInput;
+    where?: AtividadeWhereInput;
+  }) => BatchPayloadPromise;
+  upsertAtividade: (args: {
+    where: AtividadeWhereUniqueInput;
+    create: AtividadeCreateInput;
+    update: AtividadeUpdateInput;
+  }) => AtividadePromise;
+  deleteAtividade: (where: AtividadeWhereUniqueInput) => AtividadePromise;
+  deleteManyAtividades: (where?: AtividadeWhereInput) => BatchPayloadPromise;
   createEstabelecimento: (
     data: EstabelecimentoCreateInput
   ) => EstabelecimentoPromise;
@@ -96,6 +132,9 @@ export interface Prisma {
 }
 
 export interface Subscription {
+  atividade: (
+    where?: AtividadeSubscriptionWhereInput
+  ) => AtividadeSubscriptionPayloadSubscription;
   estabelecimento: (
     where?: EstabelecimentoSubscriptionWhereInput
   ) => EstabelecimentoSubscriptionPayloadSubscription;
@@ -108,6 +147,12 @@ export interface ClientConstructor<T> {
 /**
  * Types
  */
+
+export type AtividadeOrderByInput =
+  | "CO_ATIVIDADE_ASC"
+  | "CO_ATIVIDADE_DESC"
+  | "DS_ATIVIDADE_ASC"
+  | "DS_ATIVIDADE_DESC";
 
 export type EstabelecimentoOrderByInput =
   | "CO_UNIDADE_ASC"
@@ -152,8 +197,6 @@ export type EstabelecimentoOrderByInput =
   | "NU_CPF_DESC"
   | "NU_CNPJ_ASC"
   | "NU_CNPJ_DESC"
-  | "CO_ATIVIDADE_ASC"
-  | "CO_ATIVIDADE_DESC"
   | "CO_CLIENTELA_ASC"
   | "CO_CLIENTELA_DESC"
   | "NU_ALVARA_ASC"
@@ -221,174 +264,28 @@ export type EstabelecimentoOrderByInput =
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export interface EstabelecimentoCreateInput {
-  CO_UNIDADE?: Maybe<ID_Input>;
-  CO_CNES?: Maybe<String>;
-  NU_CNPJ_MANTENEDORA?: Maybe<String>;
-  TP_PFPJ?: Maybe<String>;
-  NIVEL_DEP?: Maybe<String>;
-  NO_RAZAO_SOCIAL?: Maybe<String>;
-  NO_FANTASIA?: Maybe<String>;
-  NO_LOGRADOURO?: Maybe<String>;
-  NU_ENDERECO?: Maybe<String>;
-  NO_COMPLEMENTO?: Maybe<String>;
-  NO_BAIRRO?: Maybe<String>;
-  CO_CEP?: Maybe<String>;
-  CO_REGIAO_SAUDE?: Maybe<String>;
-  CO_MICRO_REGIAO?: Maybe<String>;
-  CO_DISTRITO_SANITARIO?: Maybe<String>;
-  CO_DISTRITO_ADMINISTRATIVO?: Maybe<String>;
-  NU_TELEFONE?: Maybe<String>;
-  NU_FAX?: Maybe<String>;
-  NO_EMAIL?: Maybe<String>;
-  NU_CPF?: Maybe<String>;
-  NU_CNPJ?: Maybe<String>;
-  CO_ATIVIDADE?: Maybe<String>;
-  CO_CLIENTELA?: Maybe<String>;
-  NU_ALVARA?: Maybe<String>;
-  DT_EXPEDICAO?: Maybe<String>;
-  TP_ORGAO_EXPEDIDOR?: Maybe<String>;
-  DT_VAL_LIC_SANI?: Maybe<String>;
-  TP_LIC_SANI?: Maybe<String>;
-  TP_UNIDADE?: Maybe<String>;
-  CO_TURNO_ATENDIMENTO?: Maybe<String>;
-  CO_ESTADO_GESTOR?: Maybe<String>;
-  CO_MUNICIPIO_GESTOR?: Maybe<String>;
-  DT_ATUALIZACAO?: Maybe<String>;
-  CO_USUARIO?: Maybe<String>;
-  CO_CPFDIRETORCLN?: Maybe<String>;
-  REG_DIRETORCLN?: Maybe<String>;
-  ST_ADESAO_FILANTROP?: Maybe<String>;
-  CO_MOTIVO_DESAB?: Maybe<String>;
-  NO_URL?: Maybe<String>;
-  NU_LATITUDE?: Maybe<String>;
-  NU_LONGITUDE?: Maybe<String>;
-  DT_ATU_GEO?: Maybe<String>;
-  NO_USUARIO_GEO?: Maybe<String>;
-  CO_NATUREZA_JUR?: Maybe<String>;
-  TP_ESTAB_SEMPRE_ABERTO?: Maybe<String>;
-  ST_GERACREDITO_GERENTE_SGIF?: Maybe<String>;
-  ST_CONEXAO_INTERNET?: Maybe<String>;
-  CO_TIPO_UNIDADE?: Maybe<String>;
-  NO_FANTASIA_ABREV?: Maybe<String>;
-  TP_GESTAO?: Maybe<String>;
-  DT_ATUALIZACAO_ORIGEM?: Maybe<String>;
-  CO_TIPO_ESTABELECIMENTO?: Maybe<String>;
-  CO_ATIVIDADE_PRINCIPAL?: Maybe<String>;
-  ST_CONTRATO_FORMALIZADO?: Maybe<String>;
+export interface AtividadeUpdateOneInput {
+  create?: Maybe<AtividadeCreateInput>;
+  update?: Maybe<AtividadeUpdateDataInput>;
+  upsert?: Maybe<AtividadeUpsertNestedInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<AtividadeWhereUniqueInput>;
 }
 
-export interface EstabelecimentoUpdateInput {
-  CO_CNES?: Maybe<String>;
-  NU_CNPJ_MANTENEDORA?: Maybe<String>;
-  TP_PFPJ?: Maybe<String>;
-  NIVEL_DEP?: Maybe<String>;
-  NO_RAZAO_SOCIAL?: Maybe<String>;
-  NO_FANTASIA?: Maybe<String>;
-  NO_LOGRADOURO?: Maybe<String>;
-  NU_ENDERECO?: Maybe<String>;
-  NO_COMPLEMENTO?: Maybe<String>;
-  NO_BAIRRO?: Maybe<String>;
-  CO_CEP?: Maybe<String>;
-  CO_REGIAO_SAUDE?: Maybe<String>;
-  CO_MICRO_REGIAO?: Maybe<String>;
-  CO_DISTRITO_SANITARIO?: Maybe<String>;
-  CO_DISTRITO_ADMINISTRATIVO?: Maybe<String>;
-  NU_TELEFONE?: Maybe<String>;
-  NU_FAX?: Maybe<String>;
-  NO_EMAIL?: Maybe<String>;
-  NU_CPF?: Maybe<String>;
-  NU_CNPJ?: Maybe<String>;
-  CO_ATIVIDADE?: Maybe<String>;
-  CO_CLIENTELA?: Maybe<String>;
-  NU_ALVARA?: Maybe<String>;
-  DT_EXPEDICAO?: Maybe<String>;
-  TP_ORGAO_EXPEDIDOR?: Maybe<String>;
-  DT_VAL_LIC_SANI?: Maybe<String>;
-  TP_LIC_SANI?: Maybe<String>;
-  TP_UNIDADE?: Maybe<String>;
-  CO_TURNO_ATENDIMENTO?: Maybe<String>;
-  CO_ESTADO_GESTOR?: Maybe<String>;
-  CO_MUNICIPIO_GESTOR?: Maybe<String>;
-  DT_ATUALIZACAO?: Maybe<String>;
-  CO_USUARIO?: Maybe<String>;
-  CO_CPFDIRETORCLN?: Maybe<String>;
-  REG_DIRETORCLN?: Maybe<String>;
-  ST_ADESAO_FILANTROP?: Maybe<String>;
-  CO_MOTIVO_DESAB?: Maybe<String>;
-  NO_URL?: Maybe<String>;
-  NU_LATITUDE?: Maybe<String>;
-  NU_LONGITUDE?: Maybe<String>;
-  DT_ATU_GEO?: Maybe<String>;
-  NO_USUARIO_GEO?: Maybe<String>;
-  CO_NATUREZA_JUR?: Maybe<String>;
-  TP_ESTAB_SEMPRE_ABERTO?: Maybe<String>;
-  ST_GERACREDITO_GERENTE_SGIF?: Maybe<String>;
-  ST_CONEXAO_INTERNET?: Maybe<String>;
-  CO_TIPO_UNIDADE?: Maybe<String>;
-  NO_FANTASIA_ABREV?: Maybe<String>;
-  TP_GESTAO?: Maybe<String>;
-  DT_ATUALIZACAO_ORIGEM?: Maybe<String>;
-  CO_TIPO_ESTABELECIMENTO?: Maybe<String>;
-  CO_ATIVIDADE_PRINCIPAL?: Maybe<String>;
-  ST_CONTRATO_FORMALIZADO?: Maybe<String>;
+export interface AtividadeCreateInput {
+  CO_ATIVIDADE?: Maybe<ID_Input>;
+  DS_ATIVIDADE: String;
 }
 
-export interface EstabelecimentoUpdateManyMutationInput {
-  CO_CNES?: Maybe<String>;
-  NU_CNPJ_MANTENEDORA?: Maybe<String>;
-  TP_PFPJ?: Maybe<String>;
-  NIVEL_DEP?: Maybe<String>;
-  NO_RAZAO_SOCIAL?: Maybe<String>;
-  NO_FANTASIA?: Maybe<String>;
-  NO_LOGRADOURO?: Maybe<String>;
-  NU_ENDERECO?: Maybe<String>;
-  NO_COMPLEMENTO?: Maybe<String>;
-  NO_BAIRRO?: Maybe<String>;
-  CO_CEP?: Maybe<String>;
-  CO_REGIAO_SAUDE?: Maybe<String>;
-  CO_MICRO_REGIAO?: Maybe<String>;
-  CO_DISTRITO_SANITARIO?: Maybe<String>;
-  CO_DISTRITO_ADMINISTRATIVO?: Maybe<String>;
-  NU_TELEFONE?: Maybe<String>;
-  NU_FAX?: Maybe<String>;
-  NO_EMAIL?: Maybe<String>;
-  NU_CPF?: Maybe<String>;
-  NU_CNPJ?: Maybe<String>;
-  CO_ATIVIDADE?: Maybe<String>;
-  CO_CLIENTELA?: Maybe<String>;
-  NU_ALVARA?: Maybe<String>;
-  DT_EXPEDICAO?: Maybe<String>;
-  TP_ORGAO_EXPEDIDOR?: Maybe<String>;
-  DT_VAL_LIC_SANI?: Maybe<String>;
-  TP_LIC_SANI?: Maybe<String>;
-  TP_UNIDADE?: Maybe<String>;
-  CO_TURNO_ATENDIMENTO?: Maybe<String>;
-  CO_ESTADO_GESTOR?: Maybe<String>;
-  CO_MUNICIPIO_GESTOR?: Maybe<String>;
-  DT_ATUALIZACAO?: Maybe<String>;
-  CO_USUARIO?: Maybe<String>;
-  CO_CPFDIRETORCLN?: Maybe<String>;
-  REG_DIRETORCLN?: Maybe<String>;
-  ST_ADESAO_FILANTROP?: Maybe<String>;
-  CO_MOTIVO_DESAB?: Maybe<String>;
-  NO_URL?: Maybe<String>;
-  NU_LATITUDE?: Maybe<String>;
-  NU_LONGITUDE?: Maybe<String>;
-  DT_ATU_GEO?: Maybe<String>;
-  NO_USUARIO_GEO?: Maybe<String>;
-  CO_NATUREZA_JUR?: Maybe<String>;
-  TP_ESTAB_SEMPRE_ABERTO?: Maybe<String>;
-  ST_GERACREDITO_GERENTE_SGIF?: Maybe<String>;
-  ST_CONEXAO_INTERNET?: Maybe<String>;
-  CO_TIPO_UNIDADE?: Maybe<String>;
-  NO_FANTASIA_ABREV?: Maybe<String>;
-  TP_GESTAO?: Maybe<String>;
-  DT_ATUALIZACAO_ORIGEM?: Maybe<String>;
-  CO_TIPO_ESTABELECIMENTO?: Maybe<String>;
-  CO_ATIVIDADE_PRINCIPAL?: Maybe<String>;
-  ST_CONTRATO_FORMALIZADO?: Maybe<String>;
+export interface AtividadeCreateOneInput {
+  create?: Maybe<AtividadeCreateInput>;
+  connect?: Maybe<AtividadeWhereUniqueInput>;
 }
+
+export type AtividadeWhereUniqueInput = AtLeastOne<{
+  CO_ATIVIDADE: Maybe<ID_Input>;
+}>;
 
 export interface EstabelecimentoWhereInput {
   CO_UNIDADE?: Maybe<ID_Input>;
@@ -685,20 +582,7 @@ export interface EstabelecimentoWhereInput {
   NU_CNPJ_not_starts_with?: Maybe<String>;
   NU_CNPJ_ends_with?: Maybe<String>;
   NU_CNPJ_not_ends_with?: Maybe<String>;
-  CO_ATIVIDADE?: Maybe<String>;
-  CO_ATIVIDADE_not?: Maybe<String>;
-  CO_ATIVIDADE_in?: Maybe<String[] | String>;
-  CO_ATIVIDADE_not_in?: Maybe<String[] | String>;
-  CO_ATIVIDADE_lt?: Maybe<String>;
-  CO_ATIVIDADE_lte?: Maybe<String>;
-  CO_ATIVIDADE_gt?: Maybe<String>;
-  CO_ATIVIDADE_gte?: Maybe<String>;
-  CO_ATIVIDADE_contains?: Maybe<String>;
-  CO_ATIVIDADE_not_contains?: Maybe<String>;
-  CO_ATIVIDADE_starts_with?: Maybe<String>;
-  CO_ATIVIDADE_not_starts_with?: Maybe<String>;
-  CO_ATIVIDADE_ends_with?: Maybe<String>;
-  CO_ATIVIDADE_not_ends_with?: Maybe<String>;
+  ATIVIDADE?: Maybe<AtividadeWhereInput>;
   CO_CLIENTELA?: Maybe<String>;
   CO_CLIENTELA_not?: Maybe<String>;
   CO_CLIENTELA_in?: Maybe<String[] | String>;
@@ -1150,6 +1034,238 @@ export interface EstabelecimentoWhereInput {
   AND?: Maybe<EstabelecimentoWhereInput[] | EstabelecimentoWhereInput>;
 }
 
+export interface AtividadeSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<AtividadeWhereInput>;
+  AND?: Maybe<
+    AtividadeSubscriptionWhereInput[] | AtividadeSubscriptionWhereInput
+  >;
+}
+
+export interface AtividadeUpsertNestedInput {
+  update: AtividadeUpdateDataInput;
+  create: AtividadeCreateInput;
+}
+
+export interface AtividadeUpdateInput {
+  DS_ATIVIDADE?: Maybe<String>;
+}
+
+export interface AtividadeUpdateManyMutationInput {
+  DS_ATIVIDADE?: Maybe<String>;
+}
+
+export interface EstabelecimentoCreateInput {
+  CO_UNIDADE?: Maybe<ID_Input>;
+  CO_CNES?: Maybe<String>;
+  NU_CNPJ_MANTENEDORA?: Maybe<String>;
+  TP_PFPJ?: Maybe<String>;
+  NIVEL_DEP?: Maybe<String>;
+  NO_RAZAO_SOCIAL?: Maybe<String>;
+  NO_FANTASIA?: Maybe<String>;
+  NO_LOGRADOURO?: Maybe<String>;
+  NU_ENDERECO?: Maybe<String>;
+  NO_COMPLEMENTO?: Maybe<String>;
+  NO_BAIRRO?: Maybe<String>;
+  CO_CEP?: Maybe<String>;
+  CO_REGIAO_SAUDE?: Maybe<String>;
+  CO_MICRO_REGIAO?: Maybe<String>;
+  CO_DISTRITO_SANITARIO?: Maybe<String>;
+  CO_DISTRITO_ADMINISTRATIVO?: Maybe<String>;
+  NU_TELEFONE?: Maybe<String>;
+  NU_FAX?: Maybe<String>;
+  NO_EMAIL?: Maybe<String>;
+  NU_CPF?: Maybe<String>;
+  NU_CNPJ?: Maybe<String>;
+  ATIVIDADE?: Maybe<AtividadeCreateOneInput>;
+  CO_CLIENTELA?: Maybe<String>;
+  NU_ALVARA?: Maybe<String>;
+  DT_EXPEDICAO?: Maybe<String>;
+  TP_ORGAO_EXPEDIDOR?: Maybe<String>;
+  DT_VAL_LIC_SANI?: Maybe<String>;
+  TP_LIC_SANI?: Maybe<String>;
+  TP_UNIDADE?: Maybe<String>;
+  CO_TURNO_ATENDIMENTO?: Maybe<String>;
+  CO_ESTADO_GESTOR?: Maybe<String>;
+  CO_MUNICIPIO_GESTOR?: Maybe<String>;
+  DT_ATUALIZACAO?: Maybe<String>;
+  CO_USUARIO?: Maybe<String>;
+  CO_CPFDIRETORCLN?: Maybe<String>;
+  REG_DIRETORCLN?: Maybe<String>;
+  ST_ADESAO_FILANTROP?: Maybe<String>;
+  CO_MOTIVO_DESAB?: Maybe<String>;
+  NO_URL?: Maybe<String>;
+  NU_LATITUDE?: Maybe<String>;
+  NU_LONGITUDE?: Maybe<String>;
+  DT_ATU_GEO?: Maybe<String>;
+  NO_USUARIO_GEO?: Maybe<String>;
+  CO_NATUREZA_JUR?: Maybe<String>;
+  TP_ESTAB_SEMPRE_ABERTO?: Maybe<String>;
+  ST_GERACREDITO_GERENTE_SGIF?: Maybe<String>;
+  ST_CONEXAO_INTERNET?: Maybe<String>;
+  CO_TIPO_UNIDADE?: Maybe<String>;
+  NO_FANTASIA_ABREV?: Maybe<String>;
+  TP_GESTAO?: Maybe<String>;
+  DT_ATUALIZACAO_ORIGEM?: Maybe<String>;
+  CO_TIPO_ESTABELECIMENTO?: Maybe<String>;
+  CO_ATIVIDADE_PRINCIPAL?: Maybe<String>;
+  ST_CONTRATO_FORMALIZADO?: Maybe<String>;
+}
+
+export interface AtividadeWhereInput {
+  CO_ATIVIDADE?: Maybe<ID_Input>;
+  CO_ATIVIDADE_not?: Maybe<ID_Input>;
+  CO_ATIVIDADE_in?: Maybe<ID_Input[] | ID_Input>;
+  CO_ATIVIDADE_not_in?: Maybe<ID_Input[] | ID_Input>;
+  CO_ATIVIDADE_lt?: Maybe<ID_Input>;
+  CO_ATIVIDADE_lte?: Maybe<ID_Input>;
+  CO_ATIVIDADE_gt?: Maybe<ID_Input>;
+  CO_ATIVIDADE_gte?: Maybe<ID_Input>;
+  CO_ATIVIDADE_contains?: Maybe<ID_Input>;
+  CO_ATIVIDADE_not_contains?: Maybe<ID_Input>;
+  CO_ATIVIDADE_starts_with?: Maybe<ID_Input>;
+  CO_ATIVIDADE_not_starts_with?: Maybe<ID_Input>;
+  CO_ATIVIDADE_ends_with?: Maybe<ID_Input>;
+  CO_ATIVIDADE_not_ends_with?: Maybe<ID_Input>;
+  DS_ATIVIDADE?: Maybe<String>;
+  DS_ATIVIDADE_not?: Maybe<String>;
+  DS_ATIVIDADE_in?: Maybe<String[] | String>;
+  DS_ATIVIDADE_not_in?: Maybe<String[] | String>;
+  DS_ATIVIDADE_lt?: Maybe<String>;
+  DS_ATIVIDADE_lte?: Maybe<String>;
+  DS_ATIVIDADE_gt?: Maybe<String>;
+  DS_ATIVIDADE_gte?: Maybe<String>;
+  DS_ATIVIDADE_contains?: Maybe<String>;
+  DS_ATIVIDADE_not_contains?: Maybe<String>;
+  DS_ATIVIDADE_starts_with?: Maybe<String>;
+  DS_ATIVIDADE_not_starts_with?: Maybe<String>;
+  DS_ATIVIDADE_ends_with?: Maybe<String>;
+  DS_ATIVIDADE_not_ends_with?: Maybe<String>;
+  AND?: Maybe<AtividadeWhereInput[] | AtividadeWhereInput>;
+}
+
+export interface AtividadeUpdateDataInput {
+  DS_ATIVIDADE?: Maybe<String>;
+}
+
+export interface EstabelecimentoUpdateManyMutationInput {
+  CO_CNES?: Maybe<String>;
+  NU_CNPJ_MANTENEDORA?: Maybe<String>;
+  TP_PFPJ?: Maybe<String>;
+  NIVEL_DEP?: Maybe<String>;
+  NO_RAZAO_SOCIAL?: Maybe<String>;
+  NO_FANTASIA?: Maybe<String>;
+  NO_LOGRADOURO?: Maybe<String>;
+  NU_ENDERECO?: Maybe<String>;
+  NO_COMPLEMENTO?: Maybe<String>;
+  NO_BAIRRO?: Maybe<String>;
+  CO_CEP?: Maybe<String>;
+  CO_REGIAO_SAUDE?: Maybe<String>;
+  CO_MICRO_REGIAO?: Maybe<String>;
+  CO_DISTRITO_SANITARIO?: Maybe<String>;
+  CO_DISTRITO_ADMINISTRATIVO?: Maybe<String>;
+  NU_TELEFONE?: Maybe<String>;
+  NU_FAX?: Maybe<String>;
+  NO_EMAIL?: Maybe<String>;
+  NU_CPF?: Maybe<String>;
+  NU_CNPJ?: Maybe<String>;
+  CO_CLIENTELA?: Maybe<String>;
+  NU_ALVARA?: Maybe<String>;
+  DT_EXPEDICAO?: Maybe<String>;
+  TP_ORGAO_EXPEDIDOR?: Maybe<String>;
+  DT_VAL_LIC_SANI?: Maybe<String>;
+  TP_LIC_SANI?: Maybe<String>;
+  TP_UNIDADE?: Maybe<String>;
+  CO_TURNO_ATENDIMENTO?: Maybe<String>;
+  CO_ESTADO_GESTOR?: Maybe<String>;
+  CO_MUNICIPIO_GESTOR?: Maybe<String>;
+  DT_ATUALIZACAO?: Maybe<String>;
+  CO_USUARIO?: Maybe<String>;
+  CO_CPFDIRETORCLN?: Maybe<String>;
+  REG_DIRETORCLN?: Maybe<String>;
+  ST_ADESAO_FILANTROP?: Maybe<String>;
+  CO_MOTIVO_DESAB?: Maybe<String>;
+  NO_URL?: Maybe<String>;
+  NU_LATITUDE?: Maybe<String>;
+  NU_LONGITUDE?: Maybe<String>;
+  DT_ATU_GEO?: Maybe<String>;
+  NO_USUARIO_GEO?: Maybe<String>;
+  CO_NATUREZA_JUR?: Maybe<String>;
+  TP_ESTAB_SEMPRE_ABERTO?: Maybe<String>;
+  ST_GERACREDITO_GERENTE_SGIF?: Maybe<String>;
+  ST_CONEXAO_INTERNET?: Maybe<String>;
+  CO_TIPO_UNIDADE?: Maybe<String>;
+  NO_FANTASIA_ABREV?: Maybe<String>;
+  TP_GESTAO?: Maybe<String>;
+  DT_ATUALIZACAO_ORIGEM?: Maybe<String>;
+  CO_TIPO_ESTABELECIMENTO?: Maybe<String>;
+  CO_ATIVIDADE_PRINCIPAL?: Maybe<String>;
+  ST_CONTRATO_FORMALIZADO?: Maybe<String>;
+}
+
+export type EstabelecimentoWhereUniqueInput = AtLeastOne<{
+  CO_UNIDADE: Maybe<ID_Input>;
+}>;
+
+export interface EstabelecimentoUpdateInput {
+  CO_CNES?: Maybe<String>;
+  NU_CNPJ_MANTENEDORA?: Maybe<String>;
+  TP_PFPJ?: Maybe<String>;
+  NIVEL_DEP?: Maybe<String>;
+  NO_RAZAO_SOCIAL?: Maybe<String>;
+  NO_FANTASIA?: Maybe<String>;
+  NO_LOGRADOURO?: Maybe<String>;
+  NU_ENDERECO?: Maybe<String>;
+  NO_COMPLEMENTO?: Maybe<String>;
+  NO_BAIRRO?: Maybe<String>;
+  CO_CEP?: Maybe<String>;
+  CO_REGIAO_SAUDE?: Maybe<String>;
+  CO_MICRO_REGIAO?: Maybe<String>;
+  CO_DISTRITO_SANITARIO?: Maybe<String>;
+  CO_DISTRITO_ADMINISTRATIVO?: Maybe<String>;
+  NU_TELEFONE?: Maybe<String>;
+  NU_FAX?: Maybe<String>;
+  NO_EMAIL?: Maybe<String>;
+  NU_CPF?: Maybe<String>;
+  NU_CNPJ?: Maybe<String>;
+  ATIVIDADE?: Maybe<AtividadeUpdateOneInput>;
+  CO_CLIENTELA?: Maybe<String>;
+  NU_ALVARA?: Maybe<String>;
+  DT_EXPEDICAO?: Maybe<String>;
+  TP_ORGAO_EXPEDIDOR?: Maybe<String>;
+  DT_VAL_LIC_SANI?: Maybe<String>;
+  TP_LIC_SANI?: Maybe<String>;
+  TP_UNIDADE?: Maybe<String>;
+  CO_TURNO_ATENDIMENTO?: Maybe<String>;
+  CO_ESTADO_GESTOR?: Maybe<String>;
+  CO_MUNICIPIO_GESTOR?: Maybe<String>;
+  DT_ATUALIZACAO?: Maybe<String>;
+  CO_USUARIO?: Maybe<String>;
+  CO_CPFDIRETORCLN?: Maybe<String>;
+  REG_DIRETORCLN?: Maybe<String>;
+  ST_ADESAO_FILANTROP?: Maybe<String>;
+  CO_MOTIVO_DESAB?: Maybe<String>;
+  NO_URL?: Maybe<String>;
+  NU_LATITUDE?: Maybe<String>;
+  NU_LONGITUDE?: Maybe<String>;
+  DT_ATU_GEO?: Maybe<String>;
+  NO_USUARIO_GEO?: Maybe<String>;
+  CO_NATUREZA_JUR?: Maybe<String>;
+  TP_ESTAB_SEMPRE_ABERTO?: Maybe<String>;
+  ST_GERACREDITO_GERENTE_SGIF?: Maybe<String>;
+  ST_CONEXAO_INTERNET?: Maybe<String>;
+  CO_TIPO_UNIDADE?: Maybe<String>;
+  NO_FANTASIA_ABREV?: Maybe<String>;
+  TP_GESTAO?: Maybe<String>;
+  DT_ATUALIZACAO_ORIGEM?: Maybe<String>;
+  CO_TIPO_ESTABELECIMENTO?: Maybe<String>;
+  CO_ATIVIDADE_PRINCIPAL?: Maybe<String>;
+  ST_CONTRATO_FORMALIZADO?: Maybe<String>;
+}
+
 export interface EstabelecimentoSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
@@ -1162,12 +1278,52 @@ export interface EstabelecimentoSubscriptionWhereInput {
   >;
 }
 
-export type EstabelecimentoWhereUniqueInput = AtLeastOne<{
-  CO_UNIDADE: Maybe<ID_Input>;
-}>;
-
 export interface NodeNode {
   id: ID_Output;
+}
+
+export interface AtividadeEdge {
+  node: Atividade;
+  cursor: String;
+}
+
+export interface AtividadeEdgePromise
+  extends Promise<AtividadeEdge>,
+    Fragmentable {
+  node: <T = AtividadePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface AtividadeEdgeSubscription
+  extends Promise<AsyncIterator<AtividadeEdge>>,
+    Fragmentable {
+  node: <T = AtividadeSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AtividadeSubscriptionPayload {
+  mutation: MutationType;
+  node: Atividade;
+  updatedFields: String[];
+  previousValues: AtividadePreviousValues;
+}
+
+export interface AtividadeSubscriptionPayloadPromise
+  extends Promise<AtividadeSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = AtividadePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = AtividadePreviousValuesPromise>() => T;
+}
+
+export interface AtividadeSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<AtividadeSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = AtividadeSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = AtividadePreviousValuesSubscription>() => T;
 }
 
 export interface AggregateEstabelecimento {
@@ -1184,22 +1340,6 @@ export interface AggregateEstabelecimentoSubscription
   extends Promise<AsyncIterator<AggregateEstabelecimento>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface BatchPayload {
-  count: Long;
-}
-
-export interface BatchPayloadPromise
-  extends Promise<BatchPayload>,
-    Fragmentable {
-  count: () => Promise<Long>;
-}
-
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayload>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
 }
 
 export interface EstabelecimentoPreviousValues {
@@ -1224,7 +1364,6 @@ export interface EstabelecimentoPreviousValues {
   NO_EMAIL?: String;
   NU_CPF?: String;
   NU_CNPJ?: String;
-  CO_ATIVIDADE?: String;
   CO_CLIENTELA?: String;
   NU_ALVARA?: String;
   DT_EXPEDICAO?: String;
@@ -1283,7 +1422,6 @@ export interface EstabelecimentoPreviousValuesPromise
   NO_EMAIL: () => Promise<String>;
   NU_CPF: () => Promise<String>;
   NU_CNPJ: () => Promise<String>;
-  CO_ATIVIDADE: () => Promise<String>;
   CO_CLIENTELA: () => Promise<String>;
   NU_ALVARA: () => Promise<String>;
   DT_EXPEDICAO: () => Promise<String>;
@@ -1342,7 +1480,6 @@ export interface EstabelecimentoPreviousValuesSubscription
   NO_EMAIL: () => Promise<AsyncIterator<String>>;
   NU_CPF: () => Promise<AsyncIterator<String>>;
   NU_CNPJ: () => Promise<AsyncIterator<String>>;
-  CO_ATIVIDADE: () => Promise<AsyncIterator<String>>;
   CO_CLIENTELA: () => Promise<AsyncIterator<String>>;
   NU_ALVARA: () => Promise<AsyncIterator<String>>;
   DT_EXPEDICAO: () => Promise<AsyncIterator<String>>;
@@ -1377,23 +1514,107 @@ export interface EstabelecimentoPreviousValuesSubscription
   ST_CONTRATO_FORMALIZADO: () => Promise<AsyncIterator<String>>;
 }
 
-export interface EstabelecimentoEdge {
-  node: Estabelecimento;
-  cursor: String;
+export interface BatchPayload {
+  count: Long;
 }
 
-export interface EstabelecimentoEdgePromise
-  extends Promise<EstabelecimentoEdge>,
+export interface BatchPayloadPromise
+  extends Promise<BatchPayload>,
     Fragmentable {
-  node: <T = EstabelecimentoPromise>() => T;
-  cursor: () => Promise<String>;
+  count: () => Promise<Long>;
 }
 
-export interface EstabelecimentoEdgeSubscription
-  extends Promise<AsyncIterator<EstabelecimentoEdge>>,
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayload>>,
     Fragmentable {
-  node: <T = EstabelecimentoSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  count: () => Promise<AsyncIterator<Long>>;
+}
+
+export interface AtividadePreviousValues {
+  CO_ATIVIDADE: ID_Output;
+  DS_ATIVIDADE: String;
+}
+
+export interface AtividadePreviousValuesPromise
+  extends Promise<AtividadePreviousValues>,
+    Fragmentable {
+  CO_ATIVIDADE: () => Promise<ID_Output>;
+  DS_ATIVIDADE: () => Promise<String>;
+}
+
+export interface AtividadePreviousValuesSubscription
+  extends Promise<AsyncIterator<AtividadePreviousValues>>,
+    Fragmentable {
+  CO_ATIVIDADE: () => Promise<AsyncIterator<ID_Output>>;
+  DS_ATIVIDADE: () => Promise<AsyncIterator<String>>;
+}
+
+export interface Atividade {
+  CO_ATIVIDADE: ID_Output;
+  DS_ATIVIDADE: String;
+}
+
+export interface AtividadePromise extends Promise<Atividade>, Fragmentable {
+  CO_ATIVIDADE: () => Promise<ID_Output>;
+  DS_ATIVIDADE: () => Promise<String>;
+}
+
+export interface AtividadeSubscription
+  extends Promise<AsyncIterator<Atividade>>,
+    Fragmentable {
+  CO_ATIVIDADE: () => Promise<AsyncIterator<ID_Output>>;
+  DS_ATIVIDADE: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AtividadeNullablePromise
+  extends Promise<Atividade | null>,
+    Fragmentable {
+  CO_ATIVIDADE: () => Promise<ID_Output>;
+  DS_ATIVIDADE: () => Promise<String>;
+}
+
+export interface AtividadeConnection {
+  pageInfo: PageInfo;
+  edges: AtividadeEdge[];
+}
+
+export interface AtividadeConnectionPromise
+  extends Promise<AtividadeConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<AtividadeEdge>>() => T;
+  aggregate: <T = AggregateAtividadePromise>() => T;
+}
+
+export interface AtividadeConnectionSubscription
+  extends Promise<AsyncIterator<AtividadeConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<AtividadeEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateAtividadeSubscription>() => T;
+}
+
+export interface PageInfo {
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
+}
+
+export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
+}
+
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfo>>,
+    Fragmentable {
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface EstabelecimentoSubscriptionPayload {
@@ -1421,6 +1642,41 @@ export interface EstabelecimentoSubscriptionPayloadSubscription
   previousValues: <T = EstabelecimentoPreviousValuesSubscription>() => T;
 }
 
+export interface EstabelecimentoEdge {
+  node: Estabelecimento;
+  cursor: String;
+}
+
+export interface EstabelecimentoEdgePromise
+  extends Promise<EstabelecimentoEdge>,
+    Fragmentable {
+  node: <T = EstabelecimentoPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface EstabelecimentoEdgeSubscription
+  extends Promise<AsyncIterator<EstabelecimentoEdge>>,
+    Fragmentable {
+  node: <T = EstabelecimentoSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateAtividade {
+  count: Int;
+}
+
+export interface AggregateAtividadePromise
+  extends Promise<AggregateAtividade>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateAtividadeSubscription
+  extends Promise<AsyncIterator<AggregateAtividade>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
 export interface Estabelecimento {
   CO_UNIDADE: ID_Output;
   CO_CNES?: String;
@@ -1443,7 +1699,6 @@ export interface Estabelecimento {
   NO_EMAIL?: String;
   NU_CPF?: String;
   NU_CNPJ?: String;
-  CO_ATIVIDADE?: String;
   CO_CLIENTELA?: String;
   NU_ALVARA?: String;
   DT_EXPEDICAO?: String;
@@ -1502,7 +1757,7 @@ export interface EstabelecimentoPromise
   NO_EMAIL: () => Promise<String>;
   NU_CPF: () => Promise<String>;
   NU_CNPJ: () => Promise<String>;
-  CO_ATIVIDADE: () => Promise<String>;
+  ATIVIDADE: <T = AtividadePromise>() => T;
   CO_CLIENTELA: () => Promise<String>;
   NU_ALVARA: () => Promise<String>;
   DT_EXPEDICAO: () => Promise<String>;
@@ -1561,7 +1816,7 @@ export interface EstabelecimentoSubscription
   NO_EMAIL: () => Promise<AsyncIterator<String>>;
   NU_CPF: () => Promise<AsyncIterator<String>>;
   NU_CNPJ: () => Promise<AsyncIterator<String>>;
-  CO_ATIVIDADE: () => Promise<AsyncIterator<String>>;
+  ATIVIDADE: <T = AtividadeSubscription>() => T;
   CO_CLIENTELA: () => Promise<AsyncIterator<String>>;
   NU_ALVARA: () => Promise<AsyncIterator<String>>;
   DT_EXPEDICAO: () => Promise<AsyncIterator<String>>;
@@ -1620,7 +1875,7 @@ export interface EstabelecimentoNullablePromise
   NO_EMAIL: () => Promise<String>;
   NU_CPF: () => Promise<String>;
   NU_CNPJ: () => Promise<String>;
-  CO_ATIVIDADE: () => Promise<String>;
+  ATIVIDADE: <T = AtividadePromise>() => T;
   CO_CLIENTELA: () => Promise<String>;
   NU_ALVARA: () => Promise<String>;
   DT_EXPEDICAO: () => Promise<String>;
@@ -1676,35 +1931,10 @@ export interface EstabelecimentoConnectionSubscription
   aggregate: <T = AggregateEstabelecimentoSubscription>() => T;
 }
 
-export interface PageInfo {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
-}
-
-export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
-}
-
-export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfo>>,
-    Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
-}
-
 /*
-The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+The `Boolean` scalar type represents `true` or `false`.
 */
-export type String = string;
-
-export type Long = string;
+export type Boolean = boolean;
 
 /*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
@@ -1712,15 +1942,17 @@ The `ID` scalar type represents a unique identifier, often used to refetch an ob
 export type ID_Input = string | number;
 export type ID_Output = string;
 
+export type Long = string;
+
 /*
 The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
 */
 export type Int = number;
 
 /*
-The `Boolean` scalar type represents `true` or `false`.
+The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
 */
-export type Boolean = boolean;
+export type String = string;
 
 /**
  * Model Metadata
@@ -1729,6 +1961,10 @@ export type Boolean = boolean;
 export const models: Model[] = [
   {
     name: "Estabelecimento",
+    embedded: false
+  },
+  {
+    name: "Atividade",
     embedded: false
   }
 ];

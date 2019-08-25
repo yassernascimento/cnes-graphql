@@ -3,8 +3,128 @@
 // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
 export const typeDefs = /* GraphQL */ `
+  type AggregateAtividade {
+    count: Int!
+  }
+
   type AggregateEstabelecimento {
     count: Int!
+  }
+
+  type Atividade {
+    CO_ATIVIDADE: ID!
+    DS_ATIVIDADE: String!
+  }
+
+  type AtividadeConnection {
+    pageInfo: PageInfo!
+    edges: [AtividadeEdge]!
+    aggregate: AggregateAtividade!
+  }
+
+  input AtividadeCreateInput {
+    CO_ATIVIDADE: ID
+    DS_ATIVIDADE: String!
+  }
+
+  input AtividadeCreateOneInput {
+    create: AtividadeCreateInput
+    connect: AtividadeWhereUniqueInput
+  }
+
+  type AtividadeEdge {
+    node: Atividade!
+    cursor: String!
+  }
+
+  enum AtividadeOrderByInput {
+    CO_ATIVIDADE_ASC
+    CO_ATIVIDADE_DESC
+    DS_ATIVIDADE_ASC
+    DS_ATIVIDADE_DESC
+  }
+
+  type AtividadePreviousValues {
+    CO_ATIVIDADE: ID!
+    DS_ATIVIDADE: String!
+  }
+
+  type AtividadeSubscriptionPayload {
+    mutation: MutationType!
+    node: Atividade
+    updatedFields: [String!]
+    previousValues: AtividadePreviousValues
+  }
+
+  input AtividadeSubscriptionWhereInput {
+    mutation_in: [MutationType!]
+    updatedFields_contains: String
+    updatedFields_contains_every: [String!]
+    updatedFields_contains_some: [String!]
+    node: AtividadeWhereInput
+    AND: [AtividadeSubscriptionWhereInput!]
+  }
+
+  input AtividadeUpdateDataInput {
+    DS_ATIVIDADE: String
+  }
+
+  input AtividadeUpdateInput {
+    DS_ATIVIDADE: String
+  }
+
+  input AtividadeUpdateManyMutationInput {
+    DS_ATIVIDADE: String
+  }
+
+  input AtividadeUpdateOneInput {
+    create: AtividadeCreateInput
+    update: AtividadeUpdateDataInput
+    upsert: AtividadeUpsertNestedInput
+    delete: Boolean
+    disconnect: Boolean
+    connect: AtividadeWhereUniqueInput
+  }
+
+  input AtividadeUpsertNestedInput {
+    update: AtividadeUpdateDataInput!
+    create: AtividadeCreateInput!
+  }
+
+  input AtividadeWhereInput {
+    CO_ATIVIDADE: ID
+    CO_ATIVIDADE_not: ID
+    CO_ATIVIDADE_in: [ID!]
+    CO_ATIVIDADE_not_in: [ID!]
+    CO_ATIVIDADE_lt: ID
+    CO_ATIVIDADE_lte: ID
+    CO_ATIVIDADE_gt: ID
+    CO_ATIVIDADE_gte: ID
+    CO_ATIVIDADE_contains: ID
+    CO_ATIVIDADE_not_contains: ID
+    CO_ATIVIDADE_starts_with: ID
+    CO_ATIVIDADE_not_starts_with: ID
+    CO_ATIVIDADE_ends_with: ID
+    CO_ATIVIDADE_not_ends_with: ID
+    DS_ATIVIDADE: String
+    DS_ATIVIDADE_not: String
+    DS_ATIVIDADE_in: [String!]
+    DS_ATIVIDADE_not_in: [String!]
+    DS_ATIVIDADE_lt: String
+    DS_ATIVIDADE_lte: String
+    DS_ATIVIDADE_gt: String
+    DS_ATIVIDADE_gte: String
+    DS_ATIVIDADE_contains: String
+    DS_ATIVIDADE_not_contains: String
+    DS_ATIVIDADE_starts_with: String
+    DS_ATIVIDADE_not_starts_with: String
+    DS_ATIVIDADE_ends_with: String
+    DS_ATIVIDADE_not_ends_with: String
+    AND: [AtividadeWhereInput!]
+  }
+
+  input AtividadeWhereUniqueInput {
+    CO_ATIVIDADE: ID
   }
 
   type BatchPayload {
@@ -33,7 +153,7 @@ export const typeDefs = /* GraphQL */ `
     NO_EMAIL: String
     NU_CPF: String
     NU_CNPJ: String
-    CO_ATIVIDADE: String
+    ATIVIDADE: Atividade
     CO_CLIENTELA: String
     NU_ALVARA: String
     DT_EXPEDICAO: String
@@ -96,7 +216,7 @@ export const typeDefs = /* GraphQL */ `
     NO_EMAIL: String
     NU_CPF: String
     NU_CNPJ: String
-    CO_ATIVIDADE: String
+    ATIVIDADE: AtividadeCreateOneInput
     CO_CLIENTELA: String
     NU_ALVARA: String
     DT_EXPEDICAO: String
@@ -179,8 +299,6 @@ export const typeDefs = /* GraphQL */ `
     NU_CPF_DESC
     NU_CNPJ_ASC
     NU_CNPJ_DESC
-    CO_ATIVIDADE_ASC
-    CO_ATIVIDADE_DESC
     CO_CLIENTELA_ASC
     CO_CLIENTELA_DESC
     NU_ALVARA_ASC
@@ -269,7 +387,6 @@ export const typeDefs = /* GraphQL */ `
     NO_EMAIL: String
     NU_CPF: String
     NU_CNPJ: String
-    CO_ATIVIDADE: String
     CO_CLIENTELA: String
     NU_ALVARA: String
     DT_EXPEDICAO: String
@@ -341,7 +458,7 @@ export const typeDefs = /* GraphQL */ `
     NO_EMAIL: String
     NU_CPF: String
     NU_CNPJ: String
-    CO_ATIVIDADE: String
+    ATIVIDADE: AtividadeUpdateOneInput
     CO_CLIENTELA: String
     NU_ALVARA: String
     DT_EXPEDICAO: String
@@ -397,7 +514,6 @@ export const typeDefs = /* GraphQL */ `
     NO_EMAIL: String
     NU_CPF: String
     NU_CNPJ: String
-    CO_ATIVIDADE: String
     CO_CLIENTELA: String
     NU_ALVARA: String
     DT_EXPEDICAO: String
@@ -727,20 +843,7 @@ export const typeDefs = /* GraphQL */ `
     NU_CNPJ_not_starts_with: String
     NU_CNPJ_ends_with: String
     NU_CNPJ_not_ends_with: String
-    CO_ATIVIDADE: String
-    CO_ATIVIDADE_not: String
-    CO_ATIVIDADE_in: [String!]
-    CO_ATIVIDADE_not_in: [String!]
-    CO_ATIVIDADE_lt: String
-    CO_ATIVIDADE_lte: String
-    CO_ATIVIDADE_gt: String
-    CO_ATIVIDADE_gte: String
-    CO_ATIVIDADE_contains: String
-    CO_ATIVIDADE_not_contains: String
-    CO_ATIVIDADE_starts_with: String
-    CO_ATIVIDADE_not_starts_with: String
-    CO_ATIVIDADE_ends_with: String
-    CO_ATIVIDADE_not_ends_with: String
+    ATIVIDADE: AtividadeWhereInput
     CO_CLIENTELA: String
     CO_CLIENTELA_not: String
     CO_CLIENTELA_in: [String!]
@@ -1199,6 +1302,22 @@ export const typeDefs = /* GraphQL */ `
   scalar Long
 
   type Mutation {
+    createAtividade(data: AtividadeCreateInput!): Atividade!
+    updateAtividade(
+      data: AtividadeUpdateInput!
+      where: AtividadeWhereUniqueInput!
+    ): Atividade
+    updateManyAtividades(
+      data: AtividadeUpdateManyMutationInput!
+      where: AtividadeWhereInput
+    ): BatchPayload!
+    upsertAtividade(
+      where: AtividadeWhereUniqueInput!
+      create: AtividadeCreateInput!
+      update: AtividadeUpdateInput!
+    ): Atividade!
+    deleteAtividade(where: AtividadeWhereUniqueInput!): Atividade
+    deleteManyAtividades(where: AtividadeWhereInput): BatchPayload!
     createEstabelecimento(data: EstabelecimentoCreateInput!): Estabelecimento!
     updateEstabelecimento(
       data: EstabelecimentoUpdateInput!
@@ -1237,6 +1356,25 @@ export const typeDefs = /* GraphQL */ `
   }
 
   type Query {
+    atividade(where: AtividadeWhereUniqueInput!): Atividade
+    atividades(
+      where: AtividadeWhereInput
+      orderBy: AtividadeOrderByInput
+      skip: Int
+      after: String
+      before: String
+      first: Int
+      last: Int
+    ): [Atividade]!
+    atividadesConnection(
+      where: AtividadeWhereInput
+      orderBy: AtividadeOrderByInput
+      skip: Int
+      after: String
+      before: String
+      first: Int
+      last: Int
+    ): AtividadeConnection!
     estabelecimento(where: EstabelecimentoWhereUniqueInput!): Estabelecimento
     estabelecimentoes(
       where: EstabelecimentoWhereInput
@@ -1260,6 +1398,9 @@ export const typeDefs = /* GraphQL */ `
   }
 
   type Subscription {
+    atividade(
+      where: AtividadeSubscriptionWhereInput
+    ): AtividadeSubscriptionPayload
     estabelecimento(
       where: EstabelecimentoSubscriptionWhereInput
     ): EstabelecimentoSubscriptionPayload

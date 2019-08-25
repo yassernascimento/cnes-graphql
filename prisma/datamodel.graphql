@@ -20,7 +20,7 @@ type Estabelecimento {
   NO_EMAIL: String
   NU_CPF: String
   NU_CNPJ: String
-  CO_ATIVIDADE: String
+  ATIVIDADE: Atividade @relation(link: INLINE)
   CO_CLIENTELA: String
   NU_ALVARA: String
   DT_EXPEDICAO: String
@@ -53,4 +53,9 @@ type Estabelecimento {
   CO_TIPO_ESTABELECIMENTO: String
   CO_ATIVIDADE_PRINCIPAL: String
   ST_CONTRATO_FORMALIZADO: String
+}
+
+type Atividade {
+  CO_ATIVIDADE: ID! @id
+  DS_ATIVIDADE: String!
 }

@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/index.ts",
-    "prepare-data": "npx run-for-every-file --src './data/csv/' --file '*.csv' --run 'npx csvtojson ./data/csv/{{file-name-ext}} > ./data/json/{{file-name}}.json --ignoreEmpty=true --delimiter=;'"
+    "start": "ts-node-dev --no-notify src/index.ts",
+    "prepare-data": "npx run-for-every-file --src './data/csv/' --file '*.csv' --run 'npx csvtojson ./data/csv/{{file-name-ext}} > ./data/json/{{file-name}}.json --ignoreEmpty=true --delimiter=;'",
+    "redeploy-prisma": "prisma reset -f ; prisma delete -f ; prisma deploy -f"
   },
   "author": "yasser nascimento <yassern@protonmail.com>",
   "license": "ISC",
@@ -17,7 +18,7 @@
     "nodemon": "^1.19.1",
     "prettier": "^1.17.1",
     "pretty-quick": "^1.11.0",
-    "ts-node": "^8.3.0",
+    "ts-node-dev": "^1.0.0-pre.41",
     "tslint": "^5.16.0",
     "typescript": "^3.4.5"
   },
