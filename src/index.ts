@@ -75,7 +75,7 @@ const resolvers = {
 };
 
 const server = new GraphQLServer({
-  typeDefs: "./src/schema.graphql",
+  typeDefs: "./src/schemas/schema.graphql",
   resolvers,
   context: { prisma }
 });

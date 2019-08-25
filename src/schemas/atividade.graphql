@@ -1,0 +1,36 @@
+type Atividade {
+  CO_ATIVIDADE: ID!
+  DS_ATIVIDADE: String!
+}
+
+input AtividadeWhereInput {
+  CO_ATIVIDADE: ID
+  CO_ATIVIDADE_not: ID
+  CO_ATIVIDADE_in: [ID!]
+  CO_ATIVIDADE_not_in: [ID!]
+  CO_ATIVIDADE_lt: ID
+  CO_ATIVIDADE_lte: ID
+  CO_ATIVIDADE_gt: ID
+  CO_ATIVIDADE_gte: ID
+  CO_ATIVIDADE_contains: ID
+  CO_ATIVIDADE_not_contains: ID
+  CO_ATIVIDADE_starts_with: ID
+  CO_ATIVIDADE_not_starts_with: ID
+  CO_ATIVIDADE_ends_with: ID
+  CO_ATIVIDADE_not_ends_with: ID
+  DS_ATIVIDADE: String
+  DS_ATIVIDADE_not: String
+  DS_ATIVIDADE_in: [String!]
+  DS_ATIVIDADE_not_in: [String!]
+  DS_ATIVIDADE_lt: String
+  DS_ATIVIDADE_lte: String
+  DS_ATIVIDADE_gt: String
+  DS_ATIVIDADE_gte: String
+  DS_ATIVIDADE_contains: String
+  DS_ATIVIDADE_not_contains: String
+  DS_ATIVIDADE_starts_with: String
+  DS_ATIVIDADE_not_starts_with: String
+  DS_ATIVIDADE_ends_with: String
+  DS_ATIVIDADE_not_ends_with: String
+  AND: [AtividadeWhereInput!]
+}

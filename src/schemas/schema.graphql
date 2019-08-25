@@ -1,0 +1,14 @@
+# import * from 'estabelecimento.graphql'
+
+type Query {
+  estabelecimento(CO_UNIDADE: ID!): Estabelecimento!
+  estabelecimentos(
+    where: EstabelecimentoWhereInput
+    orderBy: EstabelecimentoOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Estabelecimento]!
+}
