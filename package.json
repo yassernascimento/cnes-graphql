@@ -4,10 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc && node dist/index.js",
+    "start": "node dist/index.js",
     "start:dev": "ts-node-dev --no-notify src/index.ts",
     "prepare-data": "npx run-for-every-file --src './data/csv/' --file '*.csv' --run 'npx csvtojson ./data/csv/{{file-name-ext}} > ./data/json/{{file-name}}.json --ignoreEmpty=true --delimiter=;'",
-    "redeploy": "prisma reset -f ; prisma delete -f ; prisma deploy -f"
+    "redeploy": "prisma reset -f ; prisma delete -f ; prisma deploy -f",
+    "build-ts": "tsc",
+    "postinstall": "npm run build-ts"
   },
   "author": "yasser nascimento <yassern@protonmail.com>",
   "license": "ISC",
