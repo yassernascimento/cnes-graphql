@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx tsc && node dist/index.js",
+    "start": "tsc && node dist/index.js",
     "start:dev": "ts-node-dev --no-notify src/index.ts",
     "prepare-data": "npx run-for-every-file --src './data/csv/' --file '*.csv' --run 'npx csvtojson ./data/csv/{{file-name-ext}} > ./data/json/{{file-name}}.json --ignoreEmpty=true --delimiter=;'",
     "redeploy": "prisma reset -f ; prisma delete -f ; prisma deploy -f"
@@ -21,7 +21,7 @@
     "pretty-quick": "^1.11.0",
     "ts-node-dev": "^1.0.0-pre.41",
     "tslint": "^5.16.0",
-    "typescript": "^3.4.5"
+    "typescript": "^3.5.3"
   },
   "husky": {
     "hooks": {
